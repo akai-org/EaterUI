@@ -1,0 +1,51 @@
+# Menu API
+
+###
+# baseURL
+@baseURL = http://localhost:3000
+@sess = TODO
+@sig = TODO
+@cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
+
+###
+# Get Menu for date range
+@startDate = 2021-10-20
+@endDate = 2021-10-25
+GET {{baseURL}}/menu?startDate={{startDate}}&endDate={{endDate}}
+Cookie: {{cookie}}
+
+###
+# Get Menu for a day
+@date = 2021-10-25
+GET {{baseURL}}/menu/details?date={{date}}
+Cookie: {{cookie}}
+
+
+###
+# Create Menu item
+POST {{baseURL}}/menu
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+    "date": "2021-10-25",
+    "portions": 5,
+    "recipeId": 3
+}
+
+###
+# Edit Menu item
+PUT {{baseURL}}/menu/16
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+    "date": "2021-10-23",
+    "portions": 4,
+    "recipeId": 3
+}
+
+###
+# Delere Recipe By Id
+DELETE {{baseURL}}/menu/16
+Cookie: {{cookie}}

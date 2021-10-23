@@ -74,8 +74,9 @@ model ShoppingList {
 }
 
 model ShoppingListItem {
-  id   Int    @id @default(autoincrement())
-  name String
+  id     Int     @id @default(autoincrement())
+  name   String
+  marked Boolean
 
   shoppingList           ShoppingList             @relation(fields: [shoppingListId], references: [id], onDelete: Cascade)
   shoppingListId         Int
