@@ -1,0 +1,72 @@
+# Recipes API
+
+###
+# baseURL
+@baseURL = http://localhost:3000
+@sess = TODO 
+@sig = TODO
+@cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
+
+###
+# Find All Recipes
+GET {{baseURL}}/recipes
+Cookie: {{cookie}}
+
+###
+# Find Recipe By Id
+GET {{baseURL}}/recipes/2
+Cookie: {{cookie}}
+
+
+###
+# Add Recipe
+POST {{baseURL}}/recipes
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+    "name": "name",
+    "description": "description",
+    "graphicURL": "url",
+    "ingredients": [
+        {
+            "name": "ingredient 1",
+            "amount": 1.0,
+            "measure": "piece"
+        },
+        {
+            "name": "ingredient 2",
+            "amount": 0.5,
+            "measure": "kg"
+        }
+    ]
+}
+
+###
+# Edit Recipe By Id
+PUT {{baseURL}}/recipes/2
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+    "name": "updated name",
+    "description": "description",
+    "graphicURL": "url",
+    "ingredients": [
+        {
+            "name": "ingredient 3",
+            "amount": 2,
+            "measure": "piece"
+        },
+        {
+            "name": "ingredient 2",
+            "amount": 0.5,
+            "measure": "kg"
+        }
+    ]
+}
+
+###
+# Delere Recipe By Id
+DELETE {{baseURL}}/recipes/2
+Cookie: {{cookie}}

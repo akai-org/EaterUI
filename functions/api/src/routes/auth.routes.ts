@@ -1,15 +1,14 @@
-import {
-  googleSignIn,
-  googleCallback,
-  logout,
-  userInfo,
-} from "./../controllers/auth.controller";
+import * as AuthController from "./../controllers/auth.controller";
 import express from "express";
 
 const router = express.Router();
 
-router.get("/google", googleSignIn);
-router.get("/google/callback", googleCallback, userInfo);
-router.get("/logout", logout);
+router.get("/google", AuthController.googleSignIn);
+router.get(
+  "/google/callback",
+  AuthController.googleCallback,
+  AuthController.getUserInfo
+);
+router.get("/logout", AuthController.logout);
 
 export default router;

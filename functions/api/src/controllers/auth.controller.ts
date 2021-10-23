@@ -10,13 +10,13 @@ export const googleCallback = passport.authenticate("google", {
   failureRedirect: "/login",
 });
 
-export const userInfo = async (req: Request, res: Response) => {
+export const getUserInfo = async (req: Request, res: Response) => {
   if (req.user) {
     const { id, displayName } = req.user;
 
-    try {
-      await db.user.findFirst({ where: { id } });
-    } catch {
+    const user = await db.user.findFirst({ where: { id } });
+
+    if (!user) {
       await db.user.create({ data: { id, displayName } });
     }
   }
