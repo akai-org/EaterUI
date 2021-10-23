@@ -4,9 +4,9 @@ import {
   logout,
   userInfo,
 } from "./../controllers/auth.controller";
-import { Router } from "express";
+import express from "express";
 
-const router = Router();
+const router = express.Router();
 
 router.get("/google", googleSignIn);
 router.get("/google/callback", googleCallback, userInfo);

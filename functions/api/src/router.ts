@@ -1,7 +1,7 @@
-import { Router } from "express";
+import express, { IRouter } from "express";
 import authRouter from "./routes/auth.routes";
 
-const router = Router();
+const router: IRouter = express.Router();
 
 router.use("/auth", authRouter);
 

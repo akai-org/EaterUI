@@ -8,9 +8,9 @@ datasource db {
 }
 
 model User {
-  id       Int      @id
-  username String
-  Recipe   Recipe[]
+  id          String   @id
+  displayName String
+  Recipe      Recipe[]
 
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
@@ -25,7 +25,7 @@ model Recipe {
   graphics_url String?
 
   user             User               @relation(fields: [userId], references: [id])
-  userId           Int
+  userId           String
   RecipeIngredient RecipeIngredient[]
   MenuItem         MenuItem[]
 
@@ -52,7 +52,7 @@ model MenuItem {
   portions Int
 
   user     User   @relation(fields: [userId], references: [id])
-  userId   Int
+  userId   String
   recipe   Recipe @relation(fields: [recipeId], references: [id])
   recipeId Int
 
@@ -66,7 +66,7 @@ model ShoppingList {
   endsAt   DateTime
 
   user             User               @relation(fields: [userId], references: [id])
-  userId           Int
+  userId           String
   ShoppingListItem ShoppingListItem[]
 
   createdAt DateTime @default(now())
