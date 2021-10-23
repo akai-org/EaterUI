@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id
+  username String
+  Recipe   Recipe[]
+
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  MenuItem     MenuItem[]
+  ShoppingList ShoppingList[]
+}
+
+model Recipe {
+  id           Int     @id @default(autoincrement())
+  name         String
+  description  String
+  graphics_url String?
+
+  user             User               @relation(fields: [userId], references: [id])
+  userId           Int
+  RecipeIngredient RecipeIngredient[]
+  MenuItem         MenuItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RecipeIngredient {
+  id      Int    @id @default(autoincrement())
+  name    String
+  amount  Float
+  measure String
+
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MenuItem {
+  id       Int      @id @default(autoincrement())
+  date     DateTime
+  portions Int
+
+  user     User   @relation(fields: [userId], references: [id])
+  userId   Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ShoppingList {
+  id       Int      @id @default(autoincrement())
+  startsAt DateTime
+  endsAt   DateTime
+
+  user             User               @relation(fields: [userId], references: [id])
+  userId           Int
+  ShoppingListItem ShoppingListItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ShoppingListItem {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  shoppingList           ShoppingList             @relation(fields: [shoppingListId], references: [id])
+  shoppingListId         Int
+  ShoppingListItemAmount ShoppingListItemAmount[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ShoppingListItemAmount {
+  id      Int    @id @default(autoincrement())
+  amount  Float
+  measure String
+
+  shoppingListItem   ShoppingListItem @relation(fields: [shoppingListItemId], references: [id])
+  shoppingListItemId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
