@@ -14,7 +14,7 @@ Cookie: {{cookie}}
 
 ###
 # Find Recipe By Id
-GET {{baseURL}}/recipes/2
+GET {{baseURL}}/recipes/3
 Cookie: {{cookie}}
 
 

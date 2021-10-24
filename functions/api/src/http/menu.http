@@ -9,14 +9,14 @@
 
 ###
 # Get Menu for date range
-@startDate = 2021-10-20
-@endDate = 2021-10-25
+@startDate = 2021-10-25
+@endDate = 2021-10-27
 GET {{baseURL}}/menu?startDate={{startDate}}&endDate={{endDate}}
 Cookie: {{cookie}}
 
 ###
 # Get Menu for a day
-@date = 2021-10-25
+@date = 2021-10-27
 GET {{baseURL}}/menu/details?date={{date}}
 Cookie: {{cookie}}
 
@@ -29,7 +29,7 @@ Cookie: {{cookie}}
 
 {
     "date": "2021-10-25",
-    "portions": 5,
+    "portions": 2,
     "recipeId": 3
 }
 
