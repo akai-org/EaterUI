@@ -1,3 +1,4 @@
+import { HttpError } from "./../errors/HttpError";
 import {
   ShoppingList,
   ShoppingListItem,
@@ -53,6 +54,10 @@ export async function getShoppingListDetails(userId: string, id: number) {
       },
     },
   });
+
+  if (!shoppingList) {
+    throw new HttpError(404, `Shopping List with id ${id} does not exist`);
+  }
 
   return ShoppingListSchema.parse(shoppingList);
 }
@@ -229,7 +234,10 @@ export async function markShoppingListItem(
       },
     },
   });
-  if (!item) throw new Error(`Shopping List Item with id ${id} does not exist`);
+
+  if (!item) {
+    throw new HttpError(404, `Shopping List Item with id ${id} does not exist`);
+  }
 
   await db.shoppingListItem.update({
     where: { id },

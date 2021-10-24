@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieSession from "cookie-session";
 import configurePassport from "./config/passport";
 import router from "./router";
+import errorMiddleware from "./middleware/error";
 
 dotenv.config();
 
@@ -23,5 +24,6 @@ app.use(passport.session());
 configurePassport();
 
 app.use("/", router);
+app.use(errorMiddleware);
 
 export default app;

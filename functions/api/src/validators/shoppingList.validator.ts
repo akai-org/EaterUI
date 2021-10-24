@@ -42,3 +42,5 @@ export const ShoppingListOverviewSchema = z
     markedIngredients: z.number(),
   })
   .array();
+
+export const UpdateShoppingListItemSchema = z.object({ marked: z.boolean() });
