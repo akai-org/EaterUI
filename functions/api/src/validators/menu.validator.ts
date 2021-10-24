@@ -1,14 +1,5 @@
 import { z } from "zod";
 
-export const ListMenuItemsFilterSchema = z.object({
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-});
-
-export const GetMenuItemsDetailsFilterSchema = z.object({
-  date: z.string().optional(),
-});
-
 export const MenuItemsOverviewSchema = z
   .object({
     date: z.string(),

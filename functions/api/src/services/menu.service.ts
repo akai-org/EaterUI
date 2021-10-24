@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { HttpError } from "../errors/HttpError";
 import db from "../db";
 import {
   MenuItemSchema,
@@ -10,14 +11,14 @@ import {
 
 export async function menuItemsOverviewByDateRange(
   userId: string,
-  { startDate, endDate }: { startDate: string; endDate: string }
+  { startDate, endDate }: { startDate: Date; endDate: Date }
 ) {
   const menuItemsOverview = await db.menuItem.groupBy({
     where: {
       userId,
       date: {
-        gte: dayjs(startDate).hour(0).toDate(),
-        lte: dayjs(endDate).hour(0).toDate(),
+        gte: startDate,
+        lte: endDate,
       },
     },
     by: ["date"],
@@ -37,12 +38,12 @@ export async function menuItemsOverviewByDateRange(
   return MenuItemsOverviewSchema.parse(formattedMenuItemsOverview);
 }
 
-export async function getMenuItemsByDate(userId: string, date: string) {
+export async function getMenuItemsByDate(userId: string, date: Date) {
   const menuItems = await db.menuItem.findMany({
     where: {
       userId,
       date: {
-        equals: dayjs(date).hour(0).toDate(),
+        equals: date,
       },
     },
     orderBy: {
@@ -76,14 +77,18 @@ export async function updateMenuItemById(
   data: UpdateMenuItemDto
 ) {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
-  if (!menuItem) throw new Error(`Menu item with id ${id} does not exist`);
+  if (!menuItem) {
+    throw new HttpError(404, `Menu Item with id ${id} does not exist`);
+  }
 
   await db.menuItem.update({ where: { id }, data });
 }
 
 export async function deleteMenuItemById(userId: string, id: number) {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
-  if (!menuItem) throw new Error(`Menu item with id ${id} does not exist`);
+  if (!menuItem) {
+    throw new HttpError(404, `Menu Item with id ${id} does not exist`);
+  }
 
   await db.menuItem.delete({ where: { id } });
 }

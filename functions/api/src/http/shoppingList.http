@@ -2,9 +2,10 @@
 
 ###
 # baseURL
+
 @baseURL = http://localhost:3000
-@sess = TODO
-@sig = TODO
+@sess = eyJwYXNzcG9ydCI6eyJ1c2VyIjp7ImlkIjoiMTA3NDcxMjIyNjEyMDk1NTI0MDM1IiwiZGlzcGxheU5hbWUiOiJSb2JlcnQgQmFuYXN6YWsifX19
+@sig = fdTiqCeVTiNN5RydV4Y6siIHboA
 @cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
 
 ###

@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { z } from "zod";
 import * as ShoppingListService from "../services/shoppingList.service";
 import {
   CreateShoppingListSchema,
   ShoppingListFilterSchema,
+  UpdateShoppingListItemSchema,
 } from "./../validators/shoppingList.validator";
 
 export async function listShoppingListOverview(
@@ -72,7 +72,7 @@ export async function markShoppingListItem(
   try {
     const shoppingListId = Number(req.params.id);
     const shoppingListItemId = Number(req.params.itemId);
-    const { marked } = z.object({ marked: z.boolean() }).parse(req.body);
+    const { marked } = UpdateShoppingListItemSchema.parse(req.body);
 
     const shoppingList = await ShoppingListService.markShoppingListItem(
       req.user?.id!,

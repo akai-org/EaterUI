@@ -7,6 +7,7 @@ import {
   RecipeSchemaInfoBatchSchema,
   UpdateRecipeDto,
 } from "../validators/recipes.validator";
+import { HttpError } from "../errors/HttpError";
 
 export async function listRecipes(
   userId: string,
@@ -36,6 +37,10 @@ export async function getRecipeById(
       ingredients: true,
     },
   });
+
+  if (!recipeWithIngredients) {
+    throw new HttpError(404, `Recipe with id ${id} does not exist`);
+  }
 
   return RecipeSchema.parse(recipeWithIngredients);
 }
@@ -68,7 +73,7 @@ export async function updateRecipeById(
   data: UpdateRecipeDto
 ): Promise<void> {
   const recipe = await db.recipe.findFirst({ where: { id, userId } });
-  if (!recipe) throw new Error(`Recipe with id ${id} does not exist`);
+  if (!recipe) throw new HttpError(404, `Recipe with id ${id} does not exist`);
 
   const { ingredients, ...recipeData } = data;
 
@@ -89,7 +94,7 @@ export async function deleteRecipeById(
   id: number
 ): Promise<void> {
   const recipe = await db.recipe.findFirst({ where: { id, userId } });
-  if (!recipe) throw new Error(`Recipe with id ${id} does not exist`);
+  if (!recipe) throw new HttpError(404, `Recipe with id ${id} does not exist`);
 
   await db.recipe.delete({ where: { id } });
 }
