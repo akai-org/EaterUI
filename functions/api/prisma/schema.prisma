@@ -65,9 +65,9 @@ model ShoppingList {
   startsAt DateTime
   endsAt   DateTime
 
-  user             User               @relation(fields: [userId], references: [id])
-  userId           String
-  ShoppingListItem ShoppingListItem[]
+  user        User               @relation(fields: [userId], references: [id])
+  userId      String
+  ingredients ShoppingListItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -78,9 +78,9 @@ model ShoppingListItem {
   name   String
   marked Boolean
 
-  shoppingList           ShoppingList             @relation(fields: [shoppingListId], references: [id], onDelete: Cascade)
-  shoppingListId         Int
-  ShoppingListItemAmount ShoppingListItemAmount[]
+  shoppingList   ShoppingList             @relation(fields: [shoppingListId], references: [id], onDelete: Cascade)
+  shoppingListId Int
+  amounts        ShoppingListItemAmount[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

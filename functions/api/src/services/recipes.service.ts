@@ -19,7 +19,7 @@ export async function listRecipes(
   const recipes = await db.recipe.findMany({
     where: { userId, name: { contains: query } },
     skip: offset,
-    take: limit,
+    take: Math.min(limit, 50),
     orderBy: { createdAt: "desc" },
   });
 
