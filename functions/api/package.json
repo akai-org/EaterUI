@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "passport": "^0.5.0",
     "passport-google-oauth20": "^2.0.0",
+    "serverless-http": "^2.7.0",
     "zod": "^3.10.3"
   },
   "devDependencies": {
