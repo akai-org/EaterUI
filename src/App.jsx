@@ -1,8 +1,5 @@
 function App() {
-
-  return (
-    <p>Witaj w EaterUI!</p>
-  )
+  return <p>Witaj w EaterUI! #2</p>;
 }
 
-export default App
+export default App;
