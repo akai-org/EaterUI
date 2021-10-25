@@ -1,0 +1,41 @@
+# Menu API
+
+###
+# baseURL
+
+@baseURL = http://localhost:3000
+@sess = eyJwYXNzcG9ydCI6eyJ1c2VyIjp7ImlkIjoiMTA3NDcxMjIyNjEyMDk1NTI0MDM1IiwiZGlzcGxheU5hbWUiOiJSb2JlcnQgQmFuYXN6YWsifX19
+@sig = fdTiqCeVTiNN5RydV4Y6siIHboA
+@cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
+
+###
+# List Shopping Lists 
+GET {{baseURL}}/shopping-list
+Cookie: {{cookie}}
+
+###
+# Get Shopping List
+GET {{baseURL}}/shopping-list/6
+Cookie: {{cookie}}
+
+
+###
+# Create Shopping List
+POST {{baseURL}}/shopping-list
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+    "startDate": "2021-10-26",
+    "endDate": "2021-10-28"
+}
+
+###
+# Mark Shopping List Item
+PUT {{baseURL}}/shopping-list/6/item/16
+Content-Type: application/json
+Cookie: {{cookie}}
+
+{
+    "marked": true
+}
