@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import dayjs from "dayjs";
 import * as MenuService from "../services/menu.service";
-import { HttpError } from "./../errors/HttpError";
+import { HttpError } from "../errors/HttpError";
 import {
   CreateMenuItemSchema,
   UpdateMenuItemSchema,

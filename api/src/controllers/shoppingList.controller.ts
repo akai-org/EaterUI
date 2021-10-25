@@ -4,7 +4,7 @@ import {
   CreateShoppingListSchema,
   ShoppingListFilterSchema,
   UpdateShoppingListItemSchema,
-} from "./../validators/shoppingList.validator";
+} from "../validators/shoppingList.validator";
 
 export async function listShoppingListOverview(
   req: Request,

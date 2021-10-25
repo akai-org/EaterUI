@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "watch": "tsc -w",
-    "dev": "nodemon dist/local.js",
+    "dev": "nodemon dist/index.js",
     "prisma:generate": "prisma generate",
     "prisma:migration": "prisma migrate dev --name",
     "prisma:migrate": "prisma migrate deploy"

@@ -7,6 +7,7 @@ export const googleSignIn = passport.authenticate("google", {
 });
 
 export const googleCallback = passport.authenticate("google", {
+  successRedirect: "/auth",
   failureRedirect: "/login",
 });
 
