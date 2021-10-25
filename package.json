@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run install:ui && npm run build:ui && npm run build:lambdas",
+    "install:ui": "npm ci",
+    "build:ui": "vite build",
+    "build:lambdas": "cd functions/api && npm ci && npm run build",
     "serve": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
