@@ -9,7 +9,8 @@
     "dev": "nodemon dist/index.js",
     "prisma:generate": "prisma generate",
     "prisma:migration": "prisma migrate dev --name",
-    "prisma:migrate": "prisma migrate deploy"
+    "prisma:migrate": "prisma migrate deploy",
+    "serve": "node index.js"
   },
   "keywords": [],
   "author": "",
