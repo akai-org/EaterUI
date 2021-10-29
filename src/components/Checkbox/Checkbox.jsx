@@ -1,14 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styles from "./Checkbox.module.scss";
-import { color } from "@storybook/addon-knobs";
 
-export function Checkbox({value, name} = {}) {
-  return <input type="checkbox" name={name} value={value}/>
+export function Checkbox({value, name, checked} = {}) {
+  return <input className={styles.checkbox} type="checkbox" name={name} value={value} checked={checked}/>
 }
-
-Checkbox.propTypes = {
-  value: PropTypes.string,
-  name: PropTypes.string,
-  onClick: PropTypes.func,
-};

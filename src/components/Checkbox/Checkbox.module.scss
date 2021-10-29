@@ -1,13 +1,13 @@
 @import "../../assets/variables.scss";
 
-input[type="checkbox"] {
+.checkbox {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
   appearance: none;
 
-  width: 20px !important;
-  height: 20px !important;
+  width: 20px;
+  height: 20px;
 
   border-radius: 0.2em;
   border: 0.15em solid $grey002;
