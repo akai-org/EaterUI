@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "no-empty-source": null
+  },
+  "syntax": "scss",
+  "defaultSeverity": "warning",
+  "extends": "stylelint-config-standard",
+  "customSyntax": "postcss-scss"
+}
