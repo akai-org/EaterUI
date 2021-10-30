@@ -1,14 +1,14 @@
 import express from "express";
 import * as RecipeController from "../controllers/recipes.controller";
 
-const router = express.Router();
-
 /**
  * @swagger
  * tags:
  *   name: Recipes
  *   description: The recipes managing API
  */
+
+const router = express.Router();
 
 /**
  * @swagger
@@ -23,7 +23,7 @@ const router = express.Router();
  *         - graphicURL
  *       properties:
  *         id:
- *           type: number
+ *           type: integer
  *         name:
  *           type: string
  *         description:
@@ -36,7 +36,7 @@ const router = express.Router();
  * @swagger
  * /recipes:
  *   get:
- *     summary: Returns the list of all the recipes for a user
+ *     summary: Returns the list of all the recipes
  *     tags: [Recipes]
  *     parameters:
  *       - in: query
@@ -105,7 +105,7 @@ router.get("/", RecipeController.listRecipes);
  *         - ingredients
  *       properties:
  *         id:
- *           type: number
+ *           type: integer
  *         name:
  *           type: string
  *         description:
@@ -177,7 +177,7 @@ router.get("/:id", RecipeController.getRecipe);
  * @swagger
  * /recipes:
  *  post:
- *    summary: Create new recipe
+ *    summary: Create a new recipe
  *    tags: [Recipes]
  *    requestBody:
  *      required: true
@@ -189,7 +189,7 @@ router.get("/:id", RecipeController.getRecipe);
  *      - googleAuth: []
  *      - googleAuthSig: []
  *    responses:
- *      200:
+ *      201:
  *        description: The recipe was created
  *        content:
  *          application/json:
@@ -197,10 +197,10 @@ router.get("/:id", RecipeController.getRecipe);
  *              type: object
  *              properties:
  *                id:
- *                  type: number
+ *                  type: integer
  *      401:
  *        description: Unauthorized
- *      404:
+ *      400:
  *        description: The recipe input was invalid
  *      500:
  *        description: Internal server error
@@ -218,7 +218,7 @@ router.post("/", RecipeController.createRecipe);
  *      - in: path
  *        name: id
  *        schema:
- *          type: string
+ *          type: number
  *        required: true
  *        description: The recipe id
  *    requestBody:
@@ -255,7 +255,7 @@ router.put("/:id", RecipeController.updateRecipe);
  *      - in: path
  *        name: id
  *        schema:
- *          type: string
+ *          type: number
  *        required: true
  *        description: The recipe id
  *    security:

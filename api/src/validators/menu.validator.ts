@@ -1,13 +1,16 @@
 import { z } from "zod";
+import dayjs from "dayjs";
 
-export const MenuItemsOverviewSchema = z
+export const MenuSummarySchema = z
   .object({
-    date: z.string(),
+    date: z.date().transform((date) => dayjs(date).format("YYYY-MM-DD")),
     count: z.number(),
   })
   .array();
 
-export const MenuItemsWithRecipeDetails = z
+export type MenuSummary = z.infer<typeof MenuSummarySchema>;
+
+export const MenuSchema = z
   .object({
     id: z.number(),
     portions: z.number(),
@@ -20,6 +23,8 @@ export const MenuItemsWithRecipeDetails = z
   })
   .array();
 
+export type Menu = z.infer<typeof MenuSchema>;
+
 export const CreateMenuItemSchema = z.object({
   date: z.date(),
   portions: z.number(),
@@ -28,12 +33,11 @@ export const CreateMenuItemSchema = z.object({
 
 export type CreateMenuItemDto = z.infer<typeof CreateMenuItemSchema>;
 
-export const MenuItemSchema = z.object({
+export const MenuItemIdSchema = z.object({
   id: z.number(),
-  date: z.string(),
-  portions: z.number(),
-  recipeId: z.number(),
 });
+
+export type MenuItemId = z.infer<typeof MenuItemIdSchema>;
 
 export const UpdateMenuItemSchema = z.object({
   portions: z.number(),

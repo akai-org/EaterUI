@@ -4,6 +4,9 @@ import * as MenuService from "../services/menu.service";
 import { HttpError } from "../errors/HttpError";
 import {
   CreateMenuItemSchema,
+  Menu,
+  MenuItemId,
+  MenuSummary,
   UpdateMenuItemSchema,
 } from "../validators/menu.validator";
 
@@ -26,7 +29,7 @@ export async function listMenuItems(
       throw new HttpError(400, `End date is not a valid date`);
     }
 
-    const menuItemsByDays = await MenuService.menuItemsOverviewByDateRange(
+    const menuItemsByDays: MenuSummary = await MenuService.menuSummaryByDateRange(
       req.user?.id!,
       {
         startDate: dayjs(startDate).hour(0).toDate(),
@@ -45,13 +48,13 @@ export async function getMenuItemsDetails(
   next: NextFunction
 ) {
   try {
-    const date = String(req.query.startDate) || dayjs().format("YYYY-MM-DD");
+    const date = String(req.query.date) || dayjs().format("YYYY-MM-DD");
 
     if (!dayjs(date).isValid()) {
       throw new HttpError(400, `Date is not a valid date`);
     }
 
-    const menuItems = await MenuService.getMenuItemsByDate(
+    const menuItems: Menu = await MenuService.menuItemsByDate(
       req.user?.id!,
       dayjs(date).hour(0).toDate()
     );
@@ -75,7 +78,7 @@ export async function createMenuItem(
     req.body.date = dayjs(date).hour(0).toDate();
     const menuItemData = CreateMenuItemSchema.parse(req.body);
 
-    const menuItem = await MenuService.createMenuItem(
+    const menuItem: MenuItemId = await MenuService.createMenuItem(
       req.user?.id!,
       menuItemData
     );

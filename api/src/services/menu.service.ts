@@ -2,17 +2,19 @@ import dayjs from "dayjs";
 import { HttpError } from "../errors/HttpError";
 import db from "../db";
 import {
-  MenuItemSchema,
-  MenuItemsOverviewSchema,
-  MenuItemsWithRecipeDetails,
+  MenuSummarySchema,
+  MenuSummary,
+  MenuSchema,
+  Menu,
   CreateMenuItemDto,
   UpdateMenuItemDto,
+  MenuItemId,
 } from "../validators/menu.validator";
 
-export async function menuItemsOverviewByDateRange(
+export async function menuSummaryByDateRange(
   userId: string,
   { startDate, endDate }: { startDate: Date; endDate: Date }
-) {
+): Promise<MenuSummary> {
   const menuItemsOverview = await db.menuItem.groupBy({
     where: {
       userId,
@@ -31,14 +33,17 @@ export async function menuItemsOverviewByDateRange(
   });
 
   const formattedMenuItemsOverview = menuItemsOverview.map((item) => ({
-    date: dayjs(item.date).format("YYYY-MM-DD"),
+    date: item.date,
     count: item._count.recipeId,
   }));
 
-  return MenuItemsOverviewSchema.parse(formattedMenuItemsOverview);
+  return MenuSummarySchema.parse(formattedMenuItemsOverview);
 }
 
-export async function getMenuItemsByDate(userId: string, date: Date) {
+export async function menuItemsByDate(
+  userId: string,
+  date: Date
+): Promise<Menu> {
   const menuItems = await db.menuItem.findMany({
     where: {
       userId,
@@ -59,23 +64,23 @@ export async function getMenuItemsByDate(userId: string, date: Date) {
     date: dayjs(item.date).format("YYYY-MM-DD"),
   }));
 
-  return MenuItemsWithRecipeDetails.parse(formattedItems);
+  return MenuSchema.parse(formattedItems);
 }
 
-export async function createMenuItem(userId: string, data: CreateMenuItemDto) {
-  const menuItem = await db.menuItem.create({ data: { userId, ...data } });
+export async function createMenuItem(
+  userId: string,
+  data: CreateMenuItemDto
+): Promise<MenuItemId> {
+  const { id } = await db.menuItem.create({ data: { userId, ...data } });
 
-  const formattedDate = dayjs(menuItem.date).format("YYYY-MM-DD");
-  const formattedItem = { ...menuItem, date: formattedDate };
-
-  return MenuItemSchema.parse(formattedItem);
+  return { id };
 }
 
 export async function updateMenuItemById(
   userId: string,
   id: number,
   data: UpdateMenuItemDto
-) {
+): Promise<void> {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
   if (!menuItem) {
     throw new HttpError(404, `Menu Item with id ${id} does not exist`);
@@ -84,7 +89,10 @@ export async function updateMenuItemById(
   await db.menuItem.update({ where: { id }, data });
 }
 
-export async function deleteMenuItemById(userId: string, id: number) {
+export async function deleteMenuItemById(
+  userId: string,
+  id: number
+): Promise<void> {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
   if (!menuItem) {
     throw new HttpError(404, `Menu Item with id ${id} does not exist`);
