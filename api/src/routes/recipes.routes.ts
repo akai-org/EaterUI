@@ -5,6 +5,13 @@ const router = express.Router();
 
 /**
  * @swagger
+ * tags:
+ *   name: Recipes
+ *   description: The recipes managing API
+ */
+
+/**
+ * @swagger
  * components:
  *   schemas:
  *     Recipe:
@@ -23,13 +30,6 @@ const router = express.Router();
  *           type: string
  *         graphicURL:
  *           type: string
- */
-
-/**
- * @swagger
- * tags:
- *   name: Recipes
- *   description: The recipes managing API
  */
 
 /**
@@ -66,6 +66,8 @@ const router = express.Router();
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Recipe'
+ *       401:
+ *         description: Unauthorized
  */
 
 router.get("/", RecipeController.listRecipes);
@@ -139,6 +141,8 @@ router.get("/", RecipeController.listRecipes);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/RecipeDetails'
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: The recipe was not found
  */
@@ -194,6 +198,8 @@ router.get("/:id", RecipeController.getRecipe);
  *              properties:
  *                id:
  *                  type: number
+ *      401:
+ *        description: Unauthorized
  *      404:
  *        description: The recipe input was invalid
  *      500:
@@ -221,11 +227,16 @@ router.post("/", RecipeController.createRecipe);
  *        application/json:
  *          schema:
  *            $ref: '#/components/schemas/RecipeDetails'
+ *    security:
+ *      - googleAuth: []
+ *      - googleAuthSig: []
  *    responses:
  *      204:
  *        description: The recipe was updated
  *      400:
  *        description: The recipe input was invalid
+ *      401:
+ *        description: Unauthorized
  *      404:
  *        description: The recipe was not found
  *      500:
@@ -253,6 +264,8 @@ router.put("/:id", RecipeController.updateRecipe);
  *    responses:
  *      204:
  *        description: The recipe was deleted
+ *      401:
+ *        description: Unauthorized
  *      404:
  *        description: The recipe was not found
  *      500:
