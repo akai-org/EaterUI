@@ -26,9 +26,11 @@ const router = express.Router();
  *         id:
  *           type: integer
  *         startsAt:
- *           type: date
+ *           type: string
+ *           format: date
  *         endsAt:
- *           type: date
+ *           type: string
+ *           format: date
  *         ingredients:
  *           type: integer
  *         markedIngredients:
@@ -125,9 +127,11 @@ router.get("/", ShoppingListController.listShoppingListOverview);
  *         id:
  *           type: integer
  *         startsAt:
- *           type: date
+ *           type: string
+ *           foramt: date
  *         endsAt:
- *           type: date
+ *           type: string
+ *           format: date
  *         ingredients:
  *           type: array
  *           items:
@@ -177,9 +181,11 @@ router.get("/:id", ShoppingListController.getShoppingList);
  *         - endDate
  *       properties:
  *         startDate:
- *           type: date
+ *           type: string
+ *           foramt: date
  *         endDate:
- *           type: date
+ *           type: string
+ *           foramt: date
  */
 
 /**

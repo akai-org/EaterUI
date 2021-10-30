@@ -21,7 +21,8 @@ const router = express.Router();
  *         - count
  *       properties:
  *         date:
- *           type: date
+ *           type: string
+ *           format: date
  *         count:
  *           type: integer
  */
@@ -36,12 +37,14 @@ const router = express.Router();
  *       - in: query
  *         name: startDate
  *         schema:
- *           type: date
+ *           type: string
+ *           format: date
  *         description: The beginning of the date range for querying menu
  *       - in: query
  *         name: endDate
  *         schema:
- *           type: date
+ *           type: string
+ *           format: date
  *         description: The end of the date range for querying menu
  *     security:
  *       - googleAuth: []
@@ -90,7 +93,8 @@ router.get("/", MenuController.listMenuItems);
  *       - in: query
  *         name: date
  *         schema:
- *           type: date
+ *           type: string
+ *           format: date
  *         description: The date for which the menu items are listed
  *     security:
  *       - googleAuth: []
@@ -122,7 +126,8 @@ router.get("/details", MenuController.getMenuItemsDetails);
  *         - recipeId
  *       properties:
  *         date:
- *           type: date
+ *           type: string
+ *           format: date
  *         portions:
  *           type: integer
  *         recipeId:
