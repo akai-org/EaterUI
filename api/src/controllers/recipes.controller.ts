@@ -1,29 +1,23 @@
 import { Request, Response, NextFunction } from "express";
 import * as RecipeService from "../services/recipes.service";
 import {
-  RecipeFilterSchema,
-  CreateRecipeSchema,
-  UpdateRecipeSchema,
+  RecipesQuery,
   RecipeSchemaInfoBatch,
-  Recipe,
   RecipeId,
-} from "../validators/recipes.validator";
+  Recipe,
+  CreateRecipeBody,
+  UpdateRecipeBody,
+} from "./../schema/recipes.schema";
 
 export async function listRecipes(
-  req: Request,
+  req: Request<{}, {}, {}, RecipesQuery>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const { query, limit, offset } = RecipeFilterSchema.parse(req.query);
-
     const recipes: RecipeSchemaInfoBatch = await RecipeService.listRecipes(
       req.user?.id!,
-      {
-        query,
-        limit,
-        offset,
-      }
+      req.query
     );
 
     res.status(200).json(recipes);
@@ -33,16 +27,14 @@ export async function listRecipes(
 }
 
 export async function getRecipe(
-  req: Request,
+  req: Request<RecipeId>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const recipeId = Number(req.params.id);
-
     const recipe: Recipe = await RecipeService.getRecipeById(
       req.user?.id!,
-      recipeId
+      req.params.id
     );
 
     res.status(200).json(recipe);
@@ -52,16 +44,14 @@ export async function getRecipe(
 }
 
 export async function createRecipe(
-  req: Request,
+  req: Request<{}, {}, CreateRecipeBody>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const recipeData = CreateRecipeSchema.parse(req.body);
-
     const recipe: RecipeId = await RecipeService.createRecipe(
       req.user?.id!,
-      recipeData
+      req.body
     );
 
     res.status(201).json(recipe);
@@ -71,15 +61,16 @@ export async function createRecipe(
 }
 
 export async function updateRecipe(
-  req: Request,
+  req: Request<RecipeId, {}, UpdateRecipeBody>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const recipeId = Number(req.params.id);
-    const recipeData = UpdateRecipeSchema.parse(req.body);
-
-    await RecipeService.updateRecipeById(req.user?.id!, recipeId, recipeData);
+    await RecipeService.updateRecipeById(
+      req.user?.id!,
+      req.params.id,
+      req.body
+    );
 
     res.sendStatus(204);
   } catch (error) {
@@ -88,14 +79,12 @@ export async function updateRecipe(
 }
 
 export async function deleteRecipe(
-  req: Request,
+  req: Request<RecipeId>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const recipeId = Number(req.params.id);
-
-    await RecipeService.deleteRecipeById(req.user?.id!, recipeId);
+    await RecipeService.deleteRecipeById(req.user?.id!, req.params.id);
 
     res.sendStatus(204);
   } catch (error) {

@@ -19,7 +19,7 @@ model User {
 }
 
 model Recipe {
-  id          Int     @id @default(autoincrement())
+  id          String  @id @default(uuid())
   name        String
   description String
   graphicURL  String?
@@ -34,36 +34,36 @@ model Recipe {
 }
 
 model RecipeIngredient {
-  id      Int    @id @default(autoincrement())
+  id      String @id @default(uuid())
   name    String
   amount  Float
   measure String
 
   recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
-  recipeId Int
+  recipeId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model MenuItem {
-  id       Int      @id @default(autoincrement())
+  id       String   @id @default(uuid())
   date     DateTime
   portions Int
 
   user     User   @relation(fields: [userId], references: [id])
   userId   String
   recipe   Recipe @relation(fields: [recipeId], references: [id])
-  recipeId Int
+  recipeId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model ShoppingList {
-  id       Int      @id @default(autoincrement())
-  startsAt DateTime
-  endsAt   DateTime
+  id        String   @id @default(uuid())
+  startDate DateTime
+  endDate   DateTime
 
   user        User               @relation(fields: [userId], references: [id])
   userId      String
@@ -74,12 +74,12 @@ model ShoppingList {
 }
 
 model ShoppingListItem {
-  id     Int     @id @default(autoincrement())
+  id     String  @id @default(uuid())
   name   String
   marked Boolean
 
   shoppingList   ShoppingList             @relation(fields: [shoppingListId], references: [id], onDelete: Cascade)
-  shoppingListId Int
+  shoppingListId String
   amounts        ShoppingListItemAmount[]
 
   createdAt DateTime @default(now())
@@ -87,12 +87,12 @@ model ShoppingListItem {
 }
 
 model ShoppingListItemAmount {
-  id      Int    @id @default(autoincrement())
+  id      String @id @default(uuid())
   amount  Float
   measure String
 
   shoppingListItem   ShoppingListItem @relation(fields: [shoppingListItemId], references: [id], onDelete: Cascade)
-  shoppingListItemId Int
+  shoppingListItemId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

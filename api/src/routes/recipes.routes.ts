@@ -1,5 +1,12 @@
 import express from "express";
 import * as RecipeController from "../controllers/recipes.controller";
+import validateSchema from "../middleware/validateSchema";
+import {
+  RecipeIdParamSchema,
+  RecipesQuerySchema,
+  CreateRecipeSchema,
+  UpdateRecipeSchema,
+} from "../schema/recipes.schema";
 
 /**
  * @swagger
@@ -23,7 +30,7 @@ const router = express.Router();
  *         - graphicURL
  *       properties:
  *         id:
- *           type: integer
+ *           type: string
  *         name:
  *           type: string
  *         description:
@@ -70,7 +77,11 @@ const router = express.Router();
  *         description: Unauthorized
  */
 
-router.get("/", RecipeController.listRecipes);
+router.get(
+  "/",
+  validateSchema(RecipesQuerySchema),
+  RecipeController.listRecipes
+);
 
 /**
  * @swagger
@@ -105,7 +116,7 @@ router.get("/", RecipeController.listRecipes);
  *         - ingredients
  *       properties:
  *         id:
- *           type: integer
+ *           type: string
  *         name:
  *           type: string
  *         description:
@@ -128,7 +139,7 @@ router.get("/", RecipeController.listRecipes);
  *       - in: path
  *         name: id
  *         schema:
- *           type: integer
+ *           type: string
  *         required: true
  *         description: The recipe id
  *     security:
@@ -147,7 +158,11 @@ router.get("/", RecipeController.listRecipes);
  *         description: The recipe was not found
  */
 
-router.get("/:id", RecipeController.getRecipe);
+router.get(
+  "/:id",
+  validateSchema(RecipeIdParamSchema),
+  RecipeController.getRecipe
+);
 
 /**
  * @swagger
@@ -197,7 +212,7 @@ router.get("/:id", RecipeController.getRecipe);
  *              type: object
  *              properties:
  *                id:
- *                  type: integer
+ *                  type: string
  *      401:
  *        description: Unauthorized
  *      400:
@@ -206,7 +221,11 @@ router.get("/:id", RecipeController.getRecipe);
  *        description: Internal server error
  */
 
-router.post("/", RecipeController.createRecipe);
+router.post(
+  "/",
+  validateSchema(CreateRecipeSchema),
+  RecipeController.createRecipe
+);
 
 /**
  * @swagger
@@ -218,7 +237,7 @@ router.post("/", RecipeController.createRecipe);
  *      - in: path
  *        name: id
  *        schema:
- *          type: number
+ *          type: string
  *        required: true
  *        description: The recipe id
  *    requestBody:
@@ -243,7 +262,11 @@ router.post("/", RecipeController.createRecipe);
  *        description: Internal server error
  */
 
-router.put("/:id", RecipeController.updateRecipe);
+router.put(
+  "/:id",
+  validateSchema(UpdateRecipeSchema),
+  RecipeController.updateRecipe
+);
 
 /**
  * @swagger
@@ -255,7 +278,7 @@ router.put("/:id", RecipeController.updateRecipe);
  *      - in: path
  *        name: id
  *        schema:
- *          type: number
+ *          type: string
  *        required: true
  *        description: The recipe id
  *    security:
@@ -272,6 +295,10 @@ router.put("/:id", RecipeController.updateRecipe);
  *        description: Internal server error
  */
 
-router.delete("/:id", RecipeController.deleteRecipe);
+router.delete(
+  "/:id",
+  validateSchema(RecipeIdParamSchema),
+  RecipeController.deleteRecipe
+);
 
 export default router;

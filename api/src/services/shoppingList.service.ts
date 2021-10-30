@@ -1,25 +1,27 @@
-import { HttpError } from "../errors/HttpError";
+import dayjs from "dayjs";
 import {
   ShoppingList,
   ShoppingListItem,
   ShoppingListItemAmount,
 } from ".prisma/client";
-import dayjs from "dayjs";
-import {
-  ShoppingListOverviewSchema,
-  ShoppingListSchema,
-} from "../validators/shoppingList.validator";
 import db from "../db";
+import { HttpError } from "../errors/HttpError";
+import {
+  ShoppingListSummarySchema,
+  ShoppingListSummary,
+  ShoppingListDetailsSchema,
+  ShoppingListDetails,
+} from "../schema/shoppingList.schema";
 
-export async function shoppingListOverview(
+export async function shoppingListSummary(
   userId: string,
   { limit = 10, offset = 0 }: { limit?: number; offset?: number } = {}
-) {
+): Promise<ShoppingListSummary> {
   const shoppingListOverview = await db.shoppingList.findMany({
     where: { userId },
     skip: offset,
     take: Math.min(limit, 50),
-    orderBy: { startsAt: "desc" },
+    orderBy: { startDate: "desc" },
     include: {
       ingredients: {
         select: {
@@ -31,19 +33,22 @@ export async function shoppingListOverview(
   });
 
   const formattedOverview = shoppingListOverview.map(
-    ({ id, startsAt, endsAt, ingredients }) => ({
+    ({ id, startDate, endDate, ingredients }) => ({
       id,
-      startsAt,
-      endsAt,
+      startDate,
+      endDate,
       ingredients: ingredients.length,
       markedIngredients: ingredients.filter(({ marked }) => marked).length,
     })
   );
 
-  return ShoppingListOverviewSchema.parse(formattedOverview);
+  return ShoppingListSummarySchema.parse(formattedOverview);
 }
 
-export async function getShoppingListDetails(userId: string, id: number) {
+export async function shoppingListDetails(
+  userId: string,
+  id: string
+): Promise<ShoppingListDetails> {
   const shoppingList = await db.shoppingList.findFirst({
     where: { userId, id },
     include: {
@@ -59,73 +64,83 @@ export async function getShoppingListDetails(userId: string, id: number) {
     throw new HttpError(404, `Shopping List with id ${id} does not exist`);
   }
 
-  return ShoppingListSchema.parse(shoppingList);
+  return ShoppingListDetailsSchema.parse(shoppingList);
 }
 
 type IngredientsToMeasueToValue = { [key: string]: { [keys: string]: number } };
 
-// TODO:
-// 1. Prisma - transaction with raw SQL
-// 2. Or write raw SQL for performed operations
 export async function generateShoppingList(
   userId: string,
   { startDate, endDate }: { startDate: string; endDate: string }
-) {
+): Promise<ShoppingListDetails | undefined> {
   const start = dayjs(startDate).hour(0).toDate();
   const end = dayjs(endDate).hour(0).toDate();
 
-  const menuItems = await findIngredientsForMenuByDateRage(userId, start, end);
+  try {
+    await db.$queryRaw`BEGIN TRANSACTION`;
+    const menuItems = await findIngredientsForMenuByDateRage(
+      userId,
+      start,
+      end
+    );
 
-  // map returned data to struct with shape:
-  //   {
-  //       "ingredient": {
-  //           "measure 1": value1,
-  //           "measure 2": value2
-  //       }
-  //   }
+    // map returned data to struct with shape:
+    //   {
+    //       "ingredient": {
+    //           "measure 1": value1,
+    //           "measure 2": value2
+    //       }
+    //   }
 
-  const ingredients = menuItems.reduce((acc, curItem) => {
-    for (const ingredient of curItem.recipe.ingredients) {
-      if (acc[ingredient.name]) {
-        if (acc[ingredient.name][ingredient.measure]) {
-          acc[ingredient.name][ingredient.measure] += ingredient.amount;
+    const ingredients = menuItems.reduce((acc, curItem) => {
+      for (const ingredient of curItem.recipe.ingredients) {
+        if (acc[ingredient.name]) {
+          if (acc[ingredient.name][ingredient.measure]) {
+            acc[ingredient.name][ingredient.measure] += ingredient.amount;
+          } else {
+            acc[ingredient.name][ingredient.measure] = ingredient.amount;
+          }
         } else {
-          acc[ingredient.name][ingredient.measure] = ingredient.amount;
+          acc[ingredient.name] = {
+            [ingredient.measure]: ingredient.amount,
+          };
         }
-      } else {
-        acc[ingredient.name] = {
-          [ingredient.measure]: ingredient.amount,
-        };
       }
-    }
 
-    return acc;
-  }, {} as IngredientsToMeasueToValue);
+      return acc;
+    }, {} as IngredientsToMeasueToValue);
 
-  const shoppingList = await createShoppingList(userId, start, end);
-  const shoppingListItems = await createShoppingListItems(
-    shoppingList.id,
-    ingredients
-  );
+    const shoppingList = await createShoppingList(userId, start, end);
+    const shoppingListItems = await createShoppingListItems(
+      shoppingList.id,
+      ingredients
+    );
 
-  const itemNameToId = shoppingListItems.reduce((acc, cur) => {
-    acc[cur.name] = cur.id;
+    const itemNameToId = shoppingListItems.reduce((acc, cur) => {
+      acc[cur.name] = cur.id;
 
-    return acc;
-  }, {} as { [key: string]: number });
+      return acc;
+    }, {} as { [key: string]: string });
 
-  const shoppingListItemAmounts = await createShoppingListItemAmount(
-    ingredients,
-    itemNameToId
-  );
+    const shoppingListItemAmounts = await createShoppingListItemAmount(
+      ingredients,
+      itemNameToId
+    );
 
-  const shoppingListStruct = buildShoppingListStruct(
-    shoppingList,
-    shoppingListItems,
-    shoppingListItemAmounts
-  );
+    const shoppingListStruct = buildShoppingListStruct(
+      shoppingList,
+      shoppingListItems,
+      shoppingListItemAmounts
+    );
 
-  return ShoppingListSchema.parse(shoppingListStruct);
+    await db.$queryRaw`COMMIT`;
+
+    return ShoppingListDetailsSchema.parse(shoppingListStruct);
+  } catch (error) {
+    await db.$queryRaw`ROLLBACK`;
+
+    throw error;
+  }
 }
 
 async function findIngredientsForMenuByDateRage(
@@ -159,14 +174,14 @@ async function createShoppingList(
   return db.shoppingList.create({
     data: {
       userId,
-      startsAt: startDate,
-      endsAt: endDate,
+      startDate,
+      endDate,
     },
   });
 }
 
 async function createShoppingListItems(
-  shoppingListId: number,
+  shoppingListId: string,
   ingredientsData: IngredientsToMeasueToValue
 ) {
   return Promise.all(
@@ -180,7 +195,7 @@ async function createShoppingListItems(
 
 async function createShoppingListItemAmount(
   ingredientsData: IngredientsToMeasueToValue,
-  itemNameToID: { [key: string]: number }
+  itemNameToId: { [key: string]: string }
 ) {
   return Promise.all(
     Object.entries(ingredientsData)
@@ -190,7 +205,7 @@ async function createShoppingListItemAmount(
             data: {
               measure,
               amount,
-              shoppingListItemId: itemNameToID[name],
+              shoppingListItemId: itemNameToId[name],
             },
           })
         )
@@ -207,7 +222,7 @@ function buildShoppingListStruct(
   const ingredients = shoppingListItems.reduce((acc, cur) => {
     acc[cur.id] = { ...cur, amounts: [] };
     return acc;
-  }, {} as { [keys: number]: ShoppingListItem & { amounts: ShoppingListItemAmount[] } });
+  }, {} as { [keys: string]: ShoppingListItem & { amounts: ShoppingListItemAmount[] } });
 
   for (const item of shoppingListItemAmounts) {
     ingredients[item.shoppingListItemId].amounts.push(item);
@@ -221,13 +236,13 @@ function buildShoppingListStruct(
 
 export async function markShoppingListItem(
   userId: string,
-  shoppingListId: number,
-  id: number,
+  shoppingListId: string,
+  shoppingListItemId: string,
   marked: boolean
-) {
+): Promise<void> {
   const item = await db.shoppingListItem.findFirst({
     where: {
-      id,
+      id: shoppingListItemId,
       shoppingList: {
         userId,
         id: shoppingListId,
@@ -236,11 +251,14 @@ export async function markShoppingListItem(
   });
 
   if (!item) {
-    throw new HttpError(404, `Shopping List Item with id ${id} does not exist`);
+    throw new HttpError(
+      404,
+      `Shopping List Item with id ${shoppingListItemId} does not exist`
+    );
   }
 
   await db.shoppingListItem.update({
-    where: { id },
+    where: { id: shoppingListItemId },
     data: {
       marked,
     },

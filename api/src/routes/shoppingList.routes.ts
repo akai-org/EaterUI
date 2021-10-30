@@ -1,5 +1,12 @@
 import express from "express";
 import * as ShoppingListController from "../controllers/shoppingList.controller";
+import validateSchema from "../middleware/validateSchema";
+import {
+  ShoppingListQuerySchema,
+  ShoppingListIdParamSchema,
+  CreateShoppingListSchema,
+  UpdateShoppingListItemSchema,
+} from "../schema/shoppingList.schema";
 
 /**
  * @swagger
@@ -70,7 +77,11 @@ const router = express.Router();
  *         description: Unauthorized
  */
 
-router.get("/", ShoppingListController.listShoppingListOverview);
+router.get(
+  "/",
+  validateSchema(ShoppingListQuerySchema),
+  ShoppingListController.listShoppingListOverview
+);
 
 /**
  * @swagger
@@ -168,7 +179,11 @@ router.get("/", ShoppingListController.listShoppingListOverview);
  *         description: The shopping list was not found
  */
 
-router.get("/:id", ShoppingListController.getShoppingList);
+router.get(
+  "/:id",
+  validateSchema(ShoppingListIdParamSchema),
+  ShoppingListController.getShoppingList
+);
 
 /**
  * @swagger
@@ -220,7 +235,11 @@ router.get("/:id", ShoppingListController.getShoppingList);
  *        description: Internal server error
  */
 
-router.post("/", ShoppingListController.createShoppingList);
+router.post(
+  "/",
+  validateSchema(CreateShoppingListSchema),
+  ShoppingListController.createShoppingList
+);
 
 /**
  * @swagger
@@ -266,6 +285,10 @@ router.post("/", ShoppingListController.createShoppingList);
  *        description: Internal server error
  */
 
-router.put("/:id/item/:itemId", ShoppingListController.markShoppingListItem);
+router.put(
+  "/:id/item/:itemId",
+  validateSchema(UpdateShoppingListItemSchema),
+  ShoppingListController.markShoppingListItem
+);
 
 export default router;

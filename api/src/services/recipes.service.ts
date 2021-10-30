@@ -1,14 +1,14 @@
 import db from "../db";
+import { HttpError } from "../errors/HttpError";
 import {
-  Recipe,
-  CreateRecipeDto,
-  RecipeSchema,
   RecipeSchemaInfoBatch,
   RecipeSchemaInfoBatchSchema,
-  UpdateRecipeDto,
+  Recipe,
+  RecipeSchema,
+  CreateRecipeBody,
   RecipeId,
-} from "../validators/recipes.validator";
-import { HttpError } from "../errors/HttpError";
+  UpdateRecipeBody,
+} from "../schema/recipes.schema";
 
 export async function listRecipes(
   userId: string,
@@ -16,7 +16,11 @@ export async function listRecipes(
     query,
     limit = 10,
     offset = 0,
-  }: { query?: string; limit?: number; offset?: number } = {}
+  }: {
+    query?: string;
+    limit?: number;
+    offset?: number;
+  }
 ): Promise<RecipeSchemaInfoBatch> {
   const recipes = await db.recipe.findMany({
     where: { userId, name: { contains: query } },
@@ -30,7 +34,7 @@ export async function listRecipes(
 
 export async function getRecipeById(
   userId: string,
-  id: number
+  id: string
 ): Promise<Recipe> {
   const recipeWithIngredients = await db.recipe.findFirst({
     where: { userId, id },
@@ -48,7 +52,7 @@ export async function getRecipeById(
 
 export async function createRecipe(
   userId: string,
-  data: CreateRecipeDto
+  data: CreateRecipeBody
 ): Promise<RecipeId> {
   const { ingredients, ...recipeData } = data;
 
@@ -65,13 +69,13 @@ export async function createRecipe(
     },
   });
 
-  return { id };
+  return { id: String(id) };
 }
 
 export async function updateRecipeById(
   userId: string,
-  id: number,
-  data: UpdateRecipeDto
+  id: string,
+  data: UpdateRecipeBody
 ): Promise<void> {
   const recipe = await db.recipe.findFirst({ where: { id, userId } });
   if (!recipe) throw new HttpError(404, `Recipe with id ${id} does not exist`);
@@ -92,7 +96,7 @@ export async function updateRecipeById(
 
 export async function deleteRecipeById(
   userId: string,
-  id: number
+  id: string
 ): Promise<void> {
   const recipe = await db.recipe.findFirst({ where: { id, userId } });
   if (!recipe) throw new HttpError(404, `Recipe with id ${id} does not exist`);

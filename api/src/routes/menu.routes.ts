@@ -1,5 +1,13 @@
 import express from "express";
 import * as MenuController from "../controllers/menu.controller";
+import validateSchema from "../middleware/validateSchema";
+import {
+  CreateMenuItemSchema,
+  MenuDetailsQuerySchema,
+  MenuItemIdSchema,
+  MenuSummaryQuerySchema,
+  UpdateMenuItemSchema,
+} from "./../schema/menu.schema";
 
 /**
  * @swagger
@@ -62,7 +70,11 @@ const router = express.Router();
  *         description: Unauthorized
  */
 
-router.get("/", MenuController.listMenuItems);
+router.get(
+  "/",
+  validateSchema(MenuSummaryQuerySchema),
+  MenuController.listMenuItems
+);
 
 /**
  * @swagger
@@ -76,7 +88,7 @@ router.get("/", MenuController.listMenuItems);
  *         - recipe
  *       properties:
  *         id:
- *           type: integer
+ *           type: string
  *         portions:
  *           type: integer
  *         recipe:
@@ -112,7 +124,11 @@ router.get("/", MenuController.listMenuItems);
  *         description: Unauthorized
  */
 
-router.get("/details", MenuController.getMenuItemsDetails);
+router.get(
+  "/details",
+  validateSchema(MenuDetailsQuerySchema),
+  MenuController.getMenuItemsDetails
+);
 
 /**
  * @swagger
@@ -131,7 +147,7 @@ router.get("/details", MenuController.getMenuItemsDetails);
  *         portions:
  *           type: integer
  *         recipeId:
- *           type: integer
+ *           type: string
  */
 
 /**
@@ -158,7 +174,7 @@ router.get("/details", MenuController.getMenuItemsDetails);
  *              type: object
  *              properties:
  *                id:
- *                  type: integer
+ *                  type: string
  *      401:
  *        description: Unauthorized
  *      400:
@@ -167,7 +183,11 @@ router.get("/details", MenuController.getMenuItemsDetails);
  *        description: Internal server error
  */
 
-router.post("/", MenuController.createMenuItem);
+router.post(
+  "/",
+  validateSchema(CreateMenuItemSchema),
+  MenuController.createMenuItem
+);
 
 /**
  * @swagger
@@ -204,7 +224,11 @@ router.post("/", MenuController.createMenuItem);
  *        description: Internal server error
  */
 
-router.put("/:id", MenuController.updateMenuItem);
+router.put(
+  "/:id",
+  validateSchema(UpdateMenuItemSchema),
+  MenuController.updateMenuItem
+);
 
 /**
  * @swagger
@@ -233,6 +257,10 @@ router.put("/:id", MenuController.updateMenuItem);
  *        description: Internal server error
  */
 
-router.delete("/:id", MenuController.deleteMenuItem);
+router.delete(
+  "/:id",
+  validateSchema(MenuItemIdSchema),
+  MenuController.deleteMenuItem
+);
 
 export default router;

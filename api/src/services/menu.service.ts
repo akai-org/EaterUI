@@ -6,10 +6,10 @@ import {
   MenuSummary,
   MenuSchema,
   Menu,
-  CreateMenuItemDto,
-  UpdateMenuItemDto,
   MenuItemId,
-} from "../validators/menu.validator";
+  CreateMenuItemBody,
+  UpdateMenuItemBody,
+} from "../schema/menu.schema";
 
 export async function menuSummaryByDateRange(
   userId: string,
@@ -59,27 +59,24 @@ export async function menuItemsByDate(
     },
   });
 
-  const formattedItems = menuItems.map((item) => ({
-    ...item,
-    date: dayjs(item.date).format("YYYY-MM-DD"),
-  }));
-
-  return MenuSchema.parse(formattedItems);
+  return MenuSchema.parse(menuItems);
 }
 
 export async function createMenuItem(
   userId: string,
-  data: CreateMenuItemDto
+  data: CreateMenuItemBody
 ): Promise<MenuItemId> {
-  const { id } = await db.menuItem.create({ data: { userId, ...data } });
+  const { id } = await db.menuItem.create({
+    data: { userId, ...data, date: dayjs(data.date).toDate() },
+  });
 
   return { id };
 }
 
 export async function updateMenuItemById(
   userId: string,
-  id: number,
-  data: UpdateMenuItemDto
+  id: string,
+  data: UpdateMenuItemBody
 ): Promise<void> {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
   if (!menuItem) {
@@ -91,7 +88,7 @@ export async function updateMenuItemById(
 
 export async function deleteMenuItemById(
   userId: string,
-  id: number
+  id: string
 ): Promise<void> {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
   if (!menuItem) {
