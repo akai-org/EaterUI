@@ -4,6 +4,9 @@ import {
   RecipeFilterSchema,
   CreateRecipeSchema,
   UpdateRecipeSchema,
+  RecipeSchemaInfoBatch,
+  Recipe,
+  RecipeId,
 } from "../validators/recipes.validator";
 
 export async function listRecipes(
@@ -14,11 +17,14 @@ export async function listRecipes(
   try {
     const { query, limit, offset } = RecipeFilterSchema.parse(req.query);
 
-    const recipes = await RecipeService.listRecipes(req.user?.id!, {
-      query,
-      limit,
-      offset,
-    });
+    const recipes: RecipeSchemaInfoBatch = await RecipeService.listRecipes(
+      req.user?.id!,
+      {
+        query,
+        limit,
+        offset,
+      }
+    );
 
     res.status(200).json(recipes);
   } catch (error) {
@@ -34,7 +40,10 @@ export async function getRecipe(
   try {
     const recipeId = Number(req.params.id);
 
-    const recipe = await RecipeService.getRecipeById(req.user?.id!, recipeId);
+    const recipe: Recipe = await RecipeService.getRecipeById(
+      req.user?.id!,
+      recipeId
+    );
 
     res.status(200).json(recipe);
   } catch (error) {
@@ -50,7 +59,10 @@ export async function createRecipe(
   try {
     const recipeData = CreateRecipeSchema.parse(req.body);
 
-    const recipe = await RecipeService.createRecipe(req.user?.id!, recipeData);
+    const recipe: RecipeId = await RecipeService.createRecipe(
+      req.user?.id!,
+      recipeData
+    );
 
     res.status(201).json(recipe);
   } catch (error) {

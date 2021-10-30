@@ -6,6 +6,7 @@ import {
   RecipeSchemaInfoBatch,
   RecipeSchemaInfoBatchSchema,
   UpdateRecipeDto,
+  RecipeId,
 } from "../validators/recipes.validator";
 import { HttpError } from "../errors/HttpError";
 
@@ -48,7 +49,7 @@ export async function getRecipeById(
 export async function createRecipe(
   userId: string,
   data: CreateRecipeDto
-): Promise<{ id: number }> {
+): Promise<RecipeId> {
   const { ingredients, ...recipeData } = data;
 
   const { id } = await db.recipe.create({

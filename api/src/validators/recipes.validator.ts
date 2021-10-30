@@ -48,6 +48,12 @@ export const CreateRecipeSchema = z.object({
 
 export type CreateRecipeDto = z.infer<typeof CreateRecipeSchema>;
 
+export const RecipeIdSchema = z.object({
+  id: z.number(),
+});
+
+export type RecipeId = z.infer<typeof RecipeIdSchema>;
+
 export const UpdateRecipeSchema = z.object({
   name: z.string(),
   description: z.string(),
