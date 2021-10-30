@@ -4,8 +4,8 @@
 # baseURL
 
 @baseURL = http://localhost:3000
-@sess = eyJwYXNzcG9ydCI6eyJ1c2VyIjp7ImlkIjoiMTA3NDcxMjIyNjEyMDk1NTI0MDM1IiwiZGlzcGxheU5hbWUiOiJSb2JlcnQgQmFuYXN6YWsifX19
-@sig = fdTiqCeVTiNN5RydV4Y6siIHboA
+@sess = TODO
+@sig = TODO
 @cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
 
 ###
@@ -15,7 +15,7 @@ Cookie: {{cookie}}
 
 ###
 # Get Shopping List
-GET {{baseURL}}/shopping-list/6
+GET {{baseURL}}/shopping-list/2
 Cookie: {{cookie}}
 
 
@@ -26,7 +26,7 @@ Content-Type: application/json
 Cookie: {{cookie}}
 
 {
-    "startDate": "2021-10-26",
+    "startDate": "2021-10-25",
     "endDate": "2021-10-28"
 }
 

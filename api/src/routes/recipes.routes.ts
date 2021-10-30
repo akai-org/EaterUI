@@ -128,7 +128,7 @@ router.get("/", RecipeController.listRecipes);
  *       - in: path
  *         name: id
  *         schema:
- *           type: string
+ *           type: integer
  *         required: true
  *         description: The recipe id
  *     security:
@@ -153,7 +153,7 @@ router.get("/:id", RecipeController.getRecipe);
  * @swagger
  * components:
  *   schemas:
- *     CreateRecipeInput:
+ *     RecipeInput:
  *       type: object
  *       required:
  *         - name
@@ -184,7 +184,7 @@ router.get("/:id", RecipeController.getRecipe);
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/CreateRecipeInput'
+ *            $ref: '#/components/schemas/RecipeInput'
  *    security:
  *      - googleAuth: []
  *      - googleAuthSig: []
