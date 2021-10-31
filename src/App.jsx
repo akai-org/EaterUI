@@ -1,5 +1,5 @@
 function App() {
-  return <p>Witaj w EaterUI! #2</p>;
+  return <p>Test storybook preview</p>;
 }
 
 export default App;
