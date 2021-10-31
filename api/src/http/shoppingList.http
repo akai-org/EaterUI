@@ -4,8 +4,8 @@
 # baseURL
 
 @baseURL = http://localhost:3000
-@sess = eyJwYXNzcG9ydCI6eyJ1c2VyIjp7ImlkIjoiMTA3NDcxMjIyNjEyMDk1NTI0MDM1IiwiZGlzcGxheU5hbWUiOiJSb2JlcnQgQmFuYXN6YWsifX19
-@sig = fdTiqCeVTiNN5RydV4Y6siIHboA
+@sess = TODO
+@sig = TODO
 @cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
 
 ###
@@ -15,7 +15,7 @@ Cookie: {{cookie}}
 
 ###
 # Get Shopping List
-GET {{baseURL}}/shopping-list/6
+GET {{baseURL}}/shopping-list/81608dda-4664-4c6a-87d2-ad07fa311bb8
 Cookie: {{cookie}}
 
 
@@ -26,13 +26,13 @@ Content-Type: application/json
 Cookie: {{cookie}}
 
 {
-    "startDate": "2021-10-26",
+    "startDate": "2021-10-25",
     "endDate": "2021-10-28"
 }
 
 ###
 # Mark Shopping List Item
-PUT {{baseURL}}/shopping-list/6/item/16
+PUT {{baseURL}}/shopping-list/b57dbaaa-3fe6-4f9b-83d6-e6f888c405c6/item/335d317d-714d-4cff-90de-392587069ccf
 Content-Type: application/json
 Cookie: {{cookie}}
 

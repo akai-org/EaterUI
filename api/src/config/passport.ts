@@ -1,5 +1,6 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import db from "../db";
 
 export default function configurePassport() {
   passport.use(
@@ -9,9 +10,17 @@ export default function configurePassport() {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         callbackURL: `${process.env.BASE_URL}/auth/google/callback`,
       },
-      function (_accessToken, _refreshToken, profile, cb) {
+      async function (_accessToken, _refreshToken, profile, done) {
         const { id, displayName } = profile;
-        return cb(null, { id, displayName });
+        const userData = { id, displayName };
+
+        const user = await db.user.findFirst({ where: { id } });
+
+        if (!user) {
+          await db.user.create({ data: userData });
+        }
+
+        return done(null, userData);
       }
     )
   );

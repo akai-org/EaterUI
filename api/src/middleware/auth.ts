@@ -1,13 +1,18 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
+import { HttpError } from "./../errors/HttpError";
 
 export const authMiddleware = (
   req: Request,
-  res: Response,
-  next: () => void
+  _res: Response,
+  next: NextFunction
 ) => {
-  if (req.user) {
-    next();
-  } else {
-    res.sendStatus(401);
+  try {
+    if (req.user) {
+      next();
+    } else {
+      throw new HttpError(401, `You're not authorized`);
+    }
+  } catch (error) {
+    next(error);
   }
 };

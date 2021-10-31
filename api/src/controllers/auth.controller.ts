@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import passport from "passport";
-import db from "../db";
+import { HttpError } from "../errors/HttpError";
 
 export const googleSignIn = passport.authenticate("google", {
   scope: ["profile"],
@@ -11,18 +11,20 @@ export const googleCallback = passport.authenticate("google", {
   failureRedirect: "/login",
 });
 
-export const getUserInfo = async (req: Request, res: Response) => {
-  if (req.user) {
-    const { id, displayName } = req.user;
-
-    const user = await db.user.findFirst({ where: { id } });
-
-    if (!user) {
-      await db.user.create({ data: { id, displayName } });
+export const getUserInfo = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (!req?.user) {
+      throw new HttpError(401, `You're not authorized`);
     }
-  }
 
-  res.json(req.user);
+    res.json(req.user);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const logout = (req: Request, res: Response) => {

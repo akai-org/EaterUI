@@ -1,24 +1,29 @@
 import { Request, Response, NextFunction } from "express";
+import dayjs from "dayjs";
 import * as ShoppingListService from "../services/shoppingList.service";
 import {
-  CreateShoppingListSchema,
-  ShoppingListFilterSchema,
-  UpdateShoppingListItemSchema,
-} from "../validators/shoppingList.validator";
+  ShoppingListQuery,
+  ShoppingListSummary,
+  ShoppingListId,
+  ShoppingListDetails,
+  CreateShoppingListBody,
+  UpdateShoppingListItemParams,
+  UpdateShoppingListItemBody,
+} from "../schema/shoppingList.schema";
+
+const strToDate = (date: string) =>
+  dayjs(date).hour(0).minute(0).second(0).toDate();
 
 export async function listShoppingListOverview(
-  req: Request,
+  req: Request<{}, {}, {}, ShoppingListQuery>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const { limit, offset } = ShoppingListFilterSchema.parse(req.query);
-
-    const shoppingListOverviews =
-      await ShoppingListService.shoppingListOverview(req.user?.id!, {
-        limit,
-        offset,
-      });
+    const shoppingListOverviews: ShoppingListSummary = await ShoppingListService.shoppingListSummary(
+      req.user?.id!,
+      req.query
+    );
 
     res.status(200).json(shoppingListOverviews);
   } catch (error) {
@@ -27,16 +32,14 @@ export async function listShoppingListOverview(
 }
 
 export async function getShoppingList(
-  req: Request,
+  req: Request<ShoppingListId>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const shoppingListId = Number(req.params.id);
-
-    const shoppingList = await ShoppingListService.getShoppingListDetails(
+    const shoppingList: ShoppingListDetails = await ShoppingListService.shoppingListDetails(
       req.user?.id!,
-      shoppingListId
+      req.params.id
     );
 
     res.status(200).json(shoppingList);
@@ -46,16 +49,19 @@ export async function getShoppingList(
 }
 
 export async function createShoppingList(
-  req: Request,
+  req: Request<{}, {}, CreateShoppingListBody>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const shoppingListData = CreateShoppingListSchema.parse(req.body);
+    const { startDate, endDate } = req.body;
 
     const shoppingList = await ShoppingListService.generateShoppingList(
       req.user?.id!,
-      shoppingListData
+      {
+        startDate: strToDate(startDate),
+        endDate: strToDate(endDate),
+      }
     );
 
     res.status(201).json(shoppingList);
@@ -65,23 +71,19 @@ export async function createShoppingList(
 }
 
 export async function markShoppingListItem(
-  req: Request,
+  req: Request<UpdateShoppingListItemParams, {}, UpdateShoppingListItemBody>,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const shoppingListId = Number(req.params.id);
-    const shoppingListItemId = Number(req.params.itemId);
-    const { marked } = UpdateShoppingListItemSchema.parse(req.body);
-
-    const shoppingList = await ShoppingListService.markShoppingListItem(
+    await ShoppingListService.markShoppingListItem(
       req.user?.id!,
-      shoppingListId,
-      shoppingListItemId,
-      marked
+      req.params.id,
+      req.params.itemId,
+      req.body.marked
     );
 
-    res.status(201).json(shoppingList);
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
