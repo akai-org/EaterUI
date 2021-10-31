@@ -14,6 +14,12 @@ module.exports = {
       include: path.resolve(__dirname, "../"),
     });
 
+    config.output.publicPath = "/storybook/";
+
+    return config;
+  },
+  managerWebpack: async (config) => {
+    config.output.publicPath = "/storybook/";
     return config;
   },
 };

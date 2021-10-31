@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:ui && npm run build:storybook && npm run copy-redirects",
+    "build:ui": "vite build",
     "serve": "vite preview",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook -o ./dist/storybook",
+    "copy-redirects": "cp ./_redirects ./dist"
   },
   "dependencies": {
     "classnames": "^2.3.1",
