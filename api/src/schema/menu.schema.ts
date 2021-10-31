@@ -63,6 +63,12 @@ export const CreateMenuItemSchema = z.object({
 
 export type CreateMenuItemBody = z.infer<typeof CreateMenuItemSchema>["body"];
 
+export type CreateMenuItemPayload = {
+  recipeId: string;
+  portions: number;
+  date: Date;
+};
+
 export const UpdateMenuItemSchema = z.object({
   params,
   body: z.object({

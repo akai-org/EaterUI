@@ -16,9 +16,9 @@ export type ShoppingListQuery = z.infer<
 
 export const ShoppingListSummarySchema = z
   .object({
-    id: z.number(),
-    startsAt: z.date().transform(formatDate),
-    endsAt: z.date().transform(formatDate),
+    id: z.string(),
+    startDate: z.date().transform(formatDate),
+    endDate: z.date().transform(formatDate),
     ingredients: z.number(),
     markedIngredients: z.number(),
   })
@@ -37,12 +37,12 @@ export type ShoppingListId = z.infer<
 >["params"];
 
 export const ShoppingListDetailsSchema = z.object({
-  id: z.number(),
-  startsAt: z.date().transform(formatDate),
-  endsAt: z.date().transform(formatDate),
+  id: z.string(),
+  startDate: z.date().transform(formatDate),
+  endDate: z.date().transform(formatDate),
   ingredients: z
     .object({
-      id: z.number(),
+      id: z.string(),
       name: z.string(),
       marked: z.boolean(),
       amounts: z

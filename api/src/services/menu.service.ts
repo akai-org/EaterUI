@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { HttpError } from "../errors/HttpError";
 import db from "../db";
 import {
@@ -7,7 +6,7 @@ import {
   MenuSchema,
   Menu,
   MenuItemId,
-  CreateMenuItemBody,
+  CreateMenuItemPayload,
   UpdateMenuItemBody,
 } from "../schema/menu.schema";
 
@@ -64,10 +63,10 @@ export async function menuItemsByDate(
 
 export async function createMenuItem(
   userId: string,
-  data: CreateMenuItemBody
+  data: CreateMenuItemPayload
 ): Promise<MenuItemId> {
   const { id } = await db.menuItem.create({
-    data: { userId, ...data, date: dayjs(data.date).toDate() },
+    data: { userId, ...data },
   });
 
   return { id };

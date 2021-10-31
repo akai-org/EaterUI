@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import dayjs from "dayjs";
 import * as ShoppingListService from "../services/shoppingList.service";
 import {
   ShoppingListQuery,
@@ -9,6 +10,9 @@ import {
   UpdateShoppingListItemParams,
   UpdateShoppingListItemBody,
 } from "../schema/shoppingList.schema";
+
+const strToDate = (date: string) =>
+  dayjs(date).hour(0).minute(0).second(0).toDate();
 
 export async function listShoppingListOverview(
   req: Request<{}, {}, {}, ShoppingListQuery>,
@@ -50,9 +54,14 @@ export async function createShoppingList(
   next: NextFunction
 ) {
   try {
+    const { startDate, endDate } = req.body;
+
     const shoppingList = await ShoppingListService.generateShoppingList(
       req.user?.id!,
-      req.body
+      {
+        startDate: strToDate(startDate),
+        endDate: strToDate(endDate),
+      }
     );
 
     res.status(201).json(shoppingList);

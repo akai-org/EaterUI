@@ -30,7 +30,7 @@ export type RecipesQuery = z.infer<typeof RecipesQuerySchema>["query"];
 
 export const RecipeSchemaInfoBatchSchema = z
   .object({
-    id: z.number(),
+    id: z.string(),
     ...recipeProperties,
   })
   .array();
@@ -42,7 +42,7 @@ export const RecipeIdParamSchema = z.object({ params });
 export type RecipeId = z.infer<typeof RecipeIdParamSchema>["params"];
 
 export const RecipeSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   ...recipeProperties,
   ingredients,
 });

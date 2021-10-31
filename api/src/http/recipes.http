@@ -14,7 +14,7 @@ Cookie: {{cookie}}
 
 ###
 # Find Recipe By Id
-GET {{baseURL}}/recipes/3
+GET {{baseURL}}/recipes/e64064a6-4637-4fbe-84b3-70b89c45c566
 Cookie: {{cookie}}
 
 
@@ -25,17 +25,17 @@ Content-Type: application/json
 Cookie: {{cookie}}
 
 {
-    "name": "name",
-    "description": "description",
+    "name": "name 2",
+    "description": "description 2",
     "graphicURL": "url",
     "ingredients": [
         {
-            "name": "ingredient 1",
+            "name": "ingredient 2",
             "amount": 1.0,
             "measure": "piece"
         },
         {
-            "name": "ingredient 2",
+            "name": "ingredient 3",
             "amount": 0.5,
             "measure": "kg"
         }
@@ -44,7 +44,7 @@ Cookie: {{cookie}}
 
 ###
 # Edit Recipe By Id
-PUT {{baseURL}}/recipes/2
+PUT {{baseURL}}/recipes/e64064a6-4637-4fbe-84b3-70b89c45c566
 Content-Type: application/json
 Cookie: {{cookie}}
 
@@ -54,12 +54,12 @@ Cookie: {{cookie}}
     "graphicURL": "url",
     "ingredients": [
         {
-            "name": "ingredient 3",
-            "amount": 2,
+            "name": "ingredient 2",
+            "amount": 3,
             "measure": "piece"
         },
         {
-            "name": "ingredient 2",
+            "name": "ingredient 3",
             "amount": 0.5,
             "measure": "kg"
         }
@@ -68,5 +68,5 @@ Cookie: {{cookie}}
 
 ###
 # Delere Recipe By Id
-DELETE {{baseURL}}/recipes/2
+DELETE {{baseURL}}/recipes/e64064a6-4637-4fbe-84b3-70b89c45c566
 Cookie: {{cookie}}

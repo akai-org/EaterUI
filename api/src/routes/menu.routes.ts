@@ -191,6 +191,23 @@ router.post(
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     UpdateMenuItemInput:
+ *       type: object
+ *       required:
+ *         - date
+ *         - portions
+ *         - recipeId
+ *       properties:
+ *         portions:
+ *           type: integer
+ *         recipeId:
+ *           type: string
+ */
+
+/**
+ * @swagger
  * /menu/{id}:
  *  put:
  *    summary: Update the menu item by the id
@@ -207,7 +224,7 @@ router.post(
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/MenuItemInput'
+ *            $ref: '#/components/schemas/UpdateMenuItemInput'
  *    security:
  *      - googleAuth: []
  *      - googleAuthSig: []

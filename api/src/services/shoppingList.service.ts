@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import {
   ShoppingList,
   ShoppingListItem,
@@ -56,6 +55,9 @@ export async function shoppingListDetails(
         include: {
           amounts: true,
         },
+        orderBy: {
+          id: "asc",
+        },
       },
     },
   });
@@ -71,17 +73,15 @@ type IngredientsToMeasueToValue = { [key: string]: { [keys: string]: number } };
 
 export async function generateShoppingList(
   userId: string,
-  { startDate, endDate }: { startDate: string; endDate: string }
+  { startDate, endDate }: { startDate: Date; endDate: Date }
 ): Promise<ShoppingListDetails | undefined> {
-  const start = dayjs(startDate).hour(0).toDate();
-  const end = dayjs(endDate).hour(0).toDate();
-
   try {
     await db.$queryRaw`BEGIN TRANSACTION`;
+
     const menuItems = await findIngredientsForMenuByDateRage(
       userId,
-      start,
-      end
+      startDate,
+      endDate
     );
 
     // map returned data to struct with shape:
@@ -110,7 +110,7 @@ export async function generateShoppingList(
       return acc;
     }, {} as IngredientsToMeasueToValue);
 
-    const shoppingList = await createShoppingList(userId, start, end);
+    const shoppingList = await createShoppingList(userId, startDate, endDate);
     const shoppingListItems = await createShoppingListItems(
       shoppingList.id,
       ingredients
@@ -159,7 +159,11 @@ async function findIngredientsForMenuByDateRage(
     include: {
       recipe: {
         include: {
-          ingredients: true,
+          ingredients: {
+            orderBy: {
+              id: "asc",
+            },
+          },
         },
       },
     },

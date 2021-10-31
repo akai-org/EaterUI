@@ -18,6 +18,8 @@ const parseFilterDate = (
   const date = dateStr ? dayjs(dateStr) : defaultDate;
   return date.hour(0).minute(0).second(0).toDate();
 };
+const parseDate = (date: Date) =>
+  dayjs(date).hour(0).minute(0).second(0).toDate();
 
 export async function listMenuItems(
   req: Request<{}, {}, {}, MenuSummaryQuery>,
@@ -69,9 +71,11 @@ export async function createMenuItem(
   next: NextFunction
 ) {
   try {
+    const data = { ...req.body, date: parseDate(req.body.date) };
+
     const menuItem: MenuItemId = await MenuService.createMenuItem(
       req.user?.id!,
-      req.body
+      data
     );
 
     res.status(201).json(menuItem);

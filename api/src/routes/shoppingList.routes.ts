@@ -25,17 +25,17 @@ const router = express.Router();
  *       type: object
  *       required:
  *         - id
- *         - startsAt
- *         - endsAt
+ *         - startDate
+ *         - endDate
  *         - ingredients
  *         - markedIngredients
  *       properties:
  *         id:
  *           type: integer
- *         startsAt:
+ *         startDate:
  *           type: string
  *           format: date
- *         endsAt:
+ *         endDate:
  *           type: string
  *           format: date
  *         ingredients:
@@ -131,16 +131,16 @@ router.get(
  *       type: object
  *       required:
  *         - id
- *         - startsAt
- *         - endsAt
+ *         - startDate
+ *         - endDate
  *         - ingredients
  *       properties:
  *         id:
  *           type: integer
- *         startsAt:
+ *         startDate:
  *           type: string
  *           foramt: date
- *         endsAt:
+ *         endDate:
  *           type: string
  *           format: date
  *         ingredients:
