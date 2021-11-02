@@ -1,6 +1,6 @@
 const path = require("path");
 
-const isProduction = () => process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -16,14 +16,14 @@ module.exports = {
       include: path.resolve(__dirname, "../"),
     });
 
-    if (isProduction()) {
+    if (isProduction) {
       config.output.publicPath = "/storybook/";
     }
 
     return config;
   },
   managerWebpack: async (config) => {
-    if (isProduction()) {
+    if (isProduction) {
       config.output.publicPath = "/storybook/";
     }
 
