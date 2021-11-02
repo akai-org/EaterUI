@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import styles from './Button.module.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import styles from "./Button.module.scss";
 
 const sizeToClass = {
   small: styles.small,
@@ -11,7 +11,7 @@ const sizeToClass = {
 
 export function Button({
   primary = true,
-  size = 'medium',
+  size = "medium",
   children,
   ...props
 } = {}) {
@@ -30,7 +30,7 @@ export function Button({
 
 Button.propTypes = {
   primary: PropTypes.bool,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
 };
