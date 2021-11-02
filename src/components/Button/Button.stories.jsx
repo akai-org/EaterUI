@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "./Button";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { Button } from "./Button.jsx";
 
 export const Primary = () => <Button primary={true}>Button</Button>;
 
