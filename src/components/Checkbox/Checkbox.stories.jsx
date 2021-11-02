@@ -1,18 +1,13 @@
 import React from "react";
 import { Checkbox } from "./Checkbox";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { text, boolean} from "@storybook/addon-knobs";
 
 export default {
   title: "Checkbox",
-  argTypes: {
-    checked: {
-      options: [true, false],
-      control: { type: "radio" },
-    },
-  },
 };
 
-export const Playground = ({ checked }) => {
+export const Playground = () => {
   const name = text("name", "name");
+  const checked = boolean("checked");
   return <Checkbox name={name} checked={checked}></Checkbox>;
 };
