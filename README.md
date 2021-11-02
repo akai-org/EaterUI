@@ -73,7 +73,7 @@ npm run style:fix
 Run lint-staged with fix all js/jsx/scss errors and warnings (also this is auto triggered when you commit changes by `Husky`)
 
 ```
-npm lint-staged
+npx lint-staged
 ```
 
 ### VSCode Extensions
