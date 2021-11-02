@@ -4,12 +4,7 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 
 export default {
   title: "Checkbox",
-  decorators: [withKnobs],
   argTypes: {
-    value: {
-      options: ["value1", "value2"],
-      control: { type: "select" },
-    },
     checked: {
       options: [true, false],
       control: { type: "radio" },
@@ -17,7 +12,7 @@ export default {
   },
 };
 
-export const Playground = ({ value, checked }) => {
+export const Playground = ({ checked }) => {
   const name = text("name", "name");
-  return <Checkbox value={value} name={name} checked={checked}></Checkbox>;
+  return <Checkbox name={name} checked={checked}></Checkbox>;
 };
