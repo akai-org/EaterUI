@@ -1,0 +1,38 @@
+@import "../../assets/variables.scss";
+
+.text {
+  font-weight: $semibold;
+  color: $black;
+  
+
+  &_h1 {
+    font-family: "Montserrat";
+    font-size: $h1;
+    line-height: 60px;
+  }
+
+  &_h2 {
+    font-family: "Montserrat";
+    font-size: $h2;
+    line-height: 50px;
+  }
+
+  &_h3 {
+    font-family: "Montserrat";
+    font-size: $h3;
+    line-height: 38px;
+  }
+
+  &_h4 {
+    font-family: "Montserrat";
+    font-size: $h4;
+    line-height: 22px;
+  }
+
+  &_paragraph {
+    font-family: "Montserrat";
+    font-size: $paragraph;
+    font-weight: $regular;
+    line-height: 24px;
+  }
+}
