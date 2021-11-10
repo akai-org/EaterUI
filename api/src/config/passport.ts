@@ -8,7 +8,7 @@ export default function configurePassport() {
       {
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        callbackURL: `${process.env.BASE_URL}/auth/google/callback`,
+        callbackURL: `/auth/google/callback`,
       },
       async function (_accessToken, _refreshToken, profile, done) {
         const { id, displayName } = profile;
@@ -20,9 +20,9 @@ export default function configurePassport() {
           await db.user.create({ data: userData });
         }
 
-        return done(null, userData);
-      }
-    )
+        done(null, userData);
+      },
+    ),
   );
 
   passport.serializeUser(function (user, done) {

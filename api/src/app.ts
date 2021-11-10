@@ -3,22 +3,25 @@ import passport from "passport";
 import dotenv from "dotenv";
 import cookieSession from "cookie-session";
 import swaggerUI from "swagger-ui-express";
+import cors from "cors";
 import configurePassport from "./config/passport";
 import router from "./router";
 import errorMiddleware from "./middleware/error";
 import { specs } from "./config/swagger";
+import { whitelistedOrigins } from "./config/cors";
 
 dotenv.config();
 
 const app = express();
 
+app.use(cors({ origin: whitelistedOrigins, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cookieSession({
     name: "google-auth-session",
     keys: [process.env.SECRET_SESSION_KEY!],
-  })
+  }),
 );
 app.use(passport.initialize());
 app.use(passport.session());

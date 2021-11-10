@@ -20,7 +20,7 @@ export async function listRecipes(
     query?: string;
     limit?: number;
     offset?: number;
-  }
+  },
 ): Promise<RecipeSchemaInfoBatch> {
   const recipes = await db.recipe.findMany({
     where: { userId, name: { contains: query } },
@@ -29,12 +29,14 @@ export async function listRecipes(
     orderBy: { createdAt: "desc" },
   });
 
+  console.log({ recipes });
+
   return RecipeSchemaInfoBatchSchema.parse(recipes);
 }
 
 export async function getRecipeById(
   userId: string,
-  id: string
+  id: string,
 ): Promise<Recipe> {
   const recipeWithIngredients = await db.recipe.findFirst({
     where: { userId, id },
@@ -52,9 +54,11 @@ export async function getRecipeById(
 
 export async function createRecipe(
   userId: string,
-  data: CreateRecipeBody
+  data: CreateRecipeBody,
 ): Promise<RecipeId> {
   const { ingredients, ...recipeData } = data;
+
+  console.log({ recipeData });
 
   const { id } = await db.recipe.create({
     data: {
@@ -75,7 +79,7 @@ export async function createRecipe(
 export async function updateRecipeById(
   userId: string,
   id: string,
-  data: UpdateRecipeBody
+  data: UpdateRecipeBody,
 ): Promise<void> {
   const recipe = await db.recipe.findFirst({ where: { id, userId } });
   if (!recipe) throw new HttpError(404, `Recipe with id ${id} does not exist`);
@@ -96,7 +100,7 @@ export async function updateRecipeById(
 
 export async function deleteRecipeById(
   userId: string,
-  id: string
+  id: string,
 ): Promise<void> {
   const recipe = await db.recipe.findFirst({ where: { id, userId } });
   if (!recipe) throw new HttpError(404, `Recipe with id ${id} does not exist`);
