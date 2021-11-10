@@ -29,8 +29,6 @@ export async function listRecipes(
     orderBy: { createdAt: "desc" },
   });
 
-  console.log({ recipes });
-
   return RecipeSchemaInfoBatchSchema.parse(recipes);
 }
 
@@ -57,8 +55,6 @@ export async function createRecipe(
   data: CreateRecipeBody,
 ): Promise<RecipeId> {
   const { ingredients, ...recipeData } = data;
-
-  console.log({ recipeData });
 
   const { id } = await db.recipe.create({
     data: {
