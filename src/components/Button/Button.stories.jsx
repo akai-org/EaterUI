@@ -1,5 +1,4 @@
 import React from "react";
-// eslint-disable-next-line object-curly-newline
 import { withKnobs, text, select, boolean } from "@storybook/addon-knobs";
 import { Button } from "./Button.jsx";
 
