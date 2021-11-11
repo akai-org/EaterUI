@@ -8,7 +8,7 @@ const options = {
       version: "1.0.0",
     },
     servers: [
-      { url: "http://localhost:3000/" },
+      { url: "http://localhost:4000/" },
       { url: "https://eater-api.herokuapp.com/" },
     ],
   },
