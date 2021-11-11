@@ -8,10 +8,24 @@
     "serve": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook -o ./dist/storybook",
-    "copy-redirects": "cp ./_redirects ./dist"
+    "copy-redirects": "cp ./_redirects ./dist",
+    "lint": "eslint --ext .js,.jsx src/ || true",
+    "lint:fix": "eslint --fix --ext .js,.jsx src/ || true",
+    "style": "stylelint src/**/*.scss",
+    "style:fix": "stylelint src/**/*.scss --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json}": "npm run lint:fix",
+    "src/**/*.scss": "npm run style:fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "lint-staged"
+    }
   },
   "dependencies": {
     "classnames": "^2.3.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
@@ -24,8 +38,26 @@
     "@storybook/react": "^6.3.12",
     "@vitejs/plugin-react": "^1.0.0",
     "babel-loader": "^8.2.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-react": "^7.26.1",
+    "husky": "^4.3.8",
+    "lint-staged": "^11.2.6",
+    "postcss": "^8.3.11",
+    "postcss-scss": "^4.0.2",
+    "prettier": "^2.4.1",
     "sass": "^1.43.3",
     "sass-loader": "^10.2.0",
+    "stylelint": "^14.0.1",
+    "stylelint-config-standard": "^23.0.0",
+    "stylelint-config-standard-scss": "^2.0.0",
+    "stylelint-scss": "^4.0.0",
     "vite": "^2.6.4"
   }
 }

@@ -20,9 +20,9 @@ export default function configurePassport() {
           await db.user.create({ data: userData });
         }
 
-        return done(null, userData);
-      }
-    )
+        done(null, userData);
+      },
+    ),
   );
 
   passport.serializeUser(function (user, done) {

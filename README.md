@@ -37,3 +37,48 @@ Preview deploys are created for PRs.
 Pipeline builds container image, which is deployed to Heroku.
 
 [URL](https://eater-api.herokuapp.com/)
+
+## Linting
+
+### Eslint/Prettier
+
+Run eslint on all js and jsx files in src folder
+
+```
+npm run lint
+```
+
+Fix all potentially fixable eslint errors and warnings
+
+```
+npm run lint:fix
+```
+
+### Stylelint
+
+Run stylelint on all scss files in src folder
+
+```
+Npm run style
+```
+
+Fix all potentially fixable stylelint errors and warnings
+
+```
+npm run style:fix
+```
+
+### Lint-staged
+
+Run lint-staged with fix all js/jsx/scss errors and warnings (also this is auto triggered when you commit changes by `Husky`)
+
+```
+npx lint-staged
+```
+
+### VSCode Extensions
+
+It's preferred to install:
+- [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
