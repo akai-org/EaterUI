@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "./Button";
+// eslint-disable-next-line object-curly-newline
 import { withKnobs, text, select, boolean } from "@storybook/addon-knobs";
+import { Button } from "./Button.jsx";
 
 export const Primary = () => <Button type="primary">Button</Button>;
 
