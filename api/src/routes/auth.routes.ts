@@ -104,6 +104,4 @@ router.get(
 
 router.get("/logout", AuthController.storeUIRedirectUrl, AuthController.logout);
 
-router.get("/", AuthController.redirectToUIUrl);
-
 export default router;

@@ -14,6 +14,9 @@ dotenv.config();
 
 const app = express();
 
+const isProduction = process.env.NODE_ENV === "production";
+
+app.set("trust proxy", 1);
 app.use(cors({ origin: whitelistedOrigins, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +24,8 @@ app.use(
   cookieSession({
     name: "google-auth-session",
     keys: [process.env.SECRET_SESSION_KEY!],
+    sameSite: isProduction ? "none" : "lax",
+    secure: isProduction,
   }),
 );
 app.use(passport.initialize());
