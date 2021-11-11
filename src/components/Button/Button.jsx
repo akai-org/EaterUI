@@ -9,39 +9,31 @@ const typeToClass = {
   danger: styles.danger,
 };
 
-
-
-// type = "primary" | "secondary" | "danger"
-
-
 export function Button({
   type = "primary",
   fullwidth = false,
   isDisabled = false,
   children,
+  onClick,
 } = {}) {
-  
-  
-
-  //const mode = primary ? styles.primary : styles.secondary;
-
   return (
     <button
       type="button"
       disabled={isDisabled}
-      fullw={fullwidth}
-      className={[styles.button, typeToClass[type]].join(" ")}
-      
-
+      className={classNames(styles.button, typeToClass[type], {
+        [styles.fullw]: fullwidth,
+      })}
+      onClick={onClick}
     >
-
       {children}
     </button>
   );
 }
 
 Button.propTypes = {
-  primary: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+  fullwidth: PropTypes.bool,
+  type: PropTypes.oneOf(["primary", "secondary", "danger"]),
+  isDisabled: PropTypes.bool,
 };
