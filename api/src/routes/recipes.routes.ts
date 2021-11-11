@@ -27,7 +27,6 @@ const router = express.Router();
  *         - id
  *         - name
  *         - description
- *         - graphicURL
  *       properties:
  *         id:
  *           type: string
@@ -80,7 +79,7 @@ const router = express.Router();
 router.get(
   "/",
   validateSchema(RecipesQuerySchema),
-  RecipeController.listRecipes
+  RecipeController.listRecipes,
 );
 
 /**
@@ -112,7 +111,6 @@ router.get(
  *         - id
  *         - name
  *         - description
- *         - graphicURL
  *         - ingredients
  *       properties:
  *         id:
@@ -161,7 +159,7 @@ router.get(
 router.get(
   "/:id",
   validateSchema(RecipeIdParamSchema),
-  RecipeController.getRecipe
+  RecipeController.getRecipe,
 );
 
 /**
@@ -173,7 +171,6 @@ router.get(
  *       required:
  *         - name
  *         - description
- *         - graphicURL
  *         - ingredients
  *       properties:
  *         name:
@@ -224,7 +221,7 @@ router.get(
 router.post(
   "/",
   validateSchema(CreateRecipeSchema),
-  RecipeController.createRecipe
+  RecipeController.createRecipe,
 );
 
 /**
@@ -265,7 +262,7 @@ router.post(
 router.put(
   "/:id",
   validateSchema(UpdateRecipeSchema),
-  RecipeController.updateRecipe
+  RecipeController.updateRecipe,
 );
 
 /**
@@ -298,7 +295,7 @@ router.put(
 router.delete(
   "/:id",
   validateSchema(RecipeIdParamSchema),
-  RecipeController.deleteRecipe
+  RecipeController.deleteRecipe,
 );
 
 export default router;
