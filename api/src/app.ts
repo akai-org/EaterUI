@@ -1,7 +1,8 @@
 import express from "express";
 import passport from "passport";
 import dotenv from "dotenv";
-import cookieSession from "cookie-session";
+import cookieParse from "cookie-parser";
+import session from "express-session";
 import swaggerUI from "swagger-ui-express";
 import cors from "cors";
 import configurePassport from "./config/passport";
@@ -20,15 +21,22 @@ app.set("trust proxy", 1);
 app.use(cors({ origin: whitelistedOrigins, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(cookieParse());
 app.use(
-  cookieSession({
+  session({
     name: "google-auth-session",
-    keys: [process.env.SECRET_SESSION_KEY!],
-    sameSite: isProduction ? "none" : "lax",
-    secure: isProduction,
+    secret: process.env.SECRET_SESSION_KEY!,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      sameSite: isProduction ? "none" : "lax",
+      httpOnly: isProduction,
+      secure: isProduction,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   }),
 );
-app.use(passport.initialize());
 app.use(passport.session());
 
 configurePassport();

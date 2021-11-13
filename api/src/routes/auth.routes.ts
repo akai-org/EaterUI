@@ -79,16 +79,12 @@ router.get("/user", AuthController.getUserInfo);
  *         description: Redirects to the Google's OAuth2.0 auth handler
  */
 
-router.get(
-  "/google",
-  AuthController.storeUIRedirectUrl,
-  AuthController.googleSignIn,
-);
+router.get("/google", AuthController.googleSignIn);
 
 router.get(
   "/google/callback",
   AuthController.googleCallback,
-  AuthController.redirectToUIUrl,
+  AuthController.googleCallbackRedirect,
 );
 
 /**
@@ -102,6 +98,6 @@ router.get(
  *         description: Redirects to the / after successful logout
  */
 
-router.get("/logout", AuthController.storeUIRedirectUrl, AuthController.logout);
+router.get("/logout", AuthController.logout);
 
 export default router;
