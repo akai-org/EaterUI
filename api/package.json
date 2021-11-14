@@ -25,6 +25,7 @@
     "express-session": "^1.17.2",
     "passport": "^0.5.0",
     "passport-google-oauth20": "^2.0.0",
+    "passport-google-token": "^0.1.2",
     "serverless-http": "^2.7.0",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",

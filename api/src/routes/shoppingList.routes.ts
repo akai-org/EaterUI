@@ -62,8 +62,7 @@ const router = express.Router();
  *           type: number
  *         description: Used for pagination, describing offset of the cursor
  *     security:
- *       - googleAuth: []
- *       - googleAuthSig: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The list of the shopping list summaries
@@ -80,7 +79,7 @@ const router = express.Router();
 router.get(
   "/",
   validateSchema(ShoppingListQuerySchema),
-  ShoppingListController.listShoppingListOverview
+  ShoppingListController.listShoppingListOverview,
 );
 
 /**
@@ -163,8 +162,7 @@ router.get(
  *         required: true
  *         description: The shopping list id
  *     security:
- *       - googleAuth: []
- *       - googleAuthSig: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The shopping list details with list of ingredients and their amount
@@ -182,7 +180,7 @@ router.get(
 router.get(
   "/:id",
   validateSchema(ShoppingListIdParamSchema),
-  ShoppingListController.getShoppingList
+  ShoppingListController.getShoppingList,
 );
 
 /**
@@ -217,8 +215,7 @@ router.get(
  *            type: object
  *            $ref: '#/components/schemas/ShoppingListInput'
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      201:
  *        description: The shopping list was created
@@ -238,7 +235,7 @@ router.get(
 router.post(
   "/",
   validateSchema(CreateShoppingListSchema),
-  ShoppingListController.createShoppingList
+  ShoppingListController.createShoppingList,
 );
 
 /**
@@ -270,8 +267,7 @@ router.post(
  *              marked:
  *                type: boolean
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      204:
  *        description: The shopping list item was updated
@@ -288,7 +284,7 @@ router.post(
 router.put(
   "/:id/item/:itemId",
   validateSchema(UpdateShoppingListItemSchema),
-  ShoppingListController.markShoppingListItem
+  ShoppingListController.markShoppingListItem,
 );
 
 export default router;

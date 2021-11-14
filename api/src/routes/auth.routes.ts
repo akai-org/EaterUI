@@ -4,21 +4,11 @@ import express from "express";
 /**
  * @swagger
  * components:
- *  securitySchemes:
- *    googleAuth:
- *      type: apiKey
- *      in: cookie
- *      name: google-auth-session
- */
-
-/**
- * @swagger
- * components:
- *  securitySchemes:
- *    googleAuthSig:
- *      type: apiKey
- *      in: cookie
- *      name: google-auth-session.sig
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: string
  */
 
 /**
@@ -53,8 +43,7 @@ const router = express.Router();
  *     summary: Returns the information about currently logged in user
  *     tags: [Auth]
  *     security:
- *       - googleAuth: []
- *       - googleAuthSig: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The information about currently logged in user
@@ -67,37 +56,5 @@ const router = express.Router();
  */
 
 router.get("/user", AuthController.getUserInfo);
-
-/**
- * @swagger
- * /auth/google:
- *   get:
- *     summary: Redirects to the Google's OAuth2.0 auth handler
- *     tags: [Auth]
- *     responses:
- *       302:
- *         description: Redirects to the Google's OAuth2.0 auth handler
- */
-
-router.get("/google", AuthController.googleSignIn);
-
-router.get(
-  "/google/callback",
-  AuthController.googleCallback,
-  AuthController.googleCallbackRedirect,
-);
-
-/**
- * @swagger
- * /auth/logout:
- *   get:
- *     summary: Logging out user and clearing out session
- *     tags: [Auth]
- *     responses:
- *       302:
- *         description: Redirects to the / after successful logout
- */
-
-router.get("/logout", AuthController.logout);
 
 export default router;

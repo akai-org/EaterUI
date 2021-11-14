@@ -61,8 +61,7 @@ const router = express.Router();
  *           type: number
  *         description: Used for pagination, describing offset of the cursor
  *     security:
- *       - googleAuth: []
- *       - googleAuthSig: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The list of the recipes
@@ -141,8 +140,7 @@ router.get(
  *         required: true
  *         description: The recipe id
  *     security:
- *       - googleAuth: []
- *       - googleAuthSig: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The recipe details with list of ingredients
@@ -198,8 +196,7 @@ router.get(
  *          schema:
  *            $ref: '#/components/schemas/RecipeInput'
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      201:
  *        description: The recipe was created
@@ -244,8 +241,7 @@ router.post(
  *          schema:
  *            $ref: '#/components/schemas/RecipeDetails'
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      204:
  *        description: The recipe was updated
@@ -279,8 +275,7 @@ router.put(
  *        required: true
  *        description: The recipe id
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      204:
  *        description: The recipe was deleted
