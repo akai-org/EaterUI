@@ -1,6 +1,6 @@
 import React from "react";
+import { text, boolean } from "@storybook/addon-knobs";
 import { Checkbox } from "./Checkbox";
-import { text, boolean} from "@storybook/addon-knobs";
 
 export default {
   title: "Checkbox",
