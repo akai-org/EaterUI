@@ -25,7 +25,9 @@
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "quotes": ["error", "double"],
     "jsx-quotes": ["error", "prefer-double"],
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/extensions": { "js": "never", "jsx": "never" }
   },
   "settings": {
     "react": {
