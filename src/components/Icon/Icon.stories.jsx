@@ -1,19 +1,23 @@
-import PropTypes from "prop-types";
 import React from "react";
-import styles from "./Icon.module.scss";
+import { text } from "@storybook/addon-knobs";
+import { Icon } from "./Icon.jsx";
 
-export function Icon({ name, color = "7BB9FA" }) {
-  return (
-    <span
-      className={styles.checkbox}
-      type="checkbox"
-      name={name}
-      color={color}
-    ></span>
-  );
-}
+export default {
+  title: "Icon",
+  // component: Icon,
+  // argTypes: {
+  //     name:{
+  //         options: ["pencil", "bin"],
+  //         control: {type: "radio"}
+  //     },
+  //     color: {control: 'color'},
+  //     size:
+  // }
+};
 
-Icon.PropTypes = {
-  name: PropTypes.string.isRequired,
-  color: PropTypes.string,
+export const Playground = () => {
+  const name = text("name", "pencil");
+  const color = text("color", "blue");
+  const size = text("size", "1em");
+  return <Icon name={name} color={color} size={size} />;
 };
