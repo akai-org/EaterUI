@@ -17,12 +17,13 @@ function App() {
       <p>Witaj w EaterUI! #2</p>
       <GoogleLogin
         clientId={GoogleClientId}
+        onSuccess={handleLoginSuccess}
+        isSignedIn={true}
         render={(renderProps) => (
           <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
             Login
           </button>
         )}
-        onSuccess={handleLoginSuccess}
       />
       <GoogleLogout
         clientId={GoogleClientId}
