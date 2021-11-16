@@ -1,42 +1,34 @@
 import React from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { handleLoginSuccess, handleLogoutSuccess } from "./utils/auth";
-import request from "./api/request";
-
-const GoogleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
-async function handleFetchUserInfo() {
-  const userInfo = await request("/auth/user");
-  // eslint-disable-next-line no-console
-  console.log({ userInfo });
-}
+import { Routes, Route } from "react-router-dom";
+import RecipeListing from "./pages/recipes/RecipeListing";
+import Login from "./pages/login/login";
+import ShopingList from "./pages/shoping-list/ShopingList";
+import ShopingListDetails from "./pages/shoping-list/ShopingListDetails";
+import RecipeDetails from "./pages/recipes/RecipeDetails";
+import RecipeCreation from "./pages/recipes/RecipeCreation";
+import MenuDetails from "./pages/menu/MenuDetails";
+import MenuListing from "./pages/menu/MenuListing";
+import MenuPlanning from "./pages/menu/MenuPlanning";
 
 function App() {
-  return (
-    <div>
-      <p>Witaj w EaterUI! #2</p>
-      <GoogleLogin
-        clientId={GoogleClientId}
-        onSuccess={handleLoginSuccess}
-        isSignedIn={true}
-        render={(renderProps) => (
-          <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-            Login
-          </button>
-        )}
-      />
-      <GoogleLogout
-        clientId={GoogleClientId}
-        onLogoutSuccess={handleLogoutSuccess}
-        render={(renderProps) => (
-          <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-            Logout
-          </button>
-        )}
-      />
-      <button onClick={handleFetchUserInfo}>Fetch UserInfo</button>
-    </div>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<Login />} />
+			<Route path="/login" element={<Login />} />
+			
+      <Route path="/recipe" element={<RecipeListing />} />
+			<Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+      <Route path="/recipe/new" element={<RecipeCreation />} />
+			
+      <Route path="/menu" element={<MenuListing />} />
+			<Route path="/menu/:date" element={<MenuDetails />} />
+			<Route path="/menu/:date/new" element={<MenuPlanning />} />
+			<Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
+			
+			<Route path="/shoping-list" element={<ShopingList />} />
+			<Route path="/shoping-list/:shopingDetailId" element={<ShopingListDetails />} />
+		</Routes>
+	);
 }
 
 export default App;
