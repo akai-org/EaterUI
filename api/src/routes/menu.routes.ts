@@ -55,8 +55,7 @@ const router = express.Router();
  *           format: date
  *         description: The end of the date range for querying menu
  *     security:
- *       - googleAuth: []
- *       - googleAuthSig: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The summary of the menu
@@ -73,7 +72,7 @@ const router = express.Router();
 router.get(
   "/",
   validateSchema(MenuSummaryQuerySchema),
-  MenuController.listMenuItems
+  MenuController.listMenuItems,
 );
 
 /**
@@ -109,8 +108,7 @@ router.get(
  *           format: date
  *         description: The date for which the menu items are listed
  *     security:
- *       - googleAuth: []
- *       - googleAuthSig: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The list of the menu items
@@ -127,7 +125,7 @@ router.get(
 router.get(
   "/details",
   validateSchema(MenuDetailsQuerySchema),
-  MenuController.getMenuItemsDetails
+  MenuController.getMenuItemsDetails,
 );
 
 /**
@@ -163,8 +161,7 @@ router.get(
  *          schema:
  *            $ref: '#/components/schemas/MenuItemInput'
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      201:
  *        description: The menu item was created
@@ -186,7 +183,7 @@ router.get(
 router.post(
   "/",
   validateSchema(CreateMenuItemSchema),
-  MenuController.createMenuItem
+  MenuController.createMenuItem,
 );
 
 /**
@@ -226,8 +223,7 @@ router.post(
  *          schema:
  *            $ref: '#/components/schemas/UpdateMenuItemInput'
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      204:
  *        description: The menu item was updated
@@ -244,7 +240,7 @@ router.post(
 router.put(
   "/:id",
   validateSchema(UpdateMenuItemSchema),
-  MenuController.updateMenuItem
+  MenuController.updateMenuItem,
 );
 
 /**
@@ -261,8 +257,7 @@ router.put(
  *        required: true
  *        description: The menu item id
  *    security:
- *      - googleAuth: []
- *      - googleAuthSig: []
+ *      - bearerAuth: []
  *    responses:
  *      204:
  *        description: The menu item was deleted
@@ -277,7 +272,7 @@ router.put(
 router.delete(
   "/:id",
   validateSchema(MenuItemIdSchema),
-  MenuController.deleteMenuItem
+  MenuController.deleteMenuItem,
 );
 
 export default router;

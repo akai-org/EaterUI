@@ -42,7 +42,7 @@ export const MenuSchema = z
       id: z.string(),
       name: z.string(),
       description: z.string(),
-      graphicURL: z.string().optional(),
+      graphicURL: z.string().nullable(),
     }),
   })
   .array();
