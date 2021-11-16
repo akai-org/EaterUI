@@ -1,23 +1,51 @@
 import React from "react";
-import { text } from "@storybook/addon-knobs";
-import { Icon } from "./Icon.jsx";
+import { text, select } from "@storybook/addon-knobs";
+import { Icon, ButtonIcon } from "./Icon.jsx";
 
 export default {
   title: "Icon",
-  // component: Icon,
-  // argTypes: {
-  //     name:{
-  //         options: ["pencil", "bin"],
-  //         control: {type: "radio"}
-  //     },
-  //     color: {control: 'color'},
-  //     size:
-  // }
 };
 
-export const Playground = () => {
-  const name = text("name", "pencil");
-  const color = text("color", "blue");
-  const size = text("size", "1em");
-  return <Icon name={name} color={color} size={size} />;
+const selectName = [
+  "pencil",
+  "bin",
+  "hamburger",
+  "close",
+  "google",
+  "calendar",
+  "edit",
+  "food",
+];
+
+const selectColor = ["blue", "red", "green", "white", "black"];
+
+const selectSize = ["small", "medium", "large"];
+
+export const IconComponent = () => {
+  const name = select("Name", selectName, selectName[0]);
+  const color = select("Color", selectColor, selectColor[0]);
+  const size = select("Size", selectSize, selectSize[0]);
+  const className = text("ClassName", "");
+  return <Icon name={name} className={className} color={color} size={size} />;
+};
+
+function example() {
+  // eslint-disable-next-line no-console
+  console.info("Its working!");
+}
+
+export const ButtonIconComponent = () => {
+  const name = select("Name", selectName, selectName[0]);
+  const color = select("Color", selectColor, selectColor[0]);
+  const size = select("Size", selectSize, selectSize[0]);
+  const className = text("ClassName", "");
+  return (
+    <ButtonIcon
+      name={name}
+      className={className}
+      color={color}
+      size={size}
+      onClick={example}
+    />
+  );
 };

@@ -1,6 +1,8 @@
 @import "../../assets/variables.scss";
 
-.button-icon{
+.buttonIcon{
+  appearance: none;
+
   &:hover{
     cursor: pointer;
   }

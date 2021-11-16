@@ -57,7 +57,7 @@ export function ButtonIcon({
   onClick,
 }) {
   return (
-    <button onClick={onClick}>
+    <button onClick={onClick} className={styles.buttonIcon}>
       <Icon name={name} className={className} color={color} size={size} />
     </button>
   );
@@ -75,5 +75,5 @@ ButtonIcon.propTypes = {
   className: PropTypes.string,
   color: PropTypes.oneOf(Object.keys(colorStyles)),
   size: PropTypes.oneOf(Object.keys(sizeStyles)),
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
