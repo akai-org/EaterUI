@@ -63,17 +63,16 @@ export function ButtonIcon({
   );
 }
 
-Icon.propTypes = {
+const iconsPropTypes = {
   name: PropTypes.oneOf(Object.keys(iconNames)).isRequired,
   className: PropTypes.string,
   color: PropTypes.oneOf(Object.keys(colorStyles)),
   size: PropTypes.oneOf(Object.keys(sizeStyles)),
 };
 
+Icon.propTypes = iconsPropTypes;
+
 ButtonIcon.propTypes = {
-  name: PropTypes.oneOf(Object.keys(iconNames)).isRequired,
-  className: PropTypes.string,
-  color: PropTypes.oneOf(Object.keys(colorStyles)),
-  size: PropTypes.oneOf(Object.keys(sizeStyles)),
+  ...iconsPropTypes,
   onClick: PropTypes.func.isRequired,
 };

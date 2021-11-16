@@ -1,9 +1,21 @@
 @import "../../assets/variables.scss";
 
-.buttonIcon{
-  appearance: none;
+@mixin icons{
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
 
-  &:hover{
-    cursor: pointer;
-  }
+.icon{
+  @include icons;
+}
+
+.buttonIcon{
+  @include icons;
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  outline: inherit;
+  cursor: pointer;
 }
