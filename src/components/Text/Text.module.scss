@@ -1,4 +1,5 @@
 @import "../../assets/variables.scss";
+@import "../../assets/globals.scss";
 
 .text {
   font-weight: $semibold;
@@ -7,32 +8,32 @@
 
   &_h1 {
     font-family: "Montserrat";
-    font-size: $h1;
-    line-height: 60px;
+    font-size: $h1-font-size;
+    line-height: $h1-line-height;
   }
 
   &_h2 {
     font-family: "Montserrat";
-    font-size: $h2;
-    line-height: 50px;
+    font-size: $h2-font-size;
+    line-height: $h2-line-height;
   }
 
   &_h3 {
     font-family: "Montserrat";
-    font-size: $h3;
-    line-height: 38px;
+    font-size: $h3-font-size;
+    line-height: $h3-line-height;
   }
 
   &_h4 {
     font-family: "Montserrat";
-    font-size: $h4;
-    line-height: 22px;
+    font-size: $h4-font-size;
+    line-height: $h4-line-height;
   }
 
   &_paragraph {
     font-family: "Montserrat";
-    font-size: $paragraph;
+    font-size: $paragraph-font-size;
     font-weight: $regular;
-    line-height: 24px;
+    line-height: $paragraph-line-height;
   }
 }

@@ -20,15 +20,19 @@ $black: #282828;
 $white: #ffffff;
 
 /*typography*/
-//font
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
 // font size
-$h1: 48px;
-$h2: 34px;
-$h3: 28px;
-$h4: 18px;
-$paragraph: 14px;
+$h1-font-size: 48px;
+$h2-font-size: 34px;
+$h3-font-size: 28px;
+$h4-font-size: 18px;
+$paragraph-font-size: 14px;
+//line-heights
+$h1-line-height: 60px;
+$h2-line-height: 50px;
+$h3-line-height: 38px;
+$h4-line-height: 22px;
+$paragraph-line-height: 24px;
 // font weight
-$regular: 500;
-$semibold: 700;
+$regular: 400;
+$semibold: 600;
 $extrabold: 800;
