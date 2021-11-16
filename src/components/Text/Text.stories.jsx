@@ -1,5 +1,5 @@
 import React from "react";
-import {Text} from "./Text";
+import { Text } from "./Text";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 
 export const Playground = () => {
