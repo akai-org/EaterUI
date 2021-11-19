@@ -23,10 +23,6 @@ export function Button({
       className={classNames(styles.button, typeToClass[type], {
         [styles.fullw]: fullwidth,
       })}
-
-
-        
-      
       onClick={onClick}
     >
       {children}
