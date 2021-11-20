@@ -1,21 +1,49 @@
 @import "../../assets/variables.scss";
 
-@mixin icons{
+@mixin icons {
   display: inline-block;
   margin: 0;
   padding: 0;
 }
 
-.icon{
+.icon {
   @include icons;
 }
 
-.buttonIcon{
+.button-icon {
   @include icons;
-  background: none;
-  color: inherit;
-  border: none;
-  font: inherit;
-  outline: inherit;
+
   cursor: pointer;
+}
+
+.blue {
+  color: $primary001;
+}
+
+.red {
+  color: $danger001;
+}
+
+.green {
+  color: $success001;
+}
+
+.white {
+  color: $white;
+}
+
+.black {
+  color: $black;
+}
+
+.small {
+  font-size: 1em;
+}
+
+.medium {
+  font-size: 1.5em;
+}
+
+.large {
+  font-size: 2em;
 }

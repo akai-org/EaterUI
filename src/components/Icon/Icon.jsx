@@ -43,23 +43,24 @@ export function Icon({
   const CustomTag = iconNames[name];
 
   return (
-    <span className={classNames(className, styles.icon)}>
-      <CustomTag color={colorStyles[color]} size={sizeStyles[size]} />
+    <span
+      className={classNames(
+        className,
+        styles.icon,
+        styles[`${color}`],
+        styles[`${size}`],
+      )}
+    >
+      <CustomTag />
     </span>
   );
 }
 
-export function ButtonIcon({
-  name,
-  className,
-  color = "blue",
-  size = "medium",
-  onClick,
-}) {
+export function ButtonIcon({ name, className, color, size, onClick }) {
   return (
-    <button onClick={onClick} className={styles.buttonIcon}>
+    <span onClick={onClick} className={styles["button-icon"]}>
       <Icon name={name} className={className} color={color} size={size} />
-    </button>
+    </span>
   );
 }
 

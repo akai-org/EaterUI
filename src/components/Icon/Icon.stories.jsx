@@ -29,11 +29,6 @@ export const IconComponent = () => {
   return <Icon name={name} className={className} color={color} size={size} />;
 };
 
-function example() {
-  // eslint-disable-next-line no-console
-  console.info("Its working!");
-}
-
 export const ButtonIconComponent = () => {
   const name = select("Name", selectName, selectName[0]);
   const color = select("Color", selectColor, selectColor[0]);
@@ -45,7 +40,7 @@ export const ButtonIconComponent = () => {
       className={className}
       color={color}
       size={size}
-      onClick={example}
+      onClick={() => {}}
     />
   );
 };
