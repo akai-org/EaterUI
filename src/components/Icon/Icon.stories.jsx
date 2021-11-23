@@ -1,6 +1,6 @@
 import React from "react";
 import { text, select } from "@storybook/addon-knobs";
-import { Icon, ButtonIcon } from "./Icon.jsx";
+import { Icon, ButtonIcon } from "./Icon";
 
 export default {
   title: "Icon",
