@@ -3,15 +3,18 @@
 .text {
   font-weight: $semibold;
   color: $black;
+  margin: $M-spacing;
 
   &_h1 {
     font-size: $h1-font-size;
     line-height: $h1-line-height;
+    margin: $L-spacing $M-spacing;
   }
 
   &_h2 {
     font-size: $h2-font-size;
     line-height: $h2-line-height;
+    margin: $L-spacing $M-spacing;
   }
 
   &_h3 {
