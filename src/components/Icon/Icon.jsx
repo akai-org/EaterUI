@@ -20,20 +20,6 @@ const iconNames = {
   food: MdOutlineFastfood,
 };
 
-const colorStyles = {
-  blue: "#7bb9fa",
-  red: "#f67f7f",
-  green: "#38db81",
-  white: "#FFFFFF",
-  black: "#282828",
-};
-
-const sizeStyles = {
-  small: "16px",
-  medium: "32px",
-  large: "64px",
-};
-
 export function Icon({
   name,
   className,
@@ -47,8 +33,8 @@ export function Icon({
       className={classNames(
         className,
         styles.icon,
-        styles[`${color}`],
-        styles[`${size}`],
+        styles[color],
+        styles[size],
       )}
     >
       <CustomTag />
@@ -67,8 +53,8 @@ export function ButtonIcon({ name, className, color, size, onClick }) {
 const iconsPropTypes = {
   name: PropTypes.oneOf(Object.keys(iconNames)).isRequired,
   className: PropTypes.string,
-  color: PropTypes.oneOf(Object.keys(colorStyles)),
-  size: PropTypes.oneOf(Object.keys(sizeStyles)),
+  color: PropTypes.oneOf(["blue", "red", "green", "white", "black"]),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
 };
 
 Icon.propTypes = iconsPropTypes;
