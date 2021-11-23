@@ -3,25 +3,27 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import styles from "./Button.module.scss";
 
-const sizeToClass = {
-  small: styles.small,
-  medium: styles.medium,
-  large: styles.large,
+const typeToClass = {
+  primary: styles.primary,
+  secondary: styles.secondary,
+  danger: styles.danger,
 };
 
 export function Button({
-  primary = true,
-  size = "medium",
+  type = "primary",
+  fullwidth = false,
+  isDisabled = false,
   children,
-  ...props
+  onClick,
 } = {}) {
-  const mode = primary ? styles.primary : styles.secondary;
-
   return (
     <button
       type="button"
-      className={classNames(styles.button, sizeToClass[size], mode)}
-      {...props}
+      disabled={isDisabled}
+      className={classNames(styles.button, typeToClass[type], {
+        [styles.fullw]: fullwidth,
+      })}
+      onClick={onClick}
     >
       {children}
     </button>
@@ -29,8 +31,9 @@ export function Button({
 }
 
 Button.propTypes = {
-  primary: PropTypes.bool,
-  size: PropTypes.oneOf(["small", "medium", "large"]),
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+  fullwidth: PropTypes.bool,
+  type: PropTypes.oneOf(["primary", "secondary", "danger"]),
+  isDisabled: PropTypes.bool,
 };

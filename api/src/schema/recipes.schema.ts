@@ -7,7 +7,7 @@ const params = z.object({
 const recipeProperties = {
   name: z.string(),
   description: z.string(),
-  graphicURL: z.string().optional(),
+  graphicURL: z.string().nullable(),
 };
 
 const ingredients = z

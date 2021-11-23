@@ -1,54 +1,54 @@
 @import "../../assets/variables.scss";
 
 .button {
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  border: 0;
-  border-radius: 3em;
+  font-weight: $extrabold;
+  border-radius: 4px;
   cursor: pointer;
-  display: inline-block;
-  line-height: 1;
+  padding: 10px 16px;
+  border: 0;
 }
 
 .primary {
-  color: white;
   background-color: $primary001;
+  color: $white;
+
+  &:hover {
+    background-color: $primary002;
+  }
+
+  &:disabled {
+    background-color: $primary003;
+  }
 }
 
 .secondary {
-  color: #333;
-  background-color: $grey001;
+  background-color: $white;
+  border: 1px solid $grey001;
+  color: $black;
+  font-weight: $semibold;
+
+  &:hover {
+    border-color: $black;
+  }
+
+  &:disabled {
+    color: $grey001,
+  }
 }
 
-.small {
-  font-size: 12px;
-  padding: 10px 16px;
+.danger {
+  background-color: $danger001;
+  color: $white;
+
+  &:hover {
+    background-color: $danger002;
+  }
+
+  &:disabled {
+    background-color: $danger003;
+  }
 }
 
-.medium {
-  font-size: 14px;
-  padding: 11px 20px;
+.fullw {
+  width: 100%;
 }
-
-.large {
-  font-size: 16px;
-  padding: 12px 24px;
-}
-
-/*
-// sass
-// - variables
-// - nesting
-// - loops - https://sass-lang.com/documentation/at-rules/control/for
-// - mixins - https://sass-lang.com/documentation/at-rules/mixin
-
-// .storybook-button {
-//   // styles for ".storybook-button"
-
-//   &--small {
-//     // styles for ".storybook-button--small"
-//     font-size: 12px;
-//     padding: 10px 16px;
-//   }
-// }
-*/

@@ -1,5 +1,5 @@
 import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { Strategy as GoogleStrategy } from "passport-google-token";
 import db from "../db";
 
 export default function configurePassport() {
@@ -8,7 +8,6 @@ export default function configurePassport() {
       {
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-        callbackURL: `${process.env.BASE_URL}/auth/google/callback`,
       },
       async function (_accessToken, _refreshToken, profile, done) {
         const { id, displayName } = profile;
@@ -20,9 +19,9 @@ export default function configurePassport() {
           await db.user.create({ data: userData });
         }
 
-        return done(null, userData);
-      }
-    )
+        done(null, userData);
+      },
+    ),
   );
 
   passport.serializeUser(function (user, done) {

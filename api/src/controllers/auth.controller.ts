@@ -2,19 +2,46 @@ import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 import { HttpError } from "../errors/HttpError";
 
-export const googleSignIn = passport.authenticate("google", {
-  scope: ["profile"],
-});
+export const googleSignIn = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { returnTo } = req.query;
+  const state = returnTo
+    ? Buffer.from(JSON.stringify({ returnTo })).toString("base64")
+    : undefined;
+  const authenticator = passport.authenticate("google", {
+    scope: ["profile"],
+    state,
+  });
+  authenticator(req, res, next);
+};
 
 export const googleCallback = passport.authenticate("google", {
-  successRedirect: "/auth",
   failureRedirect: "/login",
 });
+
+export const googleCallbackRedirect = (req: Request, res: Response) => {
+  try {
+    const { state } = req.query;
+    const { returnTo } = JSON.parse(
+      Buffer.from(state as String, "base64").toString(),
+    );
+    if (returnTo) {
+      return res.redirect(returnTo);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
+  res.redirect("/");
+};
 
 export const getUserInfo = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     if (!req?.user) {
@@ -28,7 +55,16 @@ export const getUserInfo = async (
 };
 
 export const logout = (req: Request, res: Response) => {
-  req.session = null;
+  let callbackUrl = "/";
+
+  if (req?.query.returnTo) {
+    callbackUrl = req?.query.returnTo as string;
+  } else if (req?.header("Referer")) {
+    callbackUrl = req.header("Referer") as string;
+  }
+
   req.logout();
-  res.redirect("/");
+  res.clearCookie("google-auth-session");
+
+  res.redirect(callbackUrl);
 };
