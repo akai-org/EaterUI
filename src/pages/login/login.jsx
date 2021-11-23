@@ -18,11 +18,10 @@ function Login() {
         clientId={GoogleClientId}
         onSuccess={handleLoginSuccess}
         isSignedIn={true}
-        render={({onClick,disabled}) => (
+        render={({ onClick, disabled }) => (
           <Button onClick={onClick}>Zaloguj się z Google</Button>
         )}
       />
-      
     </div>
   );
 }

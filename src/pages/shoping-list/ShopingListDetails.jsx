@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { Checkbox } from "../../components/Checkbox/Checkbox";
 
 function ShopingListDetails() {
-	let params = useParams();
+  let params = useParams();
 
-	return (
+  return (
 		<>
 			<h1>Listy zakupów params: {params.shopingDetailId}</h1>
 			<p>28 Październik (pon) - 07 Listopad (wt)</p>
@@ -15,24 +15,25 @@ function ShopingListDetails() {
 					<li>4 szt.</li>
 					<li>0.5 kg</li>
 				</ul>
-                <Checkbox/>
-			</div>
-			<div>
-				<h3>Mąka</h3>
-				<ul>
-					<li>1kg</li>
-				</ul>
-                <Checkbox/>
-			</div>
-			<div>
-				<h3>Pomidory</h3>
-				<ul>
-					<li>4 szt.</li>
-				</ul>
-                <Checkbox/>
-			</div>
-		</>
-	);
+        </ul>
+        <Checkbox />
+      </div>
+      <div>
+        <h3>Mąka</h3>
+        <ul>
+          <li>1kg</li>
+        </ul>
+        <Checkbox />
+      </div>
+      <div>
+        <h3>Pomidory</h3>
+        <ul>
+          <li>4 szt.</li>
+        </ul>
+        <Checkbox />
+      </div>
+    </>
+  );
 }
 
 export default ShopingListDetails;
