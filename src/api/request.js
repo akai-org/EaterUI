@@ -1,5 +1,7 @@
-import { rootUrl } from ".";
+import { rootUrl } from "./index";
 import { getToken } from "../utils/auth";
+
+// https://kentcdodds.com/blog/replace-axios-with-a-simple-custom-fetch-wrapper
 
 export default function request(endpoint, { body, ...customConfig } = {}) {
   const token = getToken();
