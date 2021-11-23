@@ -2,14 +2,11 @@
 
 .checkbox {
   appearance: none;
-
   width: 20px;
   height: 20px;
-
   border-radius: 0.2em;
   border: 0.15em solid $grey002;
   background-color: $white;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +15,7 @@
     background-color: $primary001;
     border: 0;
 
-    &:after {
+    &::after {
       content: url("data:image/svg+xml;utf8,<svg width='12' height='9' viewBox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M10.5711 0L11.9853 1.41421L4.91421 8.48528L4.828 8.399L4.74264 8.48528L0.5 4.24264L1.91421 2.82843L4.828 5.743L10.5711 0Z' fill='white'/></svg>");
     }
   }
