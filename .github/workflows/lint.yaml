@@ -1,0 +1,16 @@
+name: Linting
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: npm ci
+      - name: ESLint
+        run: npm run lint
+      - name: StyleLint
+        run: npm run style

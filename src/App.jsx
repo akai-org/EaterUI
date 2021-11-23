@@ -11,24 +11,27 @@ import MenuListing from "./pages/menu/MenuListing";
 import MenuPlanning from "./pages/menu/MenuPlanning";
 
 function App() {
-	return (
-		<Routes>
-			<Route path="/" element={<Login />} />
-			<Route path="/login" element={<Login />} />
-			
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+
       <Route path="/recipe" element={<RecipeListing />} />
-			<Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+      <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
       <Route path="/recipe/new" element={<RecipeCreation />} />
-			
+
       <Route path="/menu" element={<MenuListing />} />
-			<Route path="/menu/:date" element={<MenuDetails />} />
-			<Route path="/menu/:date/new" element={<MenuPlanning />} />
-			<Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
-			
-			<Route path="/shoping-list" element={<ShopingList />} />
-			<Route path="/shoping-list/:shopingDetailId" element={<ShopingListDetails />} />
-		</Routes>
-	);
+      <Route path="/menu/:date" element={<MenuDetails />} />
+      <Route path="/menu/:date/new" element={<MenuPlanning />} />
+      <Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
+
+      <Route path="/shoping-list" element={<ShopingList />} />
+      <Route
+        path="/shoping-list/:shopingDetailId"
+        element={<ShopingListDetails />}
+      />
+    </Routes>
+  );
 }
 
 export default App;
