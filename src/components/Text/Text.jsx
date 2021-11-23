@@ -1,6 +1,6 @@
-import React, { Children } from "react";
-import styles from "./Text.module.scss";
+import React from "react";
 import PropTypes from "prop-types";
+import styles from "./Text.module.scss";
 
 const sizeToClass = {
   h1: styles.text_h1,
@@ -18,11 +18,16 @@ const sizeToComponent = {
   p: "p",
 };
 
-export function Text({ children, size = "p" } = {}) {
+export function Text({ size = "p", ...props } = {}) {
   const Component = sizeToComponent[size.toLowerCase()] || "p";
-  return <Component className={[sizeToClass[size], styles.text].join(" ")}>{children}</Component>;
+  return (
+    <Component className={[sizeToClass[size], styles.text].join(" ")}>
+      {props.children}
+    </Component>
+  );
 }
 
 Text.propTypes = {
   size: PropTypes.oneOf(["h1", "h2", "h3", "h4"]),
+  children: PropTypes.string,
 };
