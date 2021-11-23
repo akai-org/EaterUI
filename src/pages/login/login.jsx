@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 import { Button } from "../../components/Button/Button";
 import { handleLoginSuccess } from "../../utils/auth";
 
@@ -18,11 +18,12 @@ function Login() {
         clientId={GoogleClientId}
         onSuccess={handleLoginSuccess}
         isSignedIn={true}
-        render={({onClick,disabled}) => (
-          <Button onClick={onClick}>Zaloguj się z Google</Button>
+        render={({ onClick, disabled }) => (
+          <Button onClick={onClick} isDisabled={disabled}>
+            Zaloguj się z Google
+          </Button>
         )}
       />
-      
     </div>
   );
 }
