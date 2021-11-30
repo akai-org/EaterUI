@@ -40,10 +40,10 @@ function Login() {
           <Button
             onClick={onClick}
             isDisabled={disabled}
-            fullwidth="true"
+            fullwidth={true}
             className={styles.login_button}
           >
-            <Icon name="google" color="#fff" size="small"></Icon>
+            <Icon name="google" color="white" size="small"></Icon>
             Zaloguj się z Google
           </Button>
         )}
