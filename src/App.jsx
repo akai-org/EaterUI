@@ -9,6 +9,7 @@ import RecipeCreation from "./pages/recipes/RecipeCreation";
 import MenuDetails from "./pages/menu/MenuDetails";
 import MenuListing from "./pages/menu/MenuListing";
 import MenuPlanning from "./pages/menu/MenuPlanning";
+import AddIngredient from "./pages/recipes/AddIngredient";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/recipe" element={<RecipeListing />} />
       <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
       <Route path="/recipe/new" element={<RecipeCreation />} />
+      <Route path="/recipe/AddIngredient" element={<AddIngredient />} />
 
       <Route path="/menu" element={<MenuListing />} />
       <Route path="/menu/:date" element={<MenuDetails />} />

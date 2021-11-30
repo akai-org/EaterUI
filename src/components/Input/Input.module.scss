@@ -1,0 +1,29 @@
+@import "../../assets/variables.scss";
+
+label {
+  display: block;
+  margin: 1em 0;
+
+  input {
+    margin-top: 0.5em;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 0.2em;
+    border: none;
+    outline: 0.15em solid $grey002;
+
+    &:focus {
+      border: none;
+      outline: 0.15em solid $primary001;
+    }
+  }
+
+  .error-message {
+    margin-top: 0.5em;
+    color: $danger002;
+  }
+
+  .error-outline {
+    outline: 0.15em solid $danger002;
+  }
+}
