@@ -1,0 +1,26 @@
+@import "../../assets/variables.scss";
+
+.login{
+    width:80%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20% 10%;
+    gap:60px;
+
+        &_paragraph{
+            text-align: center;
+        } 
+
+        &_icons{
+            width:100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        &_button{
+            display: flex;
+            justify-content: space-between;
+        }
+}
