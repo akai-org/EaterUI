@@ -8,7 +8,7 @@ export default defineConfig({
     modules: {
       generateScopedName: (name, filename) => {
         const basename = path.basename(filename);
-        const componentName = basename.replace(".module.scss", "");
+        const componentName = basename.split(".module.scss")[0];
         return `${componentName}-${name}`;
       },
     },
