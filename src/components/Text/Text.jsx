@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import styles from "./Text.module.scss";
 
 const sizeToClass = {
@@ -18,11 +19,14 @@ const sizeToComponent = {
   p: "p",
 };
 
-export function Text({ size = "p", ...props } = {}) {
+export function Text({ size = "p", children, className, ...props } = {}) {
   const Component = sizeToComponent[size.toLowerCase()] || "p";
   return (
-    <Component className={[sizeToClass[size], styles.text].join(" ")}>
-      {props.children}
+    <Component
+      className={classNames(sizeToClass[size], styles.text, className)}
+      {...props}
+    >
+      {children}
     </Component>
   );
 }
@@ -30,4 +34,5 @@ export function Text({ size = "p", ...props } = {}) {
 Text.propTypes = {
   size: PropTypes.oneOf(["h1", "h2", "h3", "h4"]),
   children: PropTypes.string,
+  className: PropTypes.string,
 };
