@@ -9,6 +9,7 @@ import RecipeCreation from "./pages/recipes/RecipeCreation";
 import MenuDetails from "./pages/menu/MenuDetails";
 import MenuListing from "./pages/menu/MenuListing";
 import MenuPlanning from "./pages/menu/MenuPlanning";
+import "./assets/index.scss";
 
 function App() {
   return (
