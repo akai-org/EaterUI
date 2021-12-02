@@ -1,6 +1,6 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { Button } from "../../components/Button/Button";
+import { Button } from "@/components/Button/Button";
 import { handleLoginSuccess } from "../../utils/auth";
 import { Text } from "../../components/Text/Text";
 
