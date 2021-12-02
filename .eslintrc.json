@@ -26,12 +26,7 @@
     "quotes": ["error", "double"],
     "jsx-quotes": ["error", "prefer-double"],
     "operator-linebreak": "off",
-    "object-curly-newline": "off",
-    "import/resolver": {
-      "alias": {
-        "map": [["@", "src"]]
-      }
-    }
+    "object-curly-newline": "off"
   },
   "settings": {
     "react": {
@@ -39,7 +34,10 @@
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx"],
+        "alias": {
+          "map": [["@", "src"]]
+        }
       }
     }
   }
