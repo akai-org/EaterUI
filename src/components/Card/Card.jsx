@@ -1,17 +1,16 @@
 import React from "react";
-import styles from "./Card.module.scss";
 import propTypes from "prop-types";
 import classNames from "classnames";
+import styles from "./Card.module.scss";
 import { Text } from "../Text/Text";
-import { Checkbox } from "../Checkbox/Checkbox";
 
-export const Card = function ({
+export function Card({
   disabled = false,
   primaryText = "",
   secondaryText = "",
   className = "",
   rightElement = "",
-  imageUrl,
+  imageUrl = "",
   ...props
 }) {
   return (
@@ -37,10 +36,13 @@ export const Card = function ({
       )}
     </div>
   );
-};
+}
 
 Card.propTypes = {
-  variant: propTypes.oneOf(["plain", "image", "checkbox", "disabled"]),
   primaryText: propTypes.string,
   secondaryText: propTypes.string,
+  className: propTypes.string,
+  rightElement: propTypes.node,
+  imageUrl: propTypes.imageUrl,
+  disabled: propTypes.boolean,
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./Checkbox.module.scss";
 import classNames from "classnames";
+import styles from "./Checkbox.module.scss";
 
 export function Checkbox({ name, checked, className } = {}) {
   return (
@@ -17,4 +17,5 @@ export function Checkbox({ name, checked, className } = {}) {
 Checkbox.propTypes = {
   name: PropTypes.string,
   checked: PropTypes.bool,
+  className: PropTypes.string,
 };
