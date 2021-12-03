@@ -1,18 +1,13 @@
 @import "../../assets/variables.scss";
 
 .login{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    width:80%;
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    padding: 20% 10%;
+    padding: 12% 10%;
     gap:60px;
-
-        &_paragraph{
-            text-align: center;
-        } 
+    text-align: center;
 
         &_icons{
             width:100%;
@@ -21,7 +16,12 @@
         }
 
         &_button{
-            display: flex;
-            justify-content: space-between;
+            grid-template-columns: 1fr 8fr 1fr;
+
+            &_text{
+                display: block;
+                color:$white;
+                width:fit-content
+            }   
         }
 }
