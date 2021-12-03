@@ -1,4 +1,5 @@
 import React from "react";
+import { LinkButton } from "../../components/Button/Button";
 
 function ShopingList() {
   return (
@@ -12,6 +13,10 @@ function ShopingList() {
         <h3>28 Paź (pon) - 07 Lis (wt)</h3>
         <p>888 Produktów</p>
       </div>
+
+      <LinkButton type="primary" fullwidth href="/shoping-list/add">
+        Dodaj listę zakupów
+      </LinkButton>
     </>
   );
 }

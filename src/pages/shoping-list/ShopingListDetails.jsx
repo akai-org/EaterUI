@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Checkbox } from "../../components/Checkbox/Checkbox";
+import { LinkButton } from "../../components/Button/Button";
 
 function ShopingListDetails() {
   const params = useParams();
@@ -31,6 +32,9 @@ function ShopingListDetails() {
         </ul>
         <Checkbox />
       </div>
+      <LinkButton type="secondary" fullwidth href="/shoping-list">
+        Cofnij
+      </LinkButton>
     </>
   );
 }

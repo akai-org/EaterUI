@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import RecipeListing from "./pages/recipes/RecipeListing";
 import Login from "./pages/login/login";
 import ShopingList from "./pages/shoping-list/ShopingList";
+import ShopingListAdd from "./pages/shoping-list/ShopingListAdd";
 import ShopingListDetails from "./pages/shoping-list/ShopingListDetails";
 import RecipeDetails from "./pages/recipes/RecipeDetails";
 import RecipeCreation from "./pages/recipes/RecipeCreation";
@@ -26,6 +27,7 @@ function App() {
       <Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
 
       <Route path="/shoping-list" element={<ShopingList />} />
+      <Route path="/shoping-list/add" element={<ShopingListAdd />} />
       <Route
         path="/shoping-list/:shopingDetailId"
         element={<ShopingListDetails />}
