@@ -31,7 +31,6 @@ function Login() {
       <p className={styles.login_paragraph}>
         Tu możesz zebrać swoje Przepisy i zaplanować Jadłospis, a następnie
         przygotujemy do Ciebie Listę Zakupów
-      </p>
       <GoogleLogin
         clientId={GoogleClientId}
         onSuccess={handleLoginSuccess}
