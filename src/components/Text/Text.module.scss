@@ -1,0 +1,35 @@
+@import "../../assets/variables.scss";
+
+.text {
+  font-weight: $semibold;
+  color: $black;
+
+  &_h1 {
+    font-size: $h1-font-size;
+    line-height: $h1-line-height;
+    margin-bottom: $M-spacing;
+  }
+
+  &_h2 {
+    font-size: $h2-font-size;
+    line-height: $h2-line-height;
+    margin-bottom: $M-spacing;
+  }
+
+  &_h3 {
+    font-size: $h3-font-size;
+    line-height: $h3-line-height;
+    margin-bottom: $M-spacing;
+  }
+
+  &_h4 {
+    font-size: $h4-font-size;
+    line-height: $h4-line-height;
+  }
+
+  &_paragraph {
+    font-size: $paragraph-font-size;
+    font-weight: $regular;
+    line-height: $paragraph-line-height;
+  }
+}
