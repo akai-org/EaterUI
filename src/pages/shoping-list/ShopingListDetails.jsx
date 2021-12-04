@@ -2,16 +2,17 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Checkbox } from "../../components/Checkbox/Checkbox";
 import { LinkButton } from "../../components/Button/Button";
+import { Text } from "../../components/Text/Text";
 
 function ShopingListDetails() {
   const params = useParams();
 
   return (
     <>
-      <h1>Listy zakupów params: {params.shopingDetailId}</h1>
-      <p>28 Październik (pon) - 07 Listopad (wt)</p>
+      <Text size="h1">Listy zakupów params: {params.shopingDetailId}</Text>
+      <Text>28 Październik (pon) - 07 Listopad (wt)</Text>
       <div>
-        <h3>Marchewka</h3>
+        <Text size="h3">Marchewka</Text>
         <ul>
           <li>4 szt.</li>
           <li>0.5 kg</li>
@@ -19,14 +20,14 @@ function ShopingListDetails() {
         <Checkbox />
       </div>
       <div>
-        <h3>Mąka</h3>
+        <Text size="h3">Mąka</Text>
         <ul>
           <li>1kg</li>
         </ul>
         <Checkbox />
       </div>
       <div>
-        <h3>Pomidory</h3>
+        <Text size="h3">Pomidory</Text>
         <ul>
           <li>4 szt.</li>
         </ul>
