@@ -33,11 +33,9 @@
       "version": "detect"
     },
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx"],
-        "alias": {
-          "map": [["@", "src"]]
-        }
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".js", ".jsx"]
       }
     }
   }
