@@ -1,14 +1,15 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { Button } from "@/components/Button/Button";
-import { handleLoginSuccess } from "../../utils/auth";
-import { Text } from "../../components/Text/Text";
+import { handleLoginSuccess } from "@/utils/auth";
+import { Text } from "@/components/Text/Text";
+import { Container } from "@/components/Container/Container";
 
 const GoogleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function Login() {
   return (
-    <div>
+    <Container>
       <div>ikony</div>
       <Text size="h1"> Witaj w Eater</Text>
       <Text>
@@ -25,7 +26,7 @@ function Login() {
           </Button>
         )}
       />
-    </div>
+    </Container>
   );
 }
 
