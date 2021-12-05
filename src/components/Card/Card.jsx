@@ -6,11 +6,11 @@ import { Text } from "../Text/Text";
 
 export function Card({
   disabled = false,
-  primaryText = "",
+  primaryText,
   secondaryText = "",
-  className = "",
-  rightElement = "",
-  imageUrl = "",
+  rightContent,
+  imageUrl,
+  className,
   ...props
 }) {
   return (
@@ -27,11 +27,11 @@ export function Card({
       )}
       <div className={classNames(styles.card__text)}>
         <Text size="h4">{primaryText}</Text>
-        <Text size="p1">{secondaryText}</Text>
+        <Text>{secondaryText}</Text>
       </div>
-      {rightElement && (
+      {rightContent && (
         <div className={classNames(styles["card__right-content"])}>
-          {rightElement}
+          {rightContent}
         </div>
       )}
     </div>
@@ -42,7 +42,7 @@ Card.propTypes = {
   primaryText: propTypes.string,
   secondaryText: propTypes.string,
   className: propTypes.string,
-  rightElement: propTypes.node,
-  imageUrl: propTypes.imageUrl,
-  disabled: propTypes.boolean,
+  rightContent: propTypes.node,
+  imageUrl: propTypes.string,
+  disabled: propTypes.bool,
 };
