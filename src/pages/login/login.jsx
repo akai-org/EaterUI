@@ -16,7 +16,7 @@ function Login() {
         <Icon name="calendar" size="large" />
         <Icon name="hamburger" size="large" />
       </div>
-      <h1>Witaj w Eater!</h1>
+      <Text size="h2"> Witaj w Eater</Text>
       <Text className={styles.login_text}>
         Tu możesz zebrać swoje Przepisy i zaplanować Jadłospis, a następnie
         przygotujemy do Ciebie Listę Zakupów
@@ -34,7 +34,6 @@ function Login() {
           >
             <Icon name="google" color="white" size="small"></Icon>
             <Text className={styles.login_button_text}>
-              {" "}
               Zaloguj się z Google
             </Text>
           </Button>
