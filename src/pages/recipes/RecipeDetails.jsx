@@ -30,7 +30,7 @@ function RecipeDetails() {
       <p>id: {state.data.id}</p>
       <p>name: {state.data.name}</p>
       <ul>
-        {state.data.ingredients.map(({ name, amount, measure }) => (
+        {state.data.ingredients?.map(({ name, amount, measure }) => (
           <li key={name}>
             {name} {amount} {measure}
           </li>

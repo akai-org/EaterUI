@@ -23,14 +23,14 @@ function RecipeListing() {
     return <p>Error: {state.error.toString()}</p>;
   }
 
-  function handleRecipeAdded(newRecipe) {
-    console.log({ newRecipe });
+  // function handleRecipeAdded(newRecipe) {
+  //   console.log({ newRecipe });
 
-    state.setState((oldState) => ({
-      ...oldState,
-      data: [newRecipe, ...oldState.data],
-    }));
-  }
+  //   state.setState((oldState) => ({
+  //     ...oldState,
+  //     data: [newRecipe, ...oldState.data],
+  //   }));
+  // }
 
   return (
     <>
@@ -44,7 +44,8 @@ function RecipeListing() {
           </li>
         ))}
       </ul>
-      <AddRecipeForm onRecipeAdded={handleRecipeAdded} />
+      {/* <AddRecipeForm onRecipeAdded={handleRecipeAdded} /> */}
+      <AddRecipeForm />
     </>
   );
 }

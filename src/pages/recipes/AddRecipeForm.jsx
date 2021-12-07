@@ -5,7 +5,7 @@ import useCreateRecipe from "./hooks/useAddRecipe";
 
 const inputStyles = { display: "inline-block", margin: "0px 24px" };
 
-function AddRecipeForm({ onRecipeAdded }) {
+function AddRecipeForm() {
   // const [state, setState] = React.useState({ isIdle: true });
 
   // function handleCreateRecipe(values) {
@@ -33,7 +33,8 @@ function AddRecipeForm({ onRecipeAdded }) {
   //   }
   // }
 
-  const state = useCreateRecipe({ onRecipeAdded });
+  // const state = useCreateRecipe({ onRecipeAdded });
+  const state = useCreateRecipe();
 
   async function onSubmit(data) {
     state.mutate(data);
