@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { listRecipes } from "../../api/recipes";
+import AddRecipeForm from "./AddRecipeForm";
+import useRecipes from "./hooks/useRecipes";
 
 function RecipeListing() {
-  const [state, setState] = useState({ isLoading: true, data: [] });
+  // const [state, setState] = useState({ isLoading: true, data: [] });
 
-  useEffect(() => {
-    listRecipes()
-      .then((data) => setState({ data, isSuccess: true }))
-      .catch((error) => setState({ isError: true, error }));
-  }, []);
+  // useEffect(() => {
+  //   listRecipes()
+  //     .then((data) => setState({ data, isSuccess: true }))
+  //     .catch((error) => setState({ isError: true, error }));
+  // }, []);
+
+  const state = useRecipes();
 
   if (state.isLoading) {
     return <p>Loading...</p>;
@@ -17,6 +21,15 @@ function RecipeListing() {
 
   if (state.isError) {
     return <p>Error: {state.error.toString()}</p>;
+  }
+
+  function handleRecipeAdded(newRecipe) {
+    console.log({ newRecipe });
+
+    state.setState((oldState) => ({
+      ...oldState,
+      data: [newRecipe, ...oldState.data],
+    }));
   }
 
   return (
@@ -31,6 +44,7 @@ function RecipeListing() {
           </li>
         ))}
       </ul>
+      <AddRecipeForm onRecipeAdded={handleRecipeAdded} />
     </>
   );
 }
