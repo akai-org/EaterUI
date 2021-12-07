@@ -1,7 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:wght@400,600,800&display=swap");
+@import "./variables.scss";
 
 body {
   font-family: "Montserrat";
+}
+
+body,
+html,
+#root {
+  height: calc(100vh - $nav-height);
 }
 
 *,
