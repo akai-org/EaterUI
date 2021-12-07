@@ -6,10 +6,6 @@
   cursor: pointer;
   padding: 10px 16px;
   border: 0;
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-  justify-items: center;
-  align-items: center;
 }
 
 .primary {
@@ -36,7 +32,7 @@
   }
 
   &:disabled {
-    color: $grey001,;
+    color: $grey001;
   }
 }
 

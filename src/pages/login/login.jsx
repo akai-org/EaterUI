@@ -12,21 +12,9 @@ function Login() {
   return (
     <div className={styles.login}>
       <div className={styles.login_icons}>
-        <Icon
-          name="pencil"
-          className={styles.ligin_icons_icon}
-          size="large"
-        ></Icon>
-        <Icon
-          name="calendar"
-          className={styles.ligin_icons_icon}
-          size="large"
-        ></Icon>
-        <Icon
-          name="hamburger"
-          className={styles.ligin_icons_icon}
-          size="large"
-        ></Icon>
+        <Icon name="pencil" size="large" />
+        <Icon name="calendar" size="large" />
+        <Icon name="hamburger" size="large" />
       </div>
       <h1>Witaj w Eater!</h1>
       <Text className={styles.login_text}>
@@ -41,7 +29,7 @@ function Login() {
           <Button
             onClick={onClick}
             isDisabled={disabled}
-            fullwidth={true}
+            fullwidth
             className={styles.login_button}
           >
             <Icon name="google" color="white" size="small"></Icon>

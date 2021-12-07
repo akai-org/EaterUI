@@ -54,7 +54,7 @@ const iconsPropTypes = {
   name: PropTypes.oneOf(Object.keys(iconNames)).isRequired,
   className: PropTypes.string,
   color: PropTypes.oneOf(["blue", "red", "green", "white", "black"]),
-  size: PropTypes.oneOf(["small", "medium","large", "Large"]),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
 };
 
 Icon.propTypes = iconsPropTypes;

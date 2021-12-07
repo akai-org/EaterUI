@@ -15,12 +15,13 @@ export function Button({
   isDisabled = false,
   children,
   onClick,
+  className,
 } = {}) {
   return (
     <button
       type="button"
       disabled={isDisabled}
-      className={classNames(styles.button, typeToClass[type], {
+      className={classNames(styles.button, typeToClass[type], className, {
         [styles.fullw]: fullwidth,
       })}
       onClick={onClick}
@@ -36,4 +37,5 @@ Button.propTypes = {
   fullwidth: PropTypes.bool,
   type: PropTypes.oneOf(["primary", "secondary", "danger"]),
   isDisabled: PropTypes.bool,
+  className: PropTypes.string,
 };
