@@ -3,22 +3,44 @@ import PropTypes from "prop-types";
 import styles from "./Input.module.scss";
 
 export const Input = React.forwardRef(
-  ({ label, errorMessage, ...rest }, ref) => {
-    return (
-      <label>
-        <div>{label}</div>
-        <input
-          ref={ref}
-          {...rest}
-          className={errorMessage ? styles["error-outline"] : ""}
-        />
-        <div className={styles["error-message"]}>{errorMessage}</div>
-      </label>
-    );
-  },
+  ({ label, errorMessage, ...rest }, ref) => (
+    <label>
+      <div>{label}</div>
+      <input
+        ref={ref}
+        {...rest}
+        className={errorMessage ? styles["error-outline"] : ""}
+      />
+      <div className={styles["error-message"]}>{errorMessage}</div>
+    </label>
+  ),
 );
 
+export const Textarea = React.forwardRef(
+  ({ label, errorMessage, ...rest }, ref) => (
+    <label>
+      <div>{label}</div>
+      <textarea
+        ref={ref}
+        {...rest}
+        className={errorMessage ? styles["error-outline"] : ""}
+      />
+      <div className={styles["error-message"]}>{errorMessage}</div>
+    </label>
+  ),
+);
+
+Input.displayName = "Input";
+Textarea.displayName = "Textarea";
+
 Input.propTypes = {
+  label: PropTypes.string,
+  errorMessage: PropTypes.string,
+  rest: PropTypes.node,
+  ref: PropTypes.node,
+};
+
+Textarea.propTypes = {
   label: PropTypes.string,
   errorMessage: PropTypes.string,
   rest: PropTypes.node,
