@@ -11,7 +11,7 @@ export const Input = React.forwardRef(
         {...rest}
         className={errorMessage ? styles["error-outline"] : ""}
       />
-      <div className={styles["error-message"]}>{errorMessage}</div>
+      <div className={styles.errorMessage}>{errorMessage}</div>
     </label>
   ),
 );
@@ -25,7 +25,7 @@ export const Textarea = React.forwardRef(
         {...rest}
         className={errorMessage ? styles["error-outline"] : ""}
       />
-      <div className={styles["error-message"]}>{errorMessage}</div>
+      <div className={styles.errorMessage}>{errorMessage}</div>
     </label>
   ),
 );
