@@ -4,7 +4,8 @@ label {
   display: block;
   margin: 1em 0;
 
-  input {
+  input,
+  textarea {
     margin-top: 0.5em;
     height: 2.5rem;
     width: 100%;
@@ -17,6 +18,11 @@ label {
       border: none;
       outline: 0.15em solid $primary001;
     }
+  }
+
+  textarea {
+    padding: 10px;
+    height: 6rem;
   }
 
   .errorMessage {

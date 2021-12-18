@@ -1,9 +1,11 @@
 import React from "react";
-import { Input } from "./Input";
+import { Input, Textarea } from "./Input";
 
-const Template = (props) => <Input {...props} />;
+const InputTemplate = (props) => <Input {...props} />;
+const TextareaTemplate = (props) => <Textarea {...props} />;
 
-export const Plain = Template.bind({});
+export const Plain = InputTemplate.bind({});
+export const AsTextarea = TextareaTemplate.bind({});
 
 Plain.args = {
   label: "Some label",
