@@ -9,7 +9,11 @@ import { Text } from "../../components/Text/Text";
 import { ButtonGroup } from "../../components/ButtonGroup/ButtonGroup";
 import { schema } from "../../utils/yup";
 
-function AddIngredient({ onSubmit }) {
+function AddIngredient({
+  onSubmit,
+  ingredientToEdit = null,
+  deleteIngredient,
+}) {
   const {
     register,
     handleSubmit,
@@ -18,38 +22,66 @@ function AddIngredient({ onSubmit }) {
 
   const navigate = useNavigate();
 
-  const handleBackButtonClick = () => {
+  const handleButtonClick = () => {
     navigate("/recipe/new");
   };
 
+  console.log(ingredientToEdit);
+  const isEditing = ingredientToEdit ?? false;
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Text size="h3">Dodaj składnik</Text>
+      <Text size="h3">{isEditing ? "Dodaj" : "Edytuj"} składnik</Text>
+      {ingredientToEdit?.id && (
+        <Input
+          hidden
+          label="Id"
+          {...register("id")}
+          defaultValue={ingredientToEdit?.id}
+        />
+      )}
       <Input
         label="Nazwa"
         {...register("name")}
         errorMessage={errors?.name?.message}
+        defaultValue={ingredientToEdit?.name}
       />
       <Input
         {...register("amount", { valueAsNumber: true })}
         label="Ilość"
         type="number"
         errorMessage={errors?.amount?.message}
+        defaultValue={ingredientToEdit?.amount}
       />
       <Input
         label="Miara"
         {...register("measurement")}
         errorMessage={errors?.measurement?.message}
+        defaultValue={ingredientToEdit?.measurement}
       />
       <ButtonGroup>
-        <Button
-          type="reset"
-          variant="secondary"
-          fullwidth
-          onClick={handleBackButtonClick}
-        >
-          Cofnij
-        </Button>
+        {isEditing ? (
+          <Button
+            type="reset"
+            variant="danger"
+            fullwidth
+            onClick={() => {
+              handleButtonClick();
+              deleteIngredient(ingredientToEdit.id);
+            }}
+          >
+            Usuń
+          </Button>
+        ) : (
+          <Button
+            type="reset"
+            variant="secondary"
+            fullwidth
+            onClick={handleButtonClick}
+          >
+            Cofnij
+          </Button>
+        )}
         <Button type="submit" fullwidth>
           Zapisz
         </Button>
@@ -60,6 +92,13 @@ function AddIngredient({ onSubmit }) {
 
 AddIngredient.propTypes = {
   onSubmit: propTypes.func,
+  deleteIngredient: propTypes.func,
+  ingredientToEdit: propTypes.shape({
+    id: propTypes.string,
+    name: propTypes.string,
+    amount: propTypes.number,
+    measurement: propTypes.string,
+  }),
 };
 
 export default AddIngredient;

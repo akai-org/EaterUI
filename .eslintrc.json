@@ -27,7 +27,10 @@
     "jsx-quotes": ["error", "prefer-double"],
     "operator-linebreak": "off",
     "object-curly-newline": "off",
-    "no-template-curly-in-string": "off"
+    "no-template-curly-in-string": "off",
+    "no-confusing-arrow": "off",
+    "function-paren-newline": "off",
+    "implicit-arrow-linebreak": "off"
   },
   "settings": {
     "react": {
