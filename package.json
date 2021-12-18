@@ -11,8 +11,8 @@
     "copy-redirects": "cp ./_redirects ./dist",
     "lint": "eslint --ext .js,.jsx src/",
     "lint:fix": "eslint --fix --ext .js,.jsx src/",
-    "style": "stylelint src/**/*.scss",
-    "style:fix": "stylelint src/**/*.scss --fix"
+    "style": "stylelint 'src/**/*.scss'",
+    "style:fix": "stylelint 'src/**/*.scss' --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.3",
@@ -30,16 +30,17 @@
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@storybook/addon-actions": "^6.3.12",
-    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-essentials": "^6.4.4",
     "@storybook/addon-knobs": "^6.3.1",
     "@storybook/addon-links": "^6.3.12",
-    "@storybook/react": "^6.3.12",
+    "@storybook/react": "^6.4.4",
     "@vitejs/plugin-react": "^1.0.0",
     "babel-loader": "^8.2.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",

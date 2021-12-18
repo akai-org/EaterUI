@@ -10,6 +10,7 @@ import MenuDetails from "./pages/menu/MenuDetails";
 import MenuListing from "./pages/menu/MenuListing";
 import MenuPlanning from "./pages/menu/MenuPlanning";
 import AddIngredient from "./pages/recipes/AddIngredient";
+import "./assets/index.scss";
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
 
-      <Route path="/recipe" element={<RecipeListing />} />
-      <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+      <Route path="/recipes" element={<RecipeListing />} />
+      <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
       <Route path="/recipe/new" element={<RecipeCreation />} />
       <Route path="/recipe/AddIngredient" element={<AddIngredient />} />
 

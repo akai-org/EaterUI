@@ -1,28 +1,53 @@
-/* colors */
-//blue
+// colors
+// blue
 $primary001: #7bb9fa;
 $primary002: #499ff8;
 $primary003: #d7eafd;
-//green
+
+// green
 $success001: #38db81;
 $success002: #21b965;
 $success003: #86e9b2;
-//red
+
+// red
 $danger001: #f67f7f;
 $danger002: #f34e4e;
 $danger003: #fcd9d9;
-//grey
+
+// grey
 $grey001: #d0d0d0;
 $grey002: #bfbfbf;
 $grey003: #f1f1f1;
-//other
-$black: #282828;
-$white: #fff;
 
-/* font weight */
-$semibold: 700;
+// other
+$black: #282828;
+$white: #ffffff;
+
+// typography
+// font size
+$h1-font-size: 48px;
+$h2-font-size: 34px;
+$h3-font-size: 28px;
+$h4-font-size: 18px;
+$paragraph-font-size: 14px;
+// line-heights
+$h1-line-height: 60px;
+$h2-line-height: 50px;
+$h3-line-height: 38px;
+$h4-line-height: 22px;
+$paragraph-line-height: 24px;
+// font weight
+$regular: 400;
+$semibold: 600;
 $extrabold: 800;
 
-/* typography */
+// spacing
+$XS-spacing: 4px;
+$S-spacing: 8px;
+$M-spacing: 16px;
+$L-spacing: 32px;
+$XL-spacing: 48px;
+$XXL-spacing: 64px;
 
-/* spacing */
+// navbar
+$nav-height: 82px;
