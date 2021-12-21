@@ -1,6 +1,6 @@
 @import "../../assets/variables.scss";
 
-label {
+.fieldWrapper {
   display: block;
   margin: 1em 0;
 
@@ -30,7 +30,7 @@ label {
     color: $danger002;
   }
 
-  .error-outline {
+  .errorOutline {
     outline: 0.15em solid $danger002;
   }
 }
