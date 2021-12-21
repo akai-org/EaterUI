@@ -26,12 +26,11 @@ function AddIngredient({
     navigate("/recipe/new");
   };
 
-  console.log(ingredientToEdit);
-  const isEditing = ingredientToEdit ?? false;
+  const isEditing = !!ingredientToEdit;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Text size="h3">{isEditing ? "Dodaj" : "Edytuj"} składnik</Text>
+      <Text size="h3">{isEditing ? "Edytuj" : "Zapisz"} składnik</Text>
       {ingredientToEdit?.id && (
         <Input
           hidden
@@ -83,7 +82,7 @@ function AddIngredient({
           </Button>
         )}
         <Button type="submit" fullwidth>
-          Zapisz
+          {isEditing ? "Edytuj" : "Zapisz"}
         </Button>
       </ButtonGroup>
     </form>
