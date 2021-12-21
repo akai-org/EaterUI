@@ -7,8 +7,8 @@
   "extends": [
     "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "prettier",
-    "airbnb-base"
+    "airbnb-base",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -26,7 +26,8 @@
     "quotes": ["error", "double"],
     "jsx-quotes": ["error", "prefer-double"],
     "operator-linebreak": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "no-template-curly-in-string": "off"
   },
   "settings": {
     "react": {

@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
+import { Route, Routes } from "react-router";
+import { Link } from "react-router-dom";
+import { Text } from "../../components/Text/Text";
+import AddIngredient from "./AddIngredient";
 
-function RecipeCreation() {
-  const [showOverlay, setShowOverlay] = useState(false);
+const RecipeCreation = () => {
+  const addIngredient = (data) => {
+    console.log(data);
+  };
 
   return (
-    <>
-      <div>Create</div>
-      <button onClick={() => setShowOverlay(true)}>smutny button</button>
-      {showOverlay && (
-        <div>
-          <p>elo, jestem overlay</p>
-          <button onClick={() => setShowOverlay(false)}>radosny button</button>
-        </div>
-      )}
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Text size="h3">Dodaj przepis</Text>
+            <Link to="add-ingredient">Dodaj składnik</Link>
+          </>
+        }
+      />
+      <Route
+        path="add-ingredient"
+        element={<AddIngredient onSubmit={addIngredient} />}
+      />
+    </Routes>
   );
-}
+};
 
 export default RecipeCreation;
