@@ -6,31 +6,34 @@
 
   input,
   textarea {
-    margin-top: 0.5em;
-    height: 2.5rem;
+    margin-top: 8px;
     width: 100%;
-    border-radius: 0.2em;
+    border-radius: 4px;
     border: none;
-    outline: 0.15em solid $grey002;
+    outline: 2px solid $grey002;
     padding: 0 10px;
 
     &:focus {
       border: none;
-      outline: 0.15em solid $primary001;
+      outline: 2px solid $primary001;
     }
+  }
+
+  input {
+    height: 37px;
   }
 
   textarea {
     padding: 10px;
-    height: 6rem;
+    height: 70px;
   }
 
   .errorMessage {
-    margin-top: 0.5em;
+    margin-top: 10px;
     color: $danger002;
   }
 
   .errorOutline {
-    outline: 0.15em solid $danger002;
+    outline: 2px solid $danger002;
   }
 }
