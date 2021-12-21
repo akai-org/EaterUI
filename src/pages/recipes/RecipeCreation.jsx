@@ -6,6 +6,9 @@ import AddIngredient from "./AddIngredient";
 import { Card } from "../../components/Card/Card";
 import { Icon } from "../../components/Icon/Icon";
 import useIngredients from "../../hooks/useIngredients";
+import styles from "./RecipeCreation.module.scss";
+import { Button } from "../../components/Button/Button";
+import { ButtonGroup } from "../../components/ButtonGroup/ButtonGroup";
 
 const RecipeCreation = () => {
   const {
@@ -17,9 +20,16 @@ const RecipeCreation = () => {
   } = useIngredients();
 
   const RecipeCreationElement = () => (
-    <form>
+    <form className={styles.recipeCreationForm}>
       <Text size="h3">Dodaj przepis</Text>
-      <Text size="h4">Składniki (na 1 porcję)</Text>
+      <Text size="h4" className={styles.headline}>
+        Składniki (na 1 porcję)
+        {!ingredients.length && (
+          <Text className={styles.emptyState}>
+            Nie masz żadnych składników. Dodaj coś!
+          </Text>
+        )}
+      </Text>
       <div>
         {ingredients.map(({ id, name, amount, measurement }) => (
           <Card
@@ -35,7 +45,17 @@ const RecipeCreation = () => {
           />
         ))}
       </div>
-      <Link to="add-ingredient">Dodaj składnik</Link>
+      <Button to="add-ingredient" fullwidth className={styles.actionButton}>
+        Dodaj składnik
+      </Button>
+      <ButtonGroup className={styles.buttonGroup}>
+        <Button variant="secondary" fullwidth to="..">
+          Cofnij
+        </Button>
+        <Button type="submit" fullwidth>
+          Zapisz
+        </Button>
+      </ButtonGroup>
     </form>
   );
 

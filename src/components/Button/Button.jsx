@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import styles from "./Button.module.scss";
 
 const variantToClass = {
@@ -17,7 +18,34 @@ export function Button({
   onClick,
   className,
   type,
+  to = false,
 } = {}) {
+  if (to)
+    return (
+      <Link
+        className={classNames({
+          [styles.fullw]: fullwidth,
+        })}
+        to={to}
+      >
+        <button
+          type={type}
+          disabled={isDisabled}
+          className={classNames(
+            styles.button,
+            variantToClass[variant],
+            className,
+            {
+              [styles.fullw]: fullwidth,
+            },
+          )}
+          onClick={onClick}
+        >
+          {children}
+        </button>
+      </Link>
+    );
+
   return (
     <button
       type={type}
@@ -40,4 +68,5 @@ Button.propTypes = {
   isDisabled: PropTypes.bool,
   className: PropTypes.string,
   type: PropTypes.string,
+  to: PropTypes.string,
 };
