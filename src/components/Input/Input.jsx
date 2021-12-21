@@ -4,12 +4,12 @@ import styles from "./Input.module.scss";
 
 export const Input = React.forwardRef(
   ({ label, errorMessage, ...rest }, ref) => (
-    <label>
+    <label className={styles.fieldWrapper}>
       <div>{label}</div>
       <input
         ref={ref}
         {...rest}
-        className={errorMessage ? styles["error-outline"] : ""}
+        className={errorMessage ? styles.errorOutline : ""}
       />
       <div className={styles.errorMessage}>{errorMessage}</div>
     </label>
@@ -18,12 +18,12 @@ export const Input = React.forwardRef(
 
 export const Textarea = React.forwardRef(
   ({ label, errorMessage, ...rest }, ref) => (
-    <label>
+    <label className={styles.fieldWrapper}>
       <div>{label}</div>
       <textarea
         ref={ref}
         {...rest}
-        className={errorMessage ? styles["error-outline"] : ""}
+        className={errorMessage ? styles.errorOutline : ""}
       />
       <div className={styles.errorMessage}>{errorMessage}</div>
     </label>

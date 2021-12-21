@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./utils/yup";
 import App from "./App";
 import { Layout } from "./components/Layout/Layout";
 

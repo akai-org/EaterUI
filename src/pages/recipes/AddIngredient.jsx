@@ -7,7 +7,7 @@ import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
 import { Text } from "../../components/Text/Text";
 import { ButtonGroup } from "../../components/ButtonGroup/ButtonGroup";
-import { schema } from "../../utils/yup";
+import { schema } from "./formSchema";
 
 function AddIngredient({
   onSubmit,
