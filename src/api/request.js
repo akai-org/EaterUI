@@ -1,4 +1,4 @@
-import { rootUrl } from ".";
+import { rootUrl } from "./index";
 import { getToken } from "../utils/auth";
 
 export default function request(endpoint, { body, ...customConfig } = {}) {
