@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Checkbox } from "@/components";
 
-function ShopingListDetails() {
+function ShoPpingListDetails() {
   const params = useParams();
 
   return (
@@ -35,4 +35,4 @@ function ShopingListDetails() {
   );
 }
 
-export default ShopingListDetails;
+export default ShoPpingListDetails;

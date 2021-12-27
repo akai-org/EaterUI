@@ -1,6 +1,6 @@
 import React from "react";
 
-function ShopingList() {
+function ShoppingList() {
   return (
     <>
       <h1>Listy zakupów</h1>
@@ -16,4 +16,4 @@ function ShopingList() {
   );
 }
 
-export default ShopingList;
+export default ShoppingList;
