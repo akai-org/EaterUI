@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import RecipeListing from "./pages/recipes/RecipeListing";
-import Login from "./pages/login/login";
+import Login from "./pages/login/LoginRenamed";
 import ShopingList from "./pages/shoping-list/ShopingList";
 import ShopingListDetails from "./pages/shoping-list/ShopingListDetails";
 import RecipeDetails from "./pages/recipes/RecipeDetails";
