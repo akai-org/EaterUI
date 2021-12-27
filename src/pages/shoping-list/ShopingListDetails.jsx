@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Checkbox } from "../../components/Checkbox/Checkbox";
+import { Checkbox } from "@/components";
 
 function ShopingListDetails() {
   const params = useParams();

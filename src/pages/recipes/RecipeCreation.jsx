@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
-import { Text } from "../../components/Text/Text";
+import { Text } from "@/components";
 import AddIngredient from "./AddIngredient";
 
 const RecipeCreation = () => {
