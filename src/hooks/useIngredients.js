@@ -10,7 +10,7 @@ const useIngredients = () => {
   const editIngedient = (data) => {
     setIngredients((previousIngredients) => {
       const edited = previousIngredients.map((ingredient) =>
-        ingredient.id === data.id ? { ...data, id: data.id } : ingredient,
+        ingredient.id === data.id ? data : ingredient,
       );
 
       return edited;

@@ -23,26 +23,18 @@ export function Button({
   if (to)
     return (
       <Link
-        className={classNames({
-          [styles.fullw]: fullwidth,
-        })}
+        className={classNames(
+          styles.button,
+          variantToClass[variant],
+          className,
+          {
+            [styles.fullw]: fullwidth,
+          },
+        )}
         to={to}
+        onClick={onClick}
       >
-        <button
-          type={type}
-          disabled={isDisabled}
-          className={classNames(
-            styles.button,
-            variantToClass[variant],
-            className,
-            {
-              [styles.fullw]: fullwidth,
-            },
-          )}
-          onClick={onClick}
-        >
-          {children}
-        </button>
+        {children}
       </Link>
     );
 
@@ -68,5 +60,5 @@ Button.propTypes = {
   isDisabled: PropTypes.bool,
   className: PropTypes.string,
   type: PropTypes.string,
-  to: PropTypes.string,
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };

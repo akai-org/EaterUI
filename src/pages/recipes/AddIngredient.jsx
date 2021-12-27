@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
 import propTypes from "prop-types";
 import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
@@ -20,12 +19,6 @@ function AddIngredient({
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    navigate("/recipe/new");
-  };
-
   const isEditing = !!ingredientToEdit;
 
   return (
@@ -36,7 +29,7 @@ function AddIngredient({
           hidden
           label="Id"
           {...register("id")}
-          defaultValue={ingredientToEdit?.id}
+          defaultValue={ingredientToEdit.id}
         />
       )}
       <Input
@@ -64,20 +57,13 @@ function AddIngredient({
             type="reset"
             variant="danger"
             fullwidth
-            onClick={() => {
-              handleButtonClick();
-              deleteIngredient(ingredientToEdit.id);
-            }}
+            to="/recipe/new"
+            onClick={() => deleteIngredient(ingredientToEdit.id)}
           >
             Usuń
           </Button>
         ) : (
-          <Button
-            type="reset"
-            variant="secondary"
-            fullwidth
-            onClick={handleButtonClick}
-          >
+          <Button type="reset" variant="secondary" fullwidth to="/recipe/new">
             Cofnij
           </Button>
         )}
