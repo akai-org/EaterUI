@@ -1,10 +1,8 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { Button } from "@/components/Button/Button";
 import { handleLoginSuccess } from "@/utils/auth";
-import { Icon } from "@/components/Icon/Icon";
-import { Text } from "@/components/Text/Text";
-import styles from "./login.module.scss";
+import { Button, Icon, Text } from "@/components";
+import styles from "./Login.module.scss";
 
 const GoogleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
