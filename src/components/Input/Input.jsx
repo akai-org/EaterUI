@@ -5,7 +5,7 @@ import styles from "./Input.module.scss";
 export const Input = React.forwardRef(
   ({ label, errorMessage, ...rest }, ref) => (
     <label className={styles.fieldWrapper}>
-      {!label && <div>{label}</div>}
+      {label && <div>{label}</div>}
       <input
         ref={ref}
         {...rest}
