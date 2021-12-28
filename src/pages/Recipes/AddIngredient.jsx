@@ -60,7 +60,7 @@ function AddIngredient({
             Usuń
           </Button>
         ) : (
-          <Button type="reset" variant="secondary" fullwidth to="/recipe/new">
+          <Button type="reset" variant="secondary" fullwidth to="/recipes/new">
             Cofnij
           </Button>
         )}
