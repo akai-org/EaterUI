@@ -1,0 +1,23 @@
+@import "../../assets/variables.scss";
+
+.recipeCreationForm {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+
+    .headline {
+        margin-bottom: $M-spacing;
+    }
+
+    .buttonGroup {
+        margin-top: auto;
+    }
+
+    .actionButton {
+        margin-bottom: 30px;
+    }
+
+    .emptyState {
+        margin-top: 5px;
+    }
+}

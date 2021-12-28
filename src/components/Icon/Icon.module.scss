@@ -8,6 +8,7 @@
 
 .icon {
   @include icons;
+  display: flex;
 }
 
 .button-icon {
