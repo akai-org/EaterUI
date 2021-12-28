@@ -2,10 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import propTypes from "prop-types";
-import { Input } from "../../components/Input/Input";
-import { Button } from "../../components/Button/Button";
-import { Text } from "../../components/Text/Text";
-import { ButtonGroup } from "../../components/ButtonGroup/ButtonGroup";
+import { Button, ButtonGroup, Input, Text } from "@/components";
 import { schema } from "./formSchema";
 
 function AddIngredient({

@@ -1,14 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
-import { Text } from "../../components/Text/Text";
+import { Text, Button, Icon, ButtonGroup, Card } from "@/components";
 import AddIngredient from "./AddIngredient";
-import { Card } from "../../components/Card/Card";
-import { Icon } from "../../components/Icon/Icon";
-import useIngredients from "../../hooks/useIngredients";
+import useIngredients from "@/hooks/useIngredients";
 import styles from "./RecipeCreation.module.scss";
-import { Button } from "../../components/Button/Button";
-import { ButtonGroup } from "../../components/ButtonGroup/ButtonGroup";
 
 const renderRecipeCreation = ({ ingredients, handleEditLinkClick }) => (
   <form className={styles.recipeCreationForm}>
