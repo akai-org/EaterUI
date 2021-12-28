@@ -1,2 +1,3 @@
-/iframe              /storybook/iframe
-/api/*               https://eater-api.herokuapp.com/:splat 200
+/iframe /storybook/iframe
+/api/*  https://eater-api.herokuapp.com/:splat 200
+/*  /index.html 200
