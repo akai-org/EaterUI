@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { string, number } from "yup";
-import { Link } from "react-router-dom";
-import { Text, Card, Button, ButtonGroup, Icon } from "@/components";
+import { Text, Button, ButtonGroup } from "@/components";
 import styles from "./RecipeCreation.module.scss";
+import RecipesList from "./RecipesList";
 
 const RecipeCreation = ({ ingredients, handleEditLinkClick }) => (
   <form className={styles.recipeCreationForm}>
@@ -16,21 +16,11 @@ const RecipeCreation = ({ ingredients, handleEditLinkClick }) => (
         </Text>
       )}
     </Text>
-    <div>
-      {ingredients.map(({ id, name, amount, measurement }) => (
-        <Card
-          key={id}
-          primaryText={name}
-          secondaryText={`${amount} ${measurement}`}
-          rightContent={
-            <Link to="add-ingredient">
-              <Icon name="pencil" size="medium" />
-            </Link>
-          }
-          onClick={() => handleEditLinkClick(id)}
-        />
-      ))}
-    </div>
+    {/* <RecipeCreationForm /> */}
+    <RecipesList
+      ingredients={ingredients}
+      handleEditLinkClick={handleEditLinkClick}
+    />
     <Button to="add-ingredient" fullwidth className={styles.actionButton}>
       Dodaj składnik
     </Button>
