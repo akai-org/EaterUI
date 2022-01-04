@@ -22,12 +22,7 @@ function AddIngredient({
     <form onSubmit={handleSubmit(onSubmit)}>
       <Text size="h3">{isEditing ? "Edytuj" : "Zapisz"} składnik</Text>
       {ingredientToEdit?.id && (
-        <Input
-          hidden
-          label="Id"
-          {...register("id")}
-          defaultValue={ingredientToEdit.id}
-        />
+        <Input hidden {...register("id")} defaultValue={ingredientToEdit.id} />
       )}
       <Input
         label="Nazwa"
@@ -54,7 +49,7 @@ function AddIngredient({
             type="reset"
             variant="danger"
             fullwidth
-            to="/recipe/new"
+            to="/recipes/new"
             onClick={() => deleteIngredient(ingredientToEdit.id)}
           >
             Usuń

@@ -1,12 +1,11 @@
 import React from "react";
-import { Route, Routes } from "react-router";
+import PropTypes from "prop-types";
+import { string, number } from "yup";
 import { Link } from "react-router-dom";
-import { Text, Button, Icon, ButtonGroup, Card } from "@/components";
-import AddIngredient from "./AddIngredient";
-import useIngredients from "@/hooks/useIngredients";
+import { Text, Card, Button, ButtonGroup, Icon } from "@/components";
 import styles from "./RecipeCreation.module.scss";
 
-const renderRecipeCreation = ({ ingredients, handleEditLinkClick }) => (
+const RecipeCreation = ({ ingredients, handleEditLinkClick }) => (
   <form className={styles.recipeCreationForm}>
     <Text size="h3">Dodaj przepis</Text>
     <Text size="h4" className={styles.headline}>
@@ -46,36 +45,15 @@ const renderRecipeCreation = ({ ingredients, handleEditLinkClick }) => (
   </form>
 );
 
-const RecipeCreation = () => {
-  const {
-    ingredients,
-    ingredientToEdit,
-    addIngredient,
-    deleteIngredient,
-    handleEditLinkClick,
-  } = useIngredients();
-
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={renderRecipeCreation({
-          ingredients,
-          handleEditLinkClick,
-        })}
-      />
-      <Route
-        path="add-ingredient"
-        element={
-          <AddIngredient
-            onSubmit={addIngredient}
-            ingredientToEdit={ingredientToEdit}
-            deleteIngredient={deleteIngredient}
-          />
-        }
-      />
-    </Routes>
-  );
-};
-
 export default RecipeCreation;
+
+RecipeCreation.propTypes = {
+  ingredients: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: string,
+      amount: number,
+      unit: string,
+    }),
+  ),
+  handleEditLinkClick: PropTypes.func,
+};
