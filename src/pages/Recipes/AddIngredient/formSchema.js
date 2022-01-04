@@ -7,5 +7,5 @@ export const schema = yup.object({
     .transform((value) => (Number.isNaN(value) ? 0 : value))
     .moreThan(0)
     .label("ilość"),
-  measurement: yup.string().required().label("miara"),
+  measure: yup.string().required().label("miara"),
 });

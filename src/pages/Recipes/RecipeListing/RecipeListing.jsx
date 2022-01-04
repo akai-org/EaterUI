@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useRecipes from "../hooks/useRecipes";
+import useRecipes from "../hooks/api/useRecipes";
 
 function RecipeListing() {
-  const { state } = useRecipes();
+  const state = useRecipes();
 
   if (state.isLoading) {
     return <p>Loading...</p>;

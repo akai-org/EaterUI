@@ -1,12 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { string, number } from "yup";
-import { Text, Button, ButtonGroup } from "@/components";
+import { Text, Button, ButtonGroup, Input, Textarea } from "@/components";
 import styles from "./RecipeCreation.module.scss";
-import RecipesList from "./RecipesList";
+import IngredientsList from "./IngredientsList";
 
-const RecipeCreation = ({ ingredients, handleEditLinkClick }) => (
-  <form className={styles.recipeCreationForm}>
+const RecipeCreation = ({
+  register,
+  handleSubmit,
+  errors,
+  ingredients,
+  handleEditLinkClick,
+  isError,
+  isLoading,
+}) => (
+  <form className={styles.recipeCreationForm} onSubmit={handleSubmit}>
     <Text size="h3">Dodaj przepis</Text>
     <Text size="h4" className={styles.headline}>
       Składniki (na 1 porcję)
@@ -16,11 +24,30 @@ const RecipeCreation = ({ ingredients, handleEditLinkClick }) => (
         </Text>
       )}
     </Text>
-    {/* <RecipeCreationForm /> */}
-    <RecipesList
+    <Input
+      label="Nazwa"
+      {...register("name")}
+      errorMessage={errors?.name?.message}
+    />
+    <Textarea
+      label="Opis"
+      {...register("description")}
+      errorMessage={errors?.description?.message}
+    />
+    <Input
+      label="Link do grafiki"
+      {...register("graphicURL")}
+      errorMessage={errors?.graphicURL?.message}
+    />
+
+    <IngredientsList
       ingredients={ingredients}
       handleEditLinkClick={handleEditLinkClick}
     />
+
+    {/* TODO: replace with toast */}
+    {isError && <Text>Coś poszło nie tak - spróbuj jeszcze raz!</Text>}
+
     <Button to="add-ingredient" fullwidth className={styles.actionButton}>
       Dodaj składnik
     </Button>
@@ -28,14 +55,12 @@ const RecipeCreation = ({ ingredients, handleEditLinkClick }) => (
       <Button variant="secondary" fullwidth to="..">
         Cofnij
       </Button>
-      <Button type="submit" fullwidth>
+      <Button type="submit" fullwidth isDisabled={isLoading}>
         Zapisz
       </Button>
     </ButtonGroup>
   </form>
 );
-
-export default RecipeCreation;
 
 RecipeCreation.propTypes = {
   ingredients: PropTypes.arrayOf(
@@ -45,5 +70,12 @@ RecipeCreation.propTypes = {
       unit: string,
     }),
   ),
+  register: PropTypes.any,
+  handleSubmit: PropTypes.any,
+  errors: PropTypes.any,
   handleEditLinkClick: PropTypes.func,
+  isError: PropTypes.boolean,
+  isLoading: PropTypes.boolean,
 };
+
+export default RecipeCreation;

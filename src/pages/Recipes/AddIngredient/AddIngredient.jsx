@@ -39,9 +39,9 @@ function AddIngredient({
       />
       <Input
         label="Miara"
-        {...register("measurement")}
-        errorMessage={errors?.measurement?.message}
-        defaultValue={ingredientToEdit?.measurement}
+        {...register("measure")}
+        errorMessage={errors?.measure?.message}
+        defaultValue={ingredientToEdit?.measure}
       />
       <ButtonGroup>
         {isEditing ? (
@@ -74,7 +74,7 @@ AddIngredient.propTypes = {
     id: propTypes.string,
     name: propTypes.string,
     amount: propTypes.number,
-    measurement: propTypes.string,
+    measure: propTypes.string,
   }),
 };
 

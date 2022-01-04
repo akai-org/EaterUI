@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Card, Icon } from "@/components";
 
-const RecipesList = ({ ingredients, handleEditLinkClick }) => (
+const IngredientsList = ({ ingredients, handleEditLinkClick }) => (
   <div>
-    {ingredients.map(({ id, name, amount, measurement }) => (
+    {ingredients.map(({ id, name, amount, measure }) => (
       <Card
         key={id}
         primaryText={name}
-        secondaryText={`${amount} ${measurement}`}
+        secondaryText={`${amount} ${measure}`}
         rightContent={
           <Link to="add-ingredient">
             <Icon name="pencil" size="medium" />
@@ -21,7 +21,7 @@ const RecipesList = ({ ingredients, handleEditLinkClick }) => (
   </div>
 );
 
-RecipesList.propTypes = {
+IngredientsList.propTypes = {
   handleEditLinkClick: PropTypes.func,
   ingredients: PropTypes.arrayOf(
     PropTypes.shape({
@@ -33,4 +33,4 @@ RecipesList.propTypes = {
   ),
 };
 
-export default RecipesList;
+export default IngredientsList;
