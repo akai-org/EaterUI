@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useRecipes from "./hooks/useRecipes";
+import useRecipes from "../hooks/api/useRecipes";
 
 function RecipeListing() {
   const state = useRecipes();
@@ -19,7 +19,7 @@ function RecipeListing() {
       <ul>
         {state.data.map(({ id, name }) => (
           <li key={id}>
-            <Link to={`/recipe/${id}`}>
+            <Link to={`/recipes/${id}`}>
               {id}: {name}
             </Link>
           </li>

@@ -22,12 +22,7 @@ function AddIngredient({
     <form onSubmit={handleSubmit(onSubmit)}>
       <Text size="h3">{isEditing ? "Edytuj" : "Zapisz"} składnik</Text>
       {ingredientToEdit?.id && (
-        <Input
-          hidden
-          label="Id"
-          {...register("id")}
-          defaultValue={ingredientToEdit.id}
-        />
+        <Input hidden {...register("id")} defaultValue={ingredientToEdit.id} />
       )}
       <Input
         label="Nazwa"
@@ -44,9 +39,9 @@ function AddIngredient({
       />
       <Input
         label="Miara"
-        {...register("measurement")}
-        errorMessage={errors?.measurement?.message}
-        defaultValue={ingredientToEdit?.measurement}
+        {...register("measure")}
+        errorMessage={errors?.measure?.message}
+        defaultValue={ingredientToEdit?.measure}
       />
       <ButtonGroup>
         {isEditing ? (
@@ -54,7 +49,7 @@ function AddIngredient({
             type="reset"
             variant="danger"
             fullwidth
-            to="/recipe/new"
+            to="/recipes/new"
             onClick={() => deleteIngredient(ingredientToEdit.id)}
           >
             Usuń
@@ -79,7 +74,7 @@ AddIngredient.propTypes = {
     id: propTypes.string,
     name: propTypes.string,
     amount: propTypes.number,
-    measurement: propTypes.string,
+    measure: propTypes.string,
   }),
 };
 
