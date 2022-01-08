@@ -8,7 +8,7 @@ const RecipeRouter = () => (
   <Routes>
     <Route path="/" element={<RecipeListing />} />
     <Route path="/new/*" element={<RecipeCreationRouter />} />
-    <Route path="/recipe/:id" element={<RecipeDetails />} />
+    <Route path="/:id" element={<RecipeDetails />} />
   </Routes>
 );
 

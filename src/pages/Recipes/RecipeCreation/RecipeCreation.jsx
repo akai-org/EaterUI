@@ -52,7 +52,7 @@ const RecipeCreation = ({
       Dodaj składnik
     </Button>
     <ButtonGroup className={styles.buttonGroup}>
-      <Button variant="secondary" fullwidth to="..">
+      <Button variant="secondary" fullwidth to="/recipes">
         Cofnij
       </Button>
       <Button type="submit" fullwidth isDisabled={isLoading}>

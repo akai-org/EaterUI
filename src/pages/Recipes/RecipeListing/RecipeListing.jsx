@@ -19,7 +19,7 @@ function RecipeListing() {
       <ul>
         {state.data.map(({ id, name }) => (
           <li key={id}>
-            <Link to={`/recipe/${id}`}>
+            <Link to={`/recipes/${id}`}>
               {id}: {name}
             </Link>
           </li>
