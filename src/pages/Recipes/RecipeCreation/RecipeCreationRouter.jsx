@@ -2,11 +2,11 @@ import React from "react";
 import { Route, Routes, useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import RecipeCreation from "./RecipeCreation";
 import useCreateRecipe from "../hooks/api/useCreateRecipe";
-import { schema } from "./formSchema";
 import useIngredients from "../hooks/useIngredients";
 import AddIngredient from "../AddIngredient/AddIngredient";
+import RecipeCreation from "./RecipeCreation";
+import { schema } from "./formSchema";
 
 const RecipeCreationRouter = () => {
   const { mutate, isError, isLoading } = useCreateRecipe();
@@ -26,7 +26,6 @@ const RecipeCreationRouter = () => {
   } = useIngredients();
 
   const handleSubmitForm = async (data) => {
-    console.log(data);
     const dataToSend = {
       ...data,
       ingredients: ingredients.map(({ id, ...rest }) => ({

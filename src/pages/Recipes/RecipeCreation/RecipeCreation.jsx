@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { string, number } from "yup";
 import { Text, Button, ButtonGroup, Input, Textarea } from "@/components";
-import styles from "./RecipeCreation.module.scss";
 import IngredientsList from "./IngredientsList";
+import styles from "./RecipeCreation.module.scss";
 
 const RecipeCreation = ({
   register,

@@ -6,8 +6,8 @@ import ShoppingListDetails from "./pages/ShoppingList/ShoppingListDetails";
 import MenuDetails from "./pages/Menu/MenuDetails";
 import MenuListing from "./pages/Menu/MenuListing";
 import MenuPlanning from "./pages/Menu/MenuPlanning";
-import "./assets/index.scss";
 import RecipeRouter from "./pages/Recipes/RecipeRouter";
+import "./assets/index.scss";
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
       <Route path="/login" element={<Login />} />
 
       <Route path="/recipes/*" element={<RecipeRouter />} />
-      {/* <Route path="/recipes/:recipeId" element={<RecipeDetails />} /> */}
 
       <Route path="/menu" element={<MenuListing />} />
       <Route path="/menu/:date" element={<MenuDetails />} />
