@@ -1,5 +1,6 @@
-import React from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
+import { Button, ButtonGroup } from "@/components";
 import useRecipes from "../hooks/api/useRecipes";
 
 function RecipeListing() {
@@ -25,6 +26,11 @@ function RecipeListing() {
           </li>
         ))}
       </ul>
+      <ButtonGroup>
+        <Button fullwidth to="/recipes/new">
+          Dodaj przepis
+        </Button>
+      </ButtonGroup>
     </>
   );
 }

@@ -18,7 +18,7 @@ export function Button({
   onClick,
   className,
   type,
-  to = false,
+  to,
 } = {}) {
   if (to)
     return (
@@ -54,11 +54,11 @@ export function Button({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   fullwidth: PropTypes.bool,
   variant: PropTypes.oneOf(["primary", "secondary", "danger"]),
   isDisabled: PropTypes.bool,
   className: PropTypes.string,
   type: PropTypes.string,
-  to: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  to: PropTypes.string,
 };
