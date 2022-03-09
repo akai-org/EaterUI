@@ -1,5 +1,6 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
+import { useNavigate } from "react-router";
 import { handleLoginSuccess } from "@/utils/auth";
 import { Button, Icon, Text } from "@/components";
 import styles from "./Login.module.scss";
@@ -7,6 +8,8 @@ import styles from "./Login.module.scss";
 const GoogleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function Login() {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.login}>
       <div className={styles.login_icons}>
@@ -21,7 +24,10 @@ function Login() {
       </Text>
       <GoogleLogin
         clientId={GoogleClientId}
-        onSuccess={handleLoginSuccess}
+        onSuccess={(data) => {
+          handleLoginSuccess(data);
+          navigate("/recipes");
+        }}
         isSignedIn={true}
         render={({ onClick, disabled }) => (
           <Button
