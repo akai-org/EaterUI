@@ -1,12 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 import { useParams } from "react-router-dom";
-import { Checkbox } from "../../components/Checkbox/Checkbox";
-import { LinkButton } from "../../components/Button/Button";
-import { Text } from "../../components/Text/Text";
+import { Checkbox, Text, LinkButton } from "@/components";
 import style from "./ShopingList.module.scss";
 
-function ShopingListDetails() {
+function ShoPpingListDetails() {
   const params = useParams();
 
   return (
@@ -44,4 +42,4 @@ function ShopingListDetails() {
   );
 }
 
-export default ShopingListDetails;
+export default ShoPpingListDetails;

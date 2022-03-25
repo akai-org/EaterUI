@@ -1,15 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import RecipeListing from "./pages/recipes/RecipeListing";
-import Login from "./pages/login/login";
-import ShopingList from "./pages/shoping-list/ShopingList";
-import ShopingListAdd from "./pages/shoping-list/ShopingListAdd";
-import ShopingListDetails from "./pages/shoping-list/ShopingListDetails";
-import RecipeDetails from "./pages/recipes/RecipeDetails";
-import RecipeCreation from "./pages/recipes/RecipeCreation";
-import MenuDetails from "./pages/menu/MenuDetails";
-import MenuListing from "./pages/menu/MenuListing";
-import MenuPlanning from "./pages/menu/MenuPlanning";
+import Login from "./pages/Login/Login";
+import ShoppingList from "./pages/ShoppingList/ShoppingList";
+import ShoppingListDetails from "./pages/ShoppingList/ShoppingListDetails";
+import MenuDetails from "./pages/Menu/MenuDetails";
+import MenuListing from "./pages/Menu/MenuListing";
+import MenuPlanning from "./pages/Menu/MenuPlanning";
+import RecipeRouter from "./pages/Recipes/RecipeRouter";
 import "./assets/index.scss";
 
 function App() {
@@ -18,20 +15,17 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
 
-      <Route path="/recipe" element={<RecipeListing />} />
-      <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
-      <Route path="/recipe/new" element={<RecipeCreation />} />
+      <Route path="/recipes/*" element={<RecipeRouter />} />
 
       <Route path="/menu" element={<MenuListing />} />
       <Route path="/menu/:date" element={<MenuDetails />} />
       <Route path="/menu/:date/new" element={<MenuPlanning />} />
       <Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
 
-      <Route path="/shoping-list" element={<ShopingList />} />
-      <Route path="/shoping-list/add" element={<ShopingListAdd />} />
+      <Route path="/shopping-list" element={<ShoppingList />} />
       <Route
-        path="/shoping-list/:shopingDetailId"
-        element={<ShopingListDetails />}
+        path="/shopping-list/:shopingDetailId"
+        element={<ShoppingListDetails />}
       />
     </Routes>
   );

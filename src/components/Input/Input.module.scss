@@ -1,0 +1,39 @@
+@import "../../assets/variables.scss";
+
+.fieldWrapper {
+  display: block;
+  margin: 1em 0;
+
+  input,
+  textarea {
+    margin-top: 8px;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+    outline: 2px solid $grey002;
+    padding: 0 10px;
+
+    &:focus {
+      border: none;
+      outline: 2px solid $primary001;
+    }
+  }
+
+  input {
+    height: 37px;
+  }
+
+  textarea {
+    padding: 10px;
+    height: 70px;
+  }
+
+  .errorMessage {
+    margin-top: 10px;
+    color: $danger002;
+  }
+
+  .errorOutline {
+    outline: 2px solid $danger002;
+  }
+}

@@ -4,7 +4,7 @@ import { LinkButton } from "../../components/Button/Button";
 import { Text } from "../../components/Text/Text";
 import style from "./ShopingList.module.scss";
 
-function ShopingList() {
+function ShoppingList() {
   return (
     <div className={classNames(style.container)}>
       <Text size="h3">Listy zakupów</Text>
@@ -25,4 +25,4 @@ function ShopingList() {
   );
 }
 
-export default ShopingList;
+export default ShoppingList;

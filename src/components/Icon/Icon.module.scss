@@ -8,6 +8,7 @@
 
 .icon {
   @include icons;
+  display: flex;
 }
 
 .button-icon {
@@ -45,5 +46,5 @@
 }
 
 .large {
-  font-size: 64px;
+  font-size: 65px;
 }

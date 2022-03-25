@@ -2,26 +2,48 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import styles from "./Button.module.scss";
 
-const typeToClass = {
+const variantToClass = {
   primary: styles.primary,
   secondary: styles.secondary,
   danger: styles.danger,
 };
 
 export function Button({
-  type = "primary",
+  variant = "primary",
   fullwidth = false,
   isDisabled = false,
   children,
   onClick,
+  className,
+  type,
+  to,
 } = {}) {
+  if (to)
+    return (
+      <Link
+        className={classNames(
+          styles.button,
+          variantToClass[variant],
+          className,
+          {
+            [styles.fullw]: fullwidth,
+          },
+        )}
+        to={to}
+        onClick={onClick}
+      >
+        {children}
+      </Link>
+    );
+
   return (
     <button
-      type="button"
+      type={type}
       disabled={isDisabled}
-      className={classNames(styles.button, typeToClass[type], {
+      className={classNames(styles.button, variantToClass[variant], className, {
         [styles.fullw]: fullwidth,
       })}
       onClick={onClick}
@@ -55,10 +77,13 @@ export function LinkButton({
 
 const buttonPropTypes = {
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   fullwidth: PropTypes.bool,
-  type: PropTypes.oneOf(["primary", "secondary", "danger"]),
+  variant: PropTypes.oneOf(["primary", "secondary", "danger"]),
   isDisabled: PropTypes.bool,
+  className: PropTypes.string,
+  type: PropTypes.string,
+  to: PropTypes.string,
 };
 
 Button.propTypes = buttonPropTypes;

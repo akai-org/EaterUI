@@ -6,6 +6,12 @@ body {
   padding: $L-spacing;
 }
 
+body,
+html,
+#root {
+  height: calc(100vh - $nav-height);
+}
+
 *,
 *::before,
 *::after {

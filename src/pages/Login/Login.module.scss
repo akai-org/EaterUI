@@ -1,0 +1,31 @@
+@import "../../assets/variables.scss";
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 12% 10%;
+  gap: 64px;
+  text-align: center;
+  margin: auto;
+
+  &_icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &_button {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    justify-items: center;
+    align-items: center;
+
+    &_text {
+      display: block;
+      color: $white;
+      width: fit-content;
+    }
+  }
+}
