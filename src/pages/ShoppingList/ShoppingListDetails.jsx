@@ -2,9 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import { useParams } from "react-router-dom";
 import { Checkbox, Text, LinkButton } from "@/components";
-import style from "./ShopingList.module.scss";
+import style from "./ShoppingList.module.scss";
 
-function ShoPpingListDetails() {
+function ShoppingListDetails() {
   const params = useParams();
 
   return (
@@ -42,4 +42,4 @@ function ShoPpingListDetails() {
   );
 }
 
-export default ShoPpingListDetails;
+export default ShoppingListDetails;

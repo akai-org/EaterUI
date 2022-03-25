@@ -1,8 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import style from "./ShopingList.module.scss";
-import { LinkButton } from "../../components/Button/Button";
-import { Text } from "../../components/Text/Text";
+import { Text, LinkButton } from "@/components";
+import style from "./ShoppingList.module.scss";
 
 function ShopingListAdd() {
   return (
