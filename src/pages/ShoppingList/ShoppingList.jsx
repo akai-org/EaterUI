@@ -1,26 +1,38 @@
 import React from "react";
 import classNames from "classnames";
-import { LinkButton, Text } from "@/components";
-import style from "./ShoppingList.module.scss";
+import { Button, Text, Card } from "@/components";
+import styles from "./ShoppingList.module.scss";
 
 function ShoppingList() {
   return (
-    <div className={classNames(style.container)}>
-      <Text size="h3">Listy zakupów</Text>
-      <div>
-        <Text size="h4">28 Paź (pon) - 07 Lis (wt)</Text>
-        <Text>888 Produktów</Text>
+    <>
+      <div className={classNames(styles.container)}>
+        <Text size="h3" className={classNames(styles.header)}>
+          Listy zakupów
+        </Text>
+        <Card
+          primaryText={"28 Paź (pon) - 07 Lis (wt)"}
+          secondaryText={"888 Produktów"}
+        ></Card>
+        <Card
+          primaryText={"28 Paź (pon) - 07 Lis (wt)"}
+          secondaryText={"12/16 produktów zakupionych"}
+        ></Card>
+        <Card
+          disabled
+          primaryText={"28 Paź (pon) - 07 Lis (wt)"}
+          secondaryText={"888 Produktów"}
+        ></Card>
       </div>
-      <div>
-        <Text size="h4">28 Paź (pon) - 07 Lis (wt)</Text>
-        <Text>888 Produktów</Text>
-      </div>
-      <div>
-        <LinkButton type="primary" fullwidth href="/shoping-list/add">
-          Dodaj listę zakupów
-        </LinkButton>
-      </div>
-    </div>
+      <Button
+        type="primary"
+        fullwidth
+        to="/shopping-list/add"
+        className={classNames(styles.button)}
+      >
+        Dodaj listę zakupów
+      </Button>
+    </>
   );
 }
 
