@@ -15,4 +15,14 @@
 .button {
   position: sticky;
   top: 90%;
+
+  &Multiple {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &Instance {
+      width: 48%;
+    }
+  }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import ShoppingList from "./pages/ShoppingList/ShoppingList";
+import ShoppingListAdd from "./pages/ShoppingList/ShoppingListAdd";
 import ShoppingListDetails from "./pages/ShoppingList/ShoppingListDetails";
 import MenuDetails from "./pages/Menu/MenuDetails";
 import MenuListing from "./pages/Menu/MenuListing";
@@ -23,6 +24,7 @@ function App() {
       <Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
 
       <Route path="/shopping-list" element={<ShoppingList />} />
+      <Route path="/shopping-list/add" element={<ShoppingListAdd />} />
       <Route
         path="/shopping-list/:shopingDetailId"
         element={<ShoppingListDetails />}
