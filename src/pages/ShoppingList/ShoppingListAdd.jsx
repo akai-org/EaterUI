@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { Text, Button } from "@/components";
+import { Text, Button, Input } from "@/components";
 import styles from "./ShoppingList.module.scss";
 
 function ShoppingListAdd() {
@@ -10,27 +10,22 @@ function ShoppingListAdd() {
         <Text size="h3" className={classNames(styles.header)}>
           Dodaj listę zakupów
         </Text>
-        <div>
-          <label htmlFor="shoping-date-start">Data początkowa</label>
-          <input
-            type="date"
-            name="shoping-date-start"
-            id="shoping-date-start"
-          />
-
-          <label htmlFor="shoping-date-start">Data końcowa</label>
-          <input type="date" name="shoping-date-end" id="shoping-date-end" />
-        </div>
-        <div>
-          <Text size="h4">28 Paź (pon) - 07 Lis (wt)</Text>
-          <Text>888 Produktów</Text>
-        </div>
+        <Input
+          label={"Data początkowa"}
+          type="date"
+          className={classNames(styles.input)}
+        />
+        <Input
+          label={"Data końcowa"}
+          type="date"
+          className={classNames(styles.input)}
+        />
       </div>
-      <div className={classNames(styles.button, styles.buttonMultiple)}>
+      <div className={classNames(styles.button, styles["button--multiple"])}>
         <Button
           variant="secondary"
           to="/shopping-list"
-          className={classNames(styles.buttonMultipleInstance)}
+          className={classNames(styles.instance)}
         >
           Cofnij
         </Button>
@@ -38,7 +33,7 @@ function ShoppingListAdd() {
         <Button
           type="primary"
           to="/shopping-list/1"
-          className={classNames(styles.buttonMultipleInstance)}
+          className={classNames(styles.instance)}
         >
           Generuj
         </Button>

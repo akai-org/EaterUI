@@ -16,13 +16,17 @@
   position: sticky;
   top: 90%;
 
-  &Multiple {
+  &--multiple {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    &Instance {
+    .instance {
       width: 48%;
     }
   }
+}
+
+.input {
+  width: 100%;
 }
