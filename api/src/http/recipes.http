@@ -3,7 +3,7 @@
 ###
 # baseURL
 @baseURL = https://eater-api.herokuapp.com
-@token = "TODO"
+@token = TODO
 
 ###
 # Find All Recipes
