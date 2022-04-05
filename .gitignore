@@ -6,3 +6,4 @@ dist-ssr
 *.local
 storybook-static
 .env
+.idea

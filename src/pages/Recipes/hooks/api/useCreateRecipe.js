@@ -1,6 +1,7 @@
 import { useMutation } from "react-query";
 import request from "@/api/request";
 import queryClient from "@/queryClient";
+import { ToastError } from '../../../../utils/toast'
 
 function useCreateRecipe() {
   return useMutation(
@@ -9,6 +10,9 @@ function useCreateRecipe() {
       onSuccess: () => {
         queryClient.invalidateQueries("recipes");
       },
+      onError: () => {
+        ToastError("Nie udało się dodać przepisu");
+      }
     },
   );
 }

@@ -45,9 +45,6 @@ const RecipeCreation = ({
       handleEditLinkClick={handleEditLinkClick}
     />
 
-    {/* TODO: replace with toast */}
-    {isError && <Text>Coś poszło nie tak - spróbuj jeszcze raz!</Text>}
-
     <Button to="add-ingredient" fullwidth className={styles.actionButton}>
       Dodaj składnik
     </Button>
