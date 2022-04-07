@@ -6,16 +6,17 @@ import styles from "./ShoppingList.module.scss";
 
 function ShoppingListDetails() {
   const params = useParams();
+  const text = `Lista zakupów ${params.shopingDetailId}`;
 
   return (
     <>
       <div className={classNames(styles.container)}>
         <Text size="h3" className={classNames(styles.header)}>
-          Listy zakupów params: {params.shopingDetailId}
+          {text}
         </Text>
         <Card
           primaryText={"Marchewka"}
-          secondaryText={"4 szt"}
+          secondaryText={["4 szt", "0.5 kg"]}
           rightContent={<Checkbox />}
         />
         <Card

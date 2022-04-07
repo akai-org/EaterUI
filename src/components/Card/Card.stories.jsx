@@ -36,6 +36,13 @@ disabled.args = {
   disabled: true,
 };
 
+export const withList = Template.bind({});
+
+withList.args = {
+  primaryText: "some fancy stuff",
+  secondaryText: ["some", "fancy", "stuff"],
+};
+
 export default {
   title: "Card",
   component: Card,
