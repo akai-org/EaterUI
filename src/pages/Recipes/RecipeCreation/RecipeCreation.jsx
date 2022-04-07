@@ -11,7 +11,6 @@ const RecipeCreation = ({
   errors,
   ingredients,
   handleEditLinkClick,
-  isError,
   isLoading,
 }) => (
   <form className={styles.recipeCreationForm} onSubmit={handleSubmit}>
