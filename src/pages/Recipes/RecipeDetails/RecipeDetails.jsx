@@ -16,7 +16,7 @@ function RecipeDetails() {
     <>
       <div className={styles.recipeDetails}>
         <Text size="h2">{recipeDetails.data.name}</Text>
-        <img source={recipeDetails.data.graphicURL} alt="dish graphic"></img>
+        <img src={recipeDetails.data.graphicURL} alt="dish graphic"></img>
         <p>{recipeDetails.data.description}</p>
         <Text size="h4">Składniki (na 1 porcję)</Text>
         {recipeDetails.data.ingredients.map((ingredient) => (
