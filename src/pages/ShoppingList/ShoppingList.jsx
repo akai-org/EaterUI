@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Button, Text, Card } from "@/components";
 import styles from "./ShoppingList.module.scss";
 import useShoppingList from "./hooks/api/useShoppingList";
+// import { Link } from "react-router";
 
 function getDateString(date) {
   const month = date.toLocaleDateString("pl-PL", { month: "short" });
@@ -27,7 +28,7 @@ function ShoppingList() {
         <Text size="h3" className={classNames(styles.header)}>
           Listy zakupów
         </Text>
-        {state.data.map((el, id) => {
+        {state.data.map((el) => {
           const startDate = new Date(el.startDate);
           const endDate = new Date(el.endDate);
 
@@ -41,7 +42,7 @@ function ShoppingList() {
                   ? `${el.ingredients} Produktów`
                   : `${el.markedIngredients}/${el.ingredients} produktów zakupionych`
               }
-              key={id}
+              key={el.id}
             />
           );
         })}

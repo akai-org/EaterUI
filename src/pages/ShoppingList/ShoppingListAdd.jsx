@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import { Text, Button, Input } from "@/components";
+import { useNavigate } from "react-router";
 import styles from "./ShoppingList.module.scss";
+import useCreateShoppingList from "./hooks/api/useCreateShoppingList";
 
 function ShoppingListAdd() {
+  const [minDate, setMin] = useState("");
+  const [maxDate, setMax] = useState("");
+
+  const { mutate, isLoading } = useCreateShoppingList();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (data) => {
+    mutate(data, {
+      onSuccess: () => {
+        navigate("/shopping-list");
+      },
+    });
+  };
+
   return (
     <>
       <div className={classNames(styles.container)}>
@@ -14,11 +30,17 @@ function ShoppingListAdd() {
           label={"Data początkowa"}
           type="date"
           className={classNames(styles.input)}
+          max={maxDate}
+          onChange={(event) => {
+            setMin(event.target.value);
+          }}
         />
         <Input
           label={"Data końcowa"}
           type="date"
           className={classNames(styles.input)}
+          min={minDate}
+          onChange={(event) => setMax(event.target.value)}
         />
       </div>
       <div className={classNames(styles.button, styles["button--multiple"])}>
@@ -32,7 +54,10 @@ function ShoppingListAdd() {
 
         <Button
           type="primary"
-          to="/shopping-list/1"
+          onClick={() => {
+            handleSubmit({ startDate: minDate, endDate: maxDate });
+          }}
+          isDisabled={isLoading}
           className={classNames(styles.instance)}
         >
           Generuj
