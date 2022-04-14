@@ -1,0 +1,12 @@
+.recipeDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    .ingredient {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
