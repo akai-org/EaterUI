@@ -22,7 +22,9 @@ function RecipeDetails() {
         {recipeDetails.data.ingredients.map((ingredient) => (
           <div className={styles.ingredient} key={ingredient.name}>
             <p>{ingredient.name}</p>
-            <p>{`${ingredient.amount} ${ingredient.measure}`}</p>
+            <p>
+              {ingredient.amount} {ingredient.measure}
+            </p>
           </div>
         ))}
       </div>
