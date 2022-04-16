@@ -22,25 +22,25 @@ function ToastBox() {
   return <ToastContainer style={toastStyles} />;
 }
 
-function ToastError(msg, options = {}) {
+function showErrorToast(msg, options = {}) {
   toast.error(msg, {
     ...defualtToastSettings,
     ...options,
   });
 }
 
-function ToastSucess(msg, options = {}) {
+function showSuccessToast(msg, options = {}) {
   toast.success(msg, {
     ...defualtToastSettings,
     ...options,
   });
 }
 
-function ToastInfo(msg, options = {}) {
+function showInfoToast(msg, options = {}) {
   toast.info(msg, {
     ...defualtToastSettings,
     ...options,
   });
 }
 
-export { ToastBox, ToastError, ToastSucess, ToastInfo };
+export { ToastBox, showErrorToast, showSuccessToast, showInfoToast };
