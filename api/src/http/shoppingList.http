@@ -3,27 +3,25 @@
 ###
 # baseURL
 
-@baseURL = http://localhost:3000
-@sess = TODO
-@sig = TODO
-@cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
+@baseURL = https://eater-api.herokuapp.com
+@token = TODO
 
 ###
 # List Shopping Lists 
 GET {{baseURL}}/shopping-list
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 ###
 # Get Shopping List
 GET {{baseURL}}/shopping-list/81608dda-4664-4c6a-87d2-ad07fa311bb8
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 
 ###
 # Create Shopping List
 POST {{baseURL}}/shopping-list
 Content-Type: application/json
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 {
     "startDate": "2021-10-25",
@@ -34,7 +32,7 @@ Cookie: {{cookie}}
 # Mark Shopping List Item
 PUT {{baseURL}}/shopping-list/b57dbaaa-3fe6-4f9b-83d6-e6f888c405c6/item/335d317d-714d-4cff-90de-392587069ccf
 Content-Type: application/json
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 {
     "marked": true
