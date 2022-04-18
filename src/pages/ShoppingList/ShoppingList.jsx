@@ -1,9 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 import { Button, Text, Card } from "@/components";
+import { Link } from "react-router-dom";
 import styles from "./ShoppingList.module.scss";
 import useShoppingList from "./hooks/api/useShoppingList";
-// import { Link } from "react-router";
 
 function getDateString(date) {
   const month = date.toLocaleDateString("pl-PL", { month: "short" });
@@ -33,17 +33,22 @@ function ShoppingList() {
           const endDate = new Date(el.endDate);
 
           return (
-            <Card
-              primaryText={`${getDateString(startDate)} - ${getDateString(
-                endDate,
-              )}`}
-              secondaryText={
-                !el.markedIngredients
-                  ? `${el.ingredients} Produktów`
-                  : `${el.markedIngredients}/${el.ingredients} produktów zakupionych`
-              }
+            <Link
+              to={`/shopping-list/${el.id}`}
               key={el.id}
-            />
+              className={classNames(styles.a)}
+            >
+              <Card
+                primaryText={`${getDateString(startDate)} - ${getDateString(
+                  endDate,
+                )}`}
+                secondaryText={
+                  !el.markedIngredients
+                    ? `${el.ingredients} Produktów`
+                    : `${el.markedIngredients}/${el.ingredients} produktów zakupionych`
+                }
+              />
+            </Link>
           );
         })}
         <Card
