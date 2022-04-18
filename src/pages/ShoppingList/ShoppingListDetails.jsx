@@ -30,10 +30,11 @@ function ShoppingListDetails() {
     const data = {
       mealId: params.shopingDetailId,
       ingredientId: state.data.ingredients[position].id,
+      shoppingRequest: { marked: !checked[position] },
     };
     console.log(data);
     // setChecked(newState);
-    mutate(data, {
+    await mutate(data, {
       onSuccess: () => {
         setChecked(newState);
       },

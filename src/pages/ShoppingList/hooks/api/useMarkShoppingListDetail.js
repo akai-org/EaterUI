@@ -8,12 +8,15 @@ function useMarkShoppingListDetail() {
       request(
         `/shopping-list/${shoppingData.mealId}/item/${shoppingData.ingredientId}`,
         {
-          method: "POST",
-          body: shoppingData,
+          method: "PUT",
+          body: shoppingData.shoppingRequest,
         },
       ),
     {
       onSuccess: () => {
+        queryClient.invalidateQueries("shopping-list");
+      },
+      onError: () => {
         queryClient.invalidateQueries("shopping-list");
       },
     },
