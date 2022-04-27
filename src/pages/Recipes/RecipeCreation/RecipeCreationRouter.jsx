@@ -53,6 +53,7 @@ const RecipeCreationRouter = () => {
             handleEditLinkClick={handleEditLinkClick}
             isError={isError}
             isLoading={isLoading}
+            edition={false}
           />
         }
       />

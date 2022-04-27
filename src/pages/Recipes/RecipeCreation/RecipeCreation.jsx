@@ -13,9 +13,11 @@ const RecipeCreation = ({
   handleEditLinkClick,
   isError,
   isLoading,
+  edition,
 }) => (
   <form className={styles.recipeCreationForm} onSubmit={handleSubmit}>
-    <Text size="h3">Dodaj przepis</Text>
+    {!edition && <Text size="h3">Dodaj przepis</Text>}
+    {edition && <Text size="h3">Edytuj przepis</Text>}
     <Text size="h4" className={styles.headline}>
       Składniki (na 1 porcję)
       {!ingredients.length && (
@@ -76,6 +78,7 @@ RecipeCreation.propTypes = {
   handleEditLinkClick: PropTypes.func,
   isError: PropTypes.boolean,
   isLoading: PropTypes.boolean,
+  edition: PropTypes.boolean,
 };
 
 export default RecipeCreation;
