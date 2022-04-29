@@ -4,7 +4,8 @@
     "paths": {
       "@/components": ["./src/components/index.js"],
       "@/api/*": ["./src/api/*"],
-      "@/pages/*": ["./src/pages/*"]
+      "@/pages/*": ["./src/pages/*"],
+      "@/utils/*": ["./src/utils/*"]
     }
   }
 }

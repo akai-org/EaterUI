@@ -17,7 +17,7 @@ const errorMiddleware = (
       message = error.message;
     } else if (error instanceof ZodError) {
       status = 400;
-      message = error.message;
+      message = error.errors.at(0)?.message ?? message;
     }
 
     console.error(

@@ -1,0 +1,50 @@
+@import "../../assets/variables.scss";
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $nav-height;
+  background-color: $primary001;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: $M-spacing;
+}
+.hamburgerButton {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.hamburger {
+  height: 0.2rem;
+  width: 3rem;
+  background-color: $white;
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    height: 0.2rem;
+    width: 3rem;
+    background-color: $white;
+  }
+  &::before {
+    transform: translateY(-5px);
+  }
+  &::after {
+    transform: translateY(5px);
+  }
+}
+
+.MenuList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}

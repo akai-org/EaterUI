@@ -9,26 +9,28 @@ import MenuPlanning from "./pages/Menu/MenuPlanning";
 import RecipeRouter from "./pages/Recipes/RecipeRouter";
 import { Navbar } from "./components/Navbar/Navbar";
 import "./assets/index.scss";
+import { ToastBox } from "@/utils/toast";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/login" element={<Login />} />
-
-      <Route path="/recipes/*" element={<RecipeRouter />} />
-
-      <Route path="/menu" element={<MenuListing />} />
-      <Route path="/menu/:date" element={<MenuDetails />} />
-      <Route path="/menu/:date/new" element={<MenuPlanning />} />
-      <Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
-
-      <Route path="/shopping-list" element={<ShoppingList />} />
-      <Route
-        path="/shopping-list/:shopingDetailId"
-        element={<ShoppingListDetails />}
-      />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/recipes/*" element={<RecipeRouter />} />
+        <Route path="/menu" element={<MenuListing />} />
+        <Route path="/menu/:date" element={<MenuDetails />} />
+        <Route path="/menu/:date/new" element={<MenuPlanning />} />
+        <Route path="/menu/:date/:entryId" element={<MenuPlanning />} />
+        <Route path="/shopping-list" element={<ShoppingList />} />
+        <Route
+          path="/shopping-list/:shopingDetailId"
+          element={<ShoppingListDetails />}
+        />
+      </Routes>
+      <ToastBox />
+    </>
   );
 }
 

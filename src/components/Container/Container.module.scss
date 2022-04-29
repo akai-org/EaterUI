@@ -1,8 +1,11 @@
+@import "../../assets/variables.scss";
+
 .container {
   max-width: 800px;
   width: 100%;
   padding: 32px;
   margin: 0 auto;
+  padding-top: calc($nav-height + 2rem);
   position: relative;
   min-height: 100vh;
   display: flex;
