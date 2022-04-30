@@ -1,8 +1,9 @@
 import { rootUrl } from "./index";
-import { getToken } from "../utils/auth";
 
-export default function request(endpoint, { body, ...customConfig } = {}) {
-  const token = getToken();
+export default function request(
+  endpoint,
+  { body, token, ...customConfig } = {},
+) {
   const headers = { "content-type": "application/json" };
   if (token) {
     headers.Authorization = `Bearer ${token}`;
@@ -23,6 +24,10 @@ export default function request(endpoint, { body, ...customConfig } = {}) {
   return window
     .fetch(`${rootUrl}${endpoint}`, config)
     .then(async (response) => {
+      if (response.status === 401) {
+        return Promise.reject(new Error("Unauthorized"));
+      }
+
       if (response.ok) {
         return response.json();
       }

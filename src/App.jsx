@@ -9,13 +9,22 @@ import MenuPlanning from "./pages/Menu/MenuPlanning";
 import RecipeRouter from "./pages/Recipes/RecipeRouter";
 import "./assets/index.scss";
 import { ToastBox } from "@/utils/toast";
+import { useAuth } from "./utils/auth";
 
 function App() {
+  const { isLoggedIn, loading } = useAuth();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!isLoggedIn) {
+    return <Login />;
+  }
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/recipes/*" element={<RecipeRouter />} />
         <Route path="/menu" element={<MenuListing />} />
         <Route path="/menu/:date" element={<MenuDetails />} />
@@ -26,6 +35,8 @@ function App() {
           path="/shopping-list/:shopingDetailId"
           element={<ShoppingListDetails />}
         />
+        {/* TODO: change "/" to some main view? */}
+        <Route path="*" element={<RecipeRouter />} />
       </Routes>
       <ToastBox />
     </>
