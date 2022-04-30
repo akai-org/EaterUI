@@ -14,37 +14,67 @@
   padding: $M-spacing;
 }
 .hamburgerButton {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  cursor: pointer;
   width: 3rem;
   height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: transparent;
   border: none;
 }
 
 .hamburger {
+  display: inline-block;
   height: 0.2rem;
-  width: 3rem;
+  width: 2.5rem;
   background-color: $white;
   &::before,
   &::after {
     content: "";
     display: block;
     height: 0.2rem;
-    width: 3rem;
+    width: 100%;
     background-color: $white;
   }
   &::before {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
   &::after {
-    transform: translateY(5px);
+    transform: translateY(calc(10px - 0.2rem));
   }
 }
 
 .MenuList {
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  position: absolute;
+  top: $nav-height;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1em;
+  background: $primary001;
+  width: 100%;
   list-style: none;
+  transform: translateY(-200%);
+  transition: opacity 0.1s 0s ease-in-out;
+}
+.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+.MenuListItem {
+  padding: 1em 2em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  & a {
+    text-decoration: none;
+    color: $white;
+    font-weight: $semibold;
+    font-size: 1.6rem;
+  }
 }
