@@ -5,19 +5,26 @@ import styles from "./Navbar.module.scss";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const closeNavbar = () => setIsOpen(false);
+
   return (
     <nav role="navigation" aria-label="menu" className={styles.navbar}>
-      <ul className={cn(styles.MenuList, { [styles.active]: isOpen })}>
-        <li onClick={() => setIsOpen(false)} className={styles.MenuListItem}>
+      <ul
+        className={cn(styles.menuList, {
+          [`${styles.menuList}-active`]: isOpen,
+        })}
+      >
+        <li onClick={closeNavbar} className={styles.menuListItem}>
           <Link to="/menu">Twój jadłospis</Link>
         </li>
-        <li onClick={() => setIsOpen(false)} className={styles.MenuListItem}>
+        <li onClick={closeNavbar} className={styles.menuListItem}>
           <Link to="/recipes">Przepisy</Link>
         </li>
-        <li onClick={() => setIsOpen(false)} className={styles.MenuListItem}>
+        <li onClick={closeNavbar} className={styles.menuListItem}>
           <Link to="/shopping-list">Lista zakupów</Link>
         </li>
-        <li onClick={() => setIsOpen(false)} className={styles.MenuListItem}>
+        <li onClick={closeNavbar} className={styles.menuListItem}>
           <Link to="/recipes">Twój profil</Link>
         </li>
       </ul>
@@ -27,7 +34,11 @@ export const Navbar = () => {
         aria-expanded={isOpen}
         onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
       >
-        <span className={styles.hamburger}></span>
+        <span
+          className={cn(styles.hamburger, {
+            [`${styles.hamburger}-active`]: isOpen,
+          })}
+        ></span>
       </button>
     </nav>
   );

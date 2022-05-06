@@ -18,7 +18,7 @@
   align-items: center;
   justify-items: center;
   cursor: pointer;
-  width: 3rem;
+  width: 3.2rem;
   height: 3rem;
   background-color: transparent;
   border: none;
@@ -27,25 +27,39 @@
 .hamburger {
   display: inline-block;
   height: 0.2rem;
-  width: 2.5rem;
+  width: 100%;
   background-color: $white;
+  transform: translateY(-50%);
+  transition: background-color 0.2s 0.2s ease-in-out;
   &::before,
   &::after {
     content: "";
+    position: absolute;
     display: block;
-    height: 0.2rem;
+    height: 0.2em;
     width: 100%;
     background-color: $white;
+    transition: transform 0.2s 0.2s ease-in-out;
   }
   &::before {
-    transform: translateY(-10px);
+    top: 10px;
   }
   &::after {
-    transform: translateY(calc(10px - 0.2rem));
+    top: -10px;
+  }
+  &-active {
+    background-color: transparent;
+
+    &::before {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+    &::after {
+      transform: translateY(10px) rotate(45deg);
+    }
   }
 }
 
-.MenuList {
+.menuList {
   display: flex;
   flex-direction: column;
   opacity: 0;
@@ -60,13 +74,16 @@
   list-style: none;
   transform: translateY(-200%);
   transition: opacity 0.1s 0s ease-in-out;
+
+  &-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
-.active {
-  transform: translateY(0);
-  opacity: 1;
-}
-.MenuListItem {
+
+.menuListItem {
   padding: 1em 2em;
+  display: flex;
 
   &:hover {
     text-decoration: underline;
@@ -76,5 +93,6 @@
     color: $white;
     font-weight: $semibold;
     font-size: 1.6rem;
+    width: 100%;
   }
 }
