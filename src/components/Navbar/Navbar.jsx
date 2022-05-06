@@ -10,24 +10,27 @@ export const Navbar = () => {
 
   return (
     <nav role="navigation" aria-label="menu" className={styles.navbar}>
-      <ul
+      <div
         className={cn(styles.menuList, {
           [`${styles.menuList}-active`]: isOpen,
         })}
       >
-        <li onClick={closeNavbar} className={styles.menuListItem}>
-          <Link to="/menu">Twój jadłospis</Link>
-        </li>
-        <li onClick={closeNavbar} className={styles.menuListItem}>
-          <Link to="/recipes">Przepisy</Link>
-        </li>
-        <li onClick={closeNavbar} className={styles.menuListItem}>
-          <Link to="/shopping-list">Lista zakupów</Link>
-        </li>
-        <li onClick={closeNavbar} className={styles.menuListItem}>
-          <Link to="/recipes">Twój profil</Link>
-        </li>
-      </ul>
+        <p>Menu</p>
+        <ul>
+          <li onClick={closeNavbar} className={styles.menuListItem}>
+            <Link to="/menu">Twój jadłospis</Link>
+          </li>
+          <li onClick={closeNavbar} className={styles.menuListItem}>
+            <Link to="/recipes">Przepisy</Link>
+          </li>
+          <li onClick={closeNavbar} className={styles.menuListItem}>
+            <Link to="/shopping-list">Lista zakupów</Link>
+          </li>
+          <li onClick={closeNavbar} className={styles.menuListItem}>
+            <Link to="/recipes">Twój profil</Link>
+          </li>
+        </ul>
+      </div>
       <button
         className={styles.hamburgerButton}
         aria-controls="navigation"

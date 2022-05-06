@@ -66,15 +66,20 @@
   position: absolute;
   top: $nav-height;
   left: 0;
-  margin: 0;
-  padding: 0;
   padding-bottom: 1em;
   background: $primary001;
   width: 100%;
-  list-style: none;
   transform: translateY(-200%);
   transition: opacity 0.1s 0s ease-in-out;
-
+  & p {
+    padding: 0 2em;
+    color: $white;
+  }
+  & ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
   &-active {
     transform: translateY(0);
     opacity: 1;
