@@ -61,7 +61,14 @@ export const CreateShoppingListSchema = z.object({
   body: z.object({
     startDate: z.string(),
     endDate: z.string(),
-  }),
+  }).superRefine(({startDate, endDate}, ctx) => {
+    if (dayjs(startDate).isAfter(dayjs(endDate))) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Start date should be before end data",
+      });
+    }
+  })
 });
 
 export type CreateShoppingListBody = z.infer<
