@@ -8,27 +8,31 @@ export const Navbar = () => {
 
   const closeNavbar = () => setIsOpen(false);
 
+  const navItems = [
+    { path: "/menu", text: "Twój jadłospis" },
+    { path: "/recipes", text: "Przepisy" },
+    { path: "/shopping-list", text: "Lista zakupów" },
+    { path: "#", text: "Twój profil" },
+  ];
+
   return (
     <nav role="navigation" aria-label="menu" className={styles.navbar}>
       <div
         className={cn(styles.menuList, {
-          [`${styles.menuList}-active`]: isOpen,
+          [styles.active]: isOpen,
         })}
       >
         <p>Menu</p>
         <ul>
-          <li onClick={closeNavbar} className={styles.menuListItem}>
-            <Link to="/menu">Twój jadłospis</Link>
-          </li>
-          <li onClick={closeNavbar} className={styles.menuListItem}>
-            <Link to="/recipes">Przepisy</Link>
-          </li>
-          <li onClick={closeNavbar} className={styles.menuListItem}>
-            <Link to="/shopping-list">Lista zakupów</Link>
-          </li>
-          <li onClick={closeNavbar} className={styles.menuListItem}>
-            <Link to="/recipes">Twój profil</Link>
-          </li>
+          {navItems.map(({ path, text }) => (
+            <li
+              key={text}
+              onClick={closeNavbar}
+              className={styles.menuListItem}
+            >
+              <Link to={path}>{text}</Link>
+            </li>
+          ))}
         </ul>
       </div>
       <button
@@ -39,7 +43,7 @@ export const Navbar = () => {
       >
         <span
           className={cn(styles.hamburger, {
-            [`${styles.hamburger}-active`]: isOpen,
+            [styles.active]: isOpen,
           })}
         ></span>
       </button>

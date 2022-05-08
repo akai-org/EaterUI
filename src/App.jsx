@@ -7,7 +7,7 @@ import MenuDetails from "./pages/Menu/MenuDetails";
 import MenuListing from "./pages/Menu/MenuListing";
 import MenuPlanning from "./pages/Menu/MenuPlanning";
 import RecipeRouter from "./pages/Recipes/RecipeRouter";
-import { Navbar } from "./components/Navbar/Navbar";
+import { Navbar } from "./components/index";
 import "./assets/index.scss";
 import { ToastBox } from "@/utils/toast";
 

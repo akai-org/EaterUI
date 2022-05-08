@@ -3,9 +3,9 @@
 .container {
   max-width: 800px;
   width: 100%;
-  padding: 32px;
+  padding: $L-spacing;
   margin: 0 auto;
-  padding-top: calc($nav-height + 2rem);
+  padding-top: calc($nav-height + $L-spacing);
   position: relative;
   min-height: 100vh;
   display: flex;
