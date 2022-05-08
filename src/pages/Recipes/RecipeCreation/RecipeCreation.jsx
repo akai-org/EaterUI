@@ -1,7 +1,7 @@
-import { Button, ButtonGroup, Input, Text, Textarea } from "@/components";
 import PropTypes from "prop-types";
 import React from "react";
 import { number, string } from "yup";
+import { Button, ButtonGroup, Input, Text, Textarea } from "@/components";
 import IngredientsList from "./IngredientsList";
 import styles from "./RecipeCreation.module.scss";
 
