@@ -9,13 +9,13 @@ import AddIngredient from "../AddIngredient/AddIngredient";
 import useRecipe from "../hooks/api/useRecipe";
 import useUpdateRecipe from "../hooks/api/useUpdateRecipe";
 import useIngredients from "../hooks/useIngredients";
-import { schema } from "../RecipeCreation/formSchema";
+import { recipeFormSchema } from "../RecipeCreation/formSchema";
 import RecipeCreation from "../RecipeCreation/RecipeCreation";
 
 const RecipeEditionRouter = () => {
   const params = useParams();
   const recipeId = params.id;
-  const recipeDetails = useRecipe(recipeId).data;
+  const { data: recipeDetails } = useRecipe(recipeId);
   const ingredientsList = recipeDetails.ingredients;
 
   const { mutate, isError, isLoading } = useUpdateRecipe(recipeId);
@@ -25,7 +25,7 @@ const RecipeEditionRouter = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(recipeFormSchema),
     defaultValues: {
       name: recipeDetails.name,
       description: recipeDetails.description,

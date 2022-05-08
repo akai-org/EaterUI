@@ -19,7 +19,6 @@ const useIngredients = (ingredientsList = []) => {
   };
 
   const addIngredient = (data) => {
-    console.log(data);
     if (ingredients.find(({ id }) => id === data.id)) {
       editIngedient(data);
     } else {
