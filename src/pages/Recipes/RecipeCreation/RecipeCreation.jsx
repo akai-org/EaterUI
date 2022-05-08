@@ -1,7 +1,7 @@
+import { Button, ButtonGroup, Input, Text, Textarea } from "@/components";
 import PropTypes from "prop-types";
 import React from "react";
 import { number, string } from "yup";
-import { Button, ButtonGroup, Input, Text, Textarea } from "@/components";
 import IngredientsList from "./IngredientsList";
 import styles from "./RecipeCreation.module.scss";
 
@@ -14,7 +14,7 @@ const RecipeCreation = ({
   isLoading,
   edition = false,
 }) => {
-  const title = edition ? "Edytuj przepis" : "Dodaj przepis"
+  const title = edition ? "Edytuj przepis" : "Dodaj przepis";
   return (
     <form className={styles.recipeCreationForm} onSubmit={handleSubmit}>
       <Text size="h3">{title}</Text>
@@ -44,9 +44,12 @@ const RecipeCreation = ({
 
       <IngredientsList
         ingredients={ingredients}
-        handleEditLinkClick={handleEditLinkClick} />
+        handleEditLinkClick={handleEditLinkClick}
+      />
       {/* TODO: replace with toast */}
-      {isError && <Text>Coś poszło nie tak - spróbuj jeszcze raz!</Text>}
+      {errors.length > 0 && (
+        <Text>Coś poszło nie tak - spróbuj jeszcze raz!</Text>
+      )}
 
       <Button to="add-ingredient" fullwidth className={styles.actionButton}>
         Dodaj składnik
