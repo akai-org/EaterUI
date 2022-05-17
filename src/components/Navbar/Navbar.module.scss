@@ -65,13 +65,16 @@ $default-hamurger-spacing: 10px;
   display: flex;
   flex-direction: column;
   opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
   position: absolute;
   top: $nav-height;
   left: 0;
   padding: $L-spacing;
   background: $primary001;
   width: 100%;
-  transition: opacity $transiton-primary;
+  transition: opacity $transiton-primary, transform ease-in-out 0.2s;
+
   & p {
     color: $white;
   }
@@ -82,6 +85,8 @@ $default-hamurger-spacing: 10px;
   }
   &.active {
     opacity: 1;
+    transform: scaleY(1);
+    transition: opacity $transiton-primary, transform $transiton-primary;
   }
 }
 
@@ -98,5 +103,22 @@ $default-hamurger-spacing: 10px;
     font-size: $h3-font-size;
     width: 100%;
     padding: $ML-spacing 0;
+  }
+}
+
+.overlay {
+  z-index: 0;
+  opacity: 0;
+  background-color: $black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: scale(0);
+
+  &.active {
+    opacity: 0.3;
+    transform: scale(1);
   }
 }
