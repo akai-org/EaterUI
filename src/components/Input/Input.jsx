@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import styles from "./Input.module.scss";
 
 export const Input = React.forwardRef(
-  ({ label, errorMessage, ...rest }, ref) => (
-    <label className={styles.fieldWrapper}>
+  ({ label, errorMessage, className, wrapperClassName, ...rest }, ref) => (
+    <label className={classNames(styles.fieldWrapper, wrapperClassName)}>
       {label && <div>{label}</div>}
       <input
         ref={ref}
         {...rest}
-        className={errorMessage ? styles.errorOutline : ""}
+        className={classNames(className, errorMessage && styles.errorOutline)}
       />
       {errorMessage && (
         <div className={styles.errorMessage}>{errorMessage}</div>
@@ -19,13 +20,13 @@ export const Input = React.forwardRef(
 );
 
 export const Textarea = React.forwardRef(
-  ({ label, errorMessage, ...rest }, ref) => (
+  ({ label, errorMessage, className, ...rest }, ref) => (
     <label className={styles.fieldWrapper}>
       <div>{label}</div>
       <textarea
         ref={ref}
         {...rest}
-        className={errorMessage ? styles.errorOutline : ""}
+        className={classNames(className, errorMessage && styles.errorOutline)}
       />
       {errorMessage && (
         <div className={styles.errorMessage}>{errorMessage}</div>
@@ -42,6 +43,8 @@ Input.propTypes = {
   errorMessage: PropTypes.string,
   rest: PropTypes.node,
   ref: PropTypes.node,
+  className: PropTypes.string,
+  wrapperClassName: PropTypes.string,
 };
 
 Textarea.propTypes = {
@@ -49,4 +52,5 @@ Textarea.propTypes = {
   errorMessage: PropTypes.string,
   rest: PropTypes.node,
   ref: PropTypes.node,
+  className: PropTypes.string,
 };

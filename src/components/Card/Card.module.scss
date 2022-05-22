@@ -1,40 +1,49 @@
 @import "../../assets/variables.scss";
 
+$image-size: 47px;
+
 .card {
-    width: 100%;
-    border: solid 2px $grey003;
-    border-radius: 4px;
-    padding: $M-spacing;
+  width: 100%;
+  border: solid 2px $grey003;
+  border-radius: 4px;
+  padding: $M-spacing;
+  display: flex;
+  align-items: center;
+  margin-bottom: $M-spacing;
+
+  &__text {
     display: flex;
-    align-items: center;
-    margin-bottom: $M-spacing;
+    flex-direction: column;
 
-    &__text {
-        display: flex;
-        flex-direction: column;
-
-        & > p {
-            margin-top: $S-spacing;
-            font-weight: $regular;
-        }
+    & > p {
+      margin-top: $S-spacing;
+      font-weight: $regular;
     }
+  }
 
-    &__image-container {
-        height: 47px;
-        width: 47px;
-        margin-right: $M-spacing;
+  &__image-container {
+    height: $image-size;
+    width: $image-size;
+    margin-right: $M-spacing;
+    display: flex;
+
+    img {
+      max-width: $image-size;
+      object-fit: contain;
+      object-position: center;
     }
+  }
 
-    &__right-content {
-        margin-left: auto;
+  &__right-content {
+    margin-left: auto;
+  }
+
+  &_disabled {
+    background-color: $grey003;
+    color: $grey001;
+
+    & img {
+      filter: grayscale(100%) opacity(50%);
     }
-
-    &_disabled {
-        background-color: $grey003;
-        color: $grey001;
-
-        & img {
-            filter: grayscale(100%) opacity(50%);
-        }
-    }
+  }
 }
