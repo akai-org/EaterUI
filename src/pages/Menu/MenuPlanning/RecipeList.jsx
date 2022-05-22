@@ -15,17 +15,21 @@ export function RecipeList({ recipes, onSelect }) {
         wrapperClassName={styles.input}
         placeholder="Szukaj po nazwie"
       />
-      {recipes
-        .filter(({ name }) => name.toLowerCase().includes(query.toLowerCase()))
-        .map(({ id, name, description, graphicURL }) => (
-          <Card
-            key={id}
-            primaryText={name}
-            secondaryText={description}
-            imageUrl={graphicURL}
-            onClick={() => onSelect(id)}
-          />
-        ))}
+      <div className={styles.listWrapper}>
+        {recipes
+          .filter(({ name }) =>
+            name.toLowerCase().includes(query.toLowerCase()),
+          )
+          .map(({ id, name, description, graphicURL }) => (
+            <Card
+              key={id}
+              primaryText={name}
+              secondaryText={description}
+              imageUrl={graphicURL}
+              onClick={() => onSelect(id)}
+            />
+          ))}
+      </div>
     </>
   );
 }

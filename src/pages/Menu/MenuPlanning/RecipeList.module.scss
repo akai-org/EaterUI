@@ -1,3 +1,8 @@
 .input {
   margin-top: 0;
 }
+
+.listWrapper {
+  overflow: scroll;
+  flex-basis: calc(100vh - 234px);
+}
