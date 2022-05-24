@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { useParams } from "react-router-dom";
 import { Checkbox, Text, Button, Card } from "@/components";
@@ -7,17 +7,20 @@ import useShoppingListDetails from "./hooks/api/useShoppingListDetails";
 import useMarkShoppingListDetail from "./hooks/api/useMarkShoppingListDetail";
 
 function ShoppingListDetails() {
-  const [checked, setChecked] = useState(new Array(4).fill(false));
-  const { mutate } = useMarkShoppingListDetail();
   const params = useParams();
   const text = `Lista zakupów ${params.shopingDetailId}`;
+  const [checked, setChecked] = useState();
+  const { mutate } = useMarkShoppingListDetail();
+  const { data, isLoading, isError, error } = useShoppingListDetails(
+    params.shopingDetailId,
+  );
 
-  const state = useShoppingListDetails(params.shopingDetailId);
-  console.log(state);
-
-  if (state.isLoading) return <p>Loading...</p>;
-
-  if (state.isError) return <p>Error: {state.error.toString()}</p>;
+  useEffect(() => {
+    const temp = data?.ingredients?.map((el) => el.marked);
+    if (temp) setChecked(temp);
+  }, [data]);
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error.toString()}</p>;
 
   function makeMeasureText(arr) {
     return arr.map((el) => `${el.amount} ${el.measure}`);
@@ -27,27 +30,22 @@ function ShoppingListDetails() {
     const newState = checked.map((el, index) =>
       index === position ? !el : el,
     );
-    const data = {
+    const ingredientData = {
       mealId: params.shopingDetailId,
-      ingredientId: state.data.ingredients[position].id,
+      ingredientId: data.ingredients[position].id,
       shoppingRequest: { marked: !checked[position] },
     };
-    console.log(data);
-    // setChecked(newState);
-    await mutate(data, {
+
+    mutate(ingredientData, {
       onSuccess: () => {
         setChecked(newState);
       },
       onError: () => {
+        // TODO Toast error
         console.log("coś nie działa");
       },
     });
   };
-
-  // setChecked(state.data.ingredients.map((el) => el.marked));
-
-  // const temp = state.data.ingredients.map((el) => el.marked);
-  // console.log(temp);
 
   return (
     <>
@@ -55,9 +53,8 @@ function ShoppingListDetails() {
         <Text size="h3" className={classNames(styles.header)}>
           {text}
         </Text>
-        {state.data.ingredients.map((el, index) => {
+        {data?.ingredients?.map((el, index) => {
           const measureText = makeMeasureText(el.amounts);
-
           return (
             <Card
               primaryText={el.name}
@@ -66,7 +63,7 @@ function ShoppingListDetails() {
               }
               rightContent={
                 <Checkbox
-                  checked={checked[index]}
+                  checked={checked === undefined ? false : checked[index]}
                   onChange={() => handleCheck(index)}
                 />
               }
@@ -74,21 +71,6 @@ function ShoppingListDetails() {
             />
           );
         })}
-        <Card
-          primaryText={"Marchewka"}
-          secondaryText={["4 szt", "0.5 kg"]}
-          rightContent={<Checkbox />}
-        />
-        <Card
-          primaryText={"Mąka"}
-          secondaryText={"1kg"}
-          rightContent={<Checkbox />}
-        />
-        <Card
-          primaryText={"Pomidory"}
-          secondaryText={"4 szt"}
-          rightContent={<Checkbox />}
-        />
       </div>
       <Button
         variant="secondary"

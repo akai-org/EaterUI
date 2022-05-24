@@ -51,19 +51,6 @@ function ShoppingList() {
             </Link>
           );
         })}
-        <Card
-          primaryText={"28 Paź (pon) - 07 Lis (wt)"}
-          secondaryText={"888 Produktów"}
-        />
-        <Card
-          primaryText={"28 Paź (pon) - 07 Lis (wt)"}
-          secondaryText={"12/16 produktów zakupionych"}
-        />
-        <Card
-          disabled
-          primaryText={"28 Paź (pon) - 07 Lis (wt)"}
-          secondaryText={"888 Produktów"}
-        />
       </div>
       <Button
         type="primary"

@@ -12,12 +12,19 @@ function ShoppingListAdd() {
   const { mutate, isLoading } = useCreateShoppingList();
   const navigate = useNavigate();
 
-  const handleSubmit = async (data) => {
-    mutate(data, {
-      onSuccess: () => {
-        navigate("/shopping-list");
-      },
-    });
+  const handleSubmit = (data) => {
+    const tempStart = new Date(data.startDate);
+    const tempEnd = new Date(data.endDate);
+    if (tempStart.getTime() > tempEnd.getTime()) {
+      // TODO Toast Error
+      console.log("Zły przedział dat");
+    } else {
+      mutate(data, {
+        onSuccess: () => {
+          navigate("/shopping-list");
+        },
+      });
+    }
   };
 
   return (

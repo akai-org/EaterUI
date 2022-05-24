@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import styles from "./Checkbox.module.scss";
 
-export function Checkbox({ name, checked, className, onChange } = {}) {
+export function Checkbox({
+  name,
+  checked,
+  className,
+  onChange,
+  isDisabled = false,
+} = {}) {
   return (
     <input
       className={classNames(styles.checkbox, className)}
@@ -11,6 +17,7 @@ export function Checkbox({ name, checked, className, onChange } = {}) {
       name={name}
       checked={checked}
       onChange={onChange}
+      disabled={isDisabled}
     />
   );
 }
@@ -20,4 +27,5 @@ Checkbox.propTypes = {
   checked: PropTypes.bool,
   className: PropTypes.string,
   onChange: PropTypes.func,
+  isDisabled: PropTypes.bool,
 };
