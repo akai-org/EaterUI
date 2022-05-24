@@ -29,7 +29,7 @@ $image-size: 47px;
 
     img {
       max-width: $image-size;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
     }
   }
