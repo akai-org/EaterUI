@@ -45,9 +45,14 @@ $extrabold: 800;
 $XS-spacing: 4px;
 $S-spacing: 8px;
 $M-spacing: 16px;
+$ML-spacing: 24px;
 $L-spacing: 32px;
 $XL-spacing: 48px;
 $XXL-spacing: 64px;
 
 // navbar
-$nav-height: 82px;
+$nav-height: 64px;
+
+//transitions
+$transiton-primary: 0.2s ease-in-out;
+$transiton-secondary: 0.4s ease-in-out;

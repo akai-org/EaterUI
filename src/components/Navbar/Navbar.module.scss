@@ -1,0 +1,123 @@
+@import "@/assets/variables.scss";
+$default-hamurger-spacing: 10px;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $nav-height;
+  background-color: $primary001;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: $M-spacing;
+}
+
+.hamburgerButton {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  cursor: pointer;
+  width: $XL-spacing;
+  height: $XL-spacing;
+  background-color: transparent;
+  border: none;
+}
+
+.hamburger {
+  display: inline-block;
+  height: $XS-spacing;
+  width: 100%;
+  background-color: $white;
+  transform: translateY(-50%);
+  transition: background-color $transiton-secondary;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: $XS-spacing;
+    width: 100%;
+    background-color: $white;
+    transition: transform $transiton-secondary;
+  }
+  &::before {
+    top: $default-hamurger-spacing;
+  }
+  &::after {
+    top: -$default-hamurger-spacing;
+  }
+  &.active {
+    background-color: transparent;
+
+    &::before {
+      transform: translateY(-$default-hamurger-spacing) rotate(-45deg);
+    }
+    &::after {
+      transform: translateY($default-hamurger-spacing) rotate(45deg);
+    }
+  }
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  position: absolute;
+  top: $nav-height;
+  left: 0;
+  padding: $L-spacing;
+  background: $primary001;
+  width: 100%;
+  transition: opacity $transiton-primary, transform ease-in-out 0.2s;
+
+  & p {
+    color: $white;
+  }
+  & ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  &.active {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: opacity $transiton-primary, transform $transiton-primary;
+  }
+}
+
+.menuListItem {
+  display: flex;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  & a {
+    text-decoration: none;
+    color: $white;
+    font-weight: $semibold;
+    font-size: $h3-font-size;
+    width: 100%;
+    padding: $ML-spacing 0;
+  }
+}
+
+.overlay {
+  opacity: 0;
+  background-color: $black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: scale(0);
+
+  &.active {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}

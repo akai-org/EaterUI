@@ -2,27 +2,25 @@
 
 ###
 # baseURL
-@baseURL = http://localhost:3000
-@sess = TODO
-@sig = TODO
-@cookie = google-auth-session={{sess}}; google-auth-session.sig={{sig}}
+@baseURL = https://eater-api.herokuapp.com
+@token = TODO
 
 ###
 # Find All Recipes
 GET {{baseURL}}/recipes
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 ###
 # Find Recipe By Id
 GET {{baseURL}}/recipes/e64064a6-4637-4fbe-84b3-70b89c45c566
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 
 ###
 # Add Recipe
 POST {{baseURL}}/recipes
 Content-Type: application/json
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 {
     "name": "name 2",
@@ -46,7 +44,7 @@ Cookie: {{cookie}}
 # Edit Recipe By Id
 PUT {{baseURL}}/recipes/e64064a6-4637-4fbe-84b3-70b89c45c566
 Content-Type: application/json
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"
 
 {
     "name": "updated name",
@@ -69,4 +67,4 @@ Cookie: {{cookie}}
 ###
 # Delere Recipe By Id
 DELETE {{baseURL}}/recipes/e64064a6-4637-4fbe-84b3-70b89c45c566
-Cookie: {{cookie}}
+Authorization: "Bearer {{token}}"

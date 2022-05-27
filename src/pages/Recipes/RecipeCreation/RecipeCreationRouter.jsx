@@ -6,7 +6,7 @@ import useCreateRecipe from "../hooks/api/useCreateRecipe";
 import useIngredients from "../hooks/useIngredients";
 import AddIngredient from "../AddIngredient/AddIngredient";
 import RecipeCreation from "./RecipeCreation";
-import { schema } from "./formSchema";
+import { recipeFormSchema } from "./formSchema";
 
 const RecipeCreationRouter = () => {
   const { mutate, isError, isLoading } = useCreateRecipe();
@@ -15,7 +15,7 @@ const RecipeCreationRouter = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(recipeFormSchema) });
 
   const {
     ingredients,
@@ -53,6 +53,7 @@ const RecipeCreationRouter = () => {
             handleEditLinkClick={handleEditLinkClick}
             isError={isError}
             isLoading={isLoading}
+            edition={false}
           />
         }
       />
