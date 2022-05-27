@@ -12,16 +12,16 @@
   }
 }
 
-.button {
+.submit {
   position: sticky;
   top: 90%;
 
-  &--multiple {
+  &Multiple {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    .instance {
+    .instanceButton {
       width: 48%;
     }
   }
@@ -31,7 +31,7 @@
   width: 100%;
 }
 
-.a {
+.link {
   text-decoration: none;
   color: inherit;
   width: 100%;

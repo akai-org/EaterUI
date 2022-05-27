@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import classNames from "classnames";
 import { Text, Button, Input } from "@/components";
-import { useNavigate } from "react-router";
+import { showErrorToast } from "@/utils/toast";
 import styles from "./ShoppingList.module.scss";
 import useCreateShoppingList from "./hooks/api/useCreateShoppingList";
 
@@ -16,8 +17,7 @@ function ShoppingListAdd() {
     const tempStart = new Date(data.startDate);
     const tempEnd = new Date(data.endDate);
     if (tempStart.getTime() > tempEnd.getTime()) {
-      // TODO Toast Error
-      console.log("Zły przedział dat");
+      showErrorToast("Niepoprawny przedział dat");
     } else {
       mutate(data, {
         onSuccess: () => {
@@ -29,32 +29,30 @@ function ShoppingListAdd() {
 
   return (
     <>
-      <div className={classNames(styles.container)}>
-        <Text size="h3" className={classNames(styles.header)}>
+      <div className={styles.container}>
+        <Text size="h3" className={styles.header}>
           Dodaj listę zakupów
         </Text>
         <Input
-          label={"Data początkowa"}
+          label="Data początkowa"
           type="date"
-          className={classNames(styles.input)}
+          className={styles.input}
           max={maxDate}
-          onChange={(event) => {
-            setMin(event.target.value);
-          }}
+          onChange={(event) => setMin(event.target.value)}
         />
         <Input
-          label={"Data końcowa"}
+          label="Data końcowa"
           type="date"
-          className={classNames(styles.input)}
+          className={styles.input}
           min={minDate}
           onChange={(event) => setMax(event.target.value)}
         />
       </div>
-      <div className={classNames(styles.button, styles["button--multiple"])}>
+      <div className={classNames(styles.submit, styles.submitMultiple)}>
         <Button
           variant="secondary"
           to="/shopping-list"
-          className={classNames(styles.instance)}
+          className={styles.instanceButton}
         >
           Cofnij
         </Button>
@@ -65,7 +63,7 @@ function ShoppingListAdd() {
             handleSubmit({ startDate: minDate, endDate: maxDate });
           }}
           isDisabled={isLoading}
-          className={classNames(styles.instance)}
+          className={styles.instanceButton}
         >
           Generuj
         </Button>

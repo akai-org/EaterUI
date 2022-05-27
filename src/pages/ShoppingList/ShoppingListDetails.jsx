@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import classNames from "classnames";
 import { useParams } from "react-router-dom";
 import { Checkbox, Text, Button, Card } from "@/components";
+import { showErrorToast } from "@/utils/toast";
 import styles from "./ShoppingList.module.scss";
 import useShoppingListDetails from "./hooks/api/useShoppingListDetails";
 import useMarkShoppingListDetail from "./hooks/api/useMarkShoppingListDetail";
 
 function ShoppingListDetails() {
-  const params = useParams();
-  const text = `Lista zakupów ${params.shopingDetailId}`;
+  const { shopingDetailId } = useParams();
   const [checked, setChecked] = useState();
   const { mutate } = useMarkShoppingListDetail();
-  const { data, isLoading, isError, error } = useShoppingListDetails(
-    params.shopingDetailId,
-  );
+  const { data, isLoading, isError, error } =
+    useShoppingListDetails(shopingDetailId);
 
   useEffect(() => {
     const temp = data?.ingredients?.map((el) => el.marked);
@@ -31,7 +29,7 @@ function ShoppingListDetails() {
       index === position ? !el : el,
     );
     const ingredientData = {
-      mealId: params.shopingDetailId,
+      mealId: shopingDetailId,
       ingredientId: data.ingredients[position].id,
       shoppingRequest: { marked: !checked[position] },
     };
@@ -41,17 +39,16 @@ function ShoppingListDetails() {
         setChecked(newState);
       },
       onError: () => {
-        // TODO Toast error
-        console.log("coś nie działa");
+        showErrorToast("Nie można zaznaczyć tego produktu");
       },
     });
   };
 
   return (
     <>
-      <div className={classNames(styles.container)}>
-        <Text size="h3" className={classNames(styles.header)}>
-          {text}
+      <div className={styles.container}>
+        <Text size="h3" className={styles.header}>
+          Lista zakupów
         </Text>
         {data?.ingredients?.map((el, index) => {
           const measureText = makeMeasureText(el.amounts);
@@ -76,7 +73,7 @@ function ShoppingListDetails() {
         variant="secondary"
         fullwidth
         to="/shopping-list"
-        className={classNames(styles.button)}
+        className={styles.submit}
       >
         Cofnij
       </Button>

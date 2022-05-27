@@ -52,28 +52,6 @@ export function Button({
   );
 }
 
-export function LinkButton({
-  type = "primary",
-  fullwidth = false,
-  isDisabled = false,
-  children,
-  onClick,
-  href = "/",
-}) {
-  return (
-    <Link to={href}>
-      <Button
-        type={type}
-        fullwidth={fullwidth}
-        isDisabled={isDisabled}
-        onClick={onClick}
-      >
-        {children}
-      </Button>
-    </Link>
-  );
-}
-
 const buttonPropTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
@@ -86,8 +64,3 @@ const buttonPropTypes = {
 };
 
 Button.propTypes = buttonPropTypes;
-
-LinkButton.propTypes = {
-  ...buttonPropTypes,
-  href: PropTypes.string,
-};

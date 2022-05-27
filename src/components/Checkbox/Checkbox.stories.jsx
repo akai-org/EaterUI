@@ -10,7 +10,5 @@ export const Playground = () => {
   const name = text("name", "name");
   const checked = boolean("checked");
   const disabled = boolean("disabled");
-  return (
-    <Checkbox name={name} checked={checked} isDisabled={disabled}></Checkbox>
-  );
+  return <Checkbox name={name} checked={checked} isDisabled={disabled} />;
 };

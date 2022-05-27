@@ -6,7 +6,6 @@ const ListTemplate = (props) => <List {...props} />;
 export const Plain = ListTemplate.bind({});
 
 Plain.args = {
-  ordered: false,
   content: ["pierwszy", "drugi"],
 };
 

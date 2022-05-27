@@ -1,4 +1,4 @@
-export { Button, LinkButton } from "./Button/Button";
+export { Button } from "./Button/Button";
 export { ButtonGroup } from "./ButtonGroup/ButtonGroup";
 export { Card } from "./Card/Card";
 export { Checkbox } from "./Checkbox/Checkbox";

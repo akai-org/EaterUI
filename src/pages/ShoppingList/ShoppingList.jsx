@@ -1,18 +1,19 @@
 import React from "react";
-import classNames from "classnames";
-import { Button, Text, Card } from "@/components";
 import { Link } from "react-router-dom";
+import { Button, Text, Card } from "@/components";
 import styles from "./ShoppingList.module.scss";
 import useShoppingList from "./hooks/api/useShoppingList";
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 function getDateString(date) {
   const month = date.toLocaleDateString("pl-PL", { month: "short" });
   const day = date.toLocaleDateString("pl-PL", { day: "2-digit" });
   const weekday = date.toLocaleDateString("pl-PL", { weekday: "short" });
 
-  return `${day} ${
-    month.charAt(0).toUpperCase() + month.slice(1)
-  } (${weekday.slice(0, -1)})`;
+  return `${day} ${capitalize(month)} (${weekday.slice(0, -1)})`;
 }
 
 function ShoppingList() {
@@ -24,8 +25,8 @@ function ShoppingList() {
 
   return (
     <>
-      <div className={classNames(styles.container)}>
-        <Text size="h3" className={classNames(styles.header)}>
+      <div className={styles.container}>
+        <Text size="h3" className={styles.header}>
           Listy zakupów
         </Text>
         {state.data.map((el) => {
@@ -36,7 +37,7 @@ function ShoppingList() {
             <Link
               to={`/shopping-list/${el.id}`}
               key={el.id}
-              className={classNames(styles.a)}
+              className={styles.link}
             >
               <Card
                 primaryText={`${getDateString(startDate)} - ${getDateString(
@@ -56,7 +57,7 @@ function ShoppingList() {
         type="primary"
         fullwidth
         to="/shopping-list/add"
-        className={classNames(styles.button)}
+        className={styles.submit}
       >
         Dodaj listę zakupów
       </Button>
