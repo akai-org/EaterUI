@@ -7,12 +7,12 @@ function RecipeListing() {
   const { data, isLoading } = useRecipes();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Ładowanie przepisów...</p>;
   }
 
   return (
     <>
-      <h1>Recipes</h1>
+      <h1>Przepisy</h1>
       <ul>
         {data?.map(({ id, name }) => (
           <li key={id}>

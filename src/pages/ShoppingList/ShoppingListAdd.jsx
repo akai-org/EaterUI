@@ -36,14 +36,14 @@ function ShoppingListAdd() {
         <Input
           label="Data początkowa"
           type="date"
-          className={styles.input}
+          wrapperClassName={styles.input}
           max={maxDate}
           onChange={(event) => setMin(event.target.value)}
         />
         <Input
           label="Data końcowa"
           type="date"
-          className={styles.input}
+          wrapperClassName={styles.input}
           min={minDate}
           onChange={(event) => setMax(event.target.value)}
         />
