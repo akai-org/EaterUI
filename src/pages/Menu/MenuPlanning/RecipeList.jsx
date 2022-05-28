@@ -12,7 +12,7 @@ export function RecipeList({ recipes, onSelect }) {
       <Input
         value={query}
         onChange={(event) => setQuery(event.target.value)}
-        wrapperClassName={styles.input}
+        wrapperClassName={styles.inputWrapper}
         placeholder="Szukaj po nazwie"
       />
       <div className={styles.listWrapper}>

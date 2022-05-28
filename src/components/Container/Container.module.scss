@@ -8,6 +8,7 @@
   padding-top: calc($nav-height + $L-spacing);
   position: relative;
   min-height: 100vh;
+  max-height: calc(100vh - ((2 * $L-spacing) + $nav-height));
   display: flex;
   flex-direction: column;
 
