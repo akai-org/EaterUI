@@ -68,14 +68,6 @@ Fix all potentially fixable stylelint errors and warnings
 npm run style:fix
 ```
 
-### Lint-staged
-
-Run lint-staged with fix all js/jsx/scss errors and warnings (also this is auto triggered when you commit changes by `Husky`)
-
-```
-npx lint-staged
-```
-
 ### VSCode Extensions
 
 It's preferred to install:

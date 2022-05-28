@@ -24,9 +24,7 @@ export default function request(endpoint, { body, ...customConfig } = {}) {
     .fetch(`${rootUrl}${endpoint}`, config)
     .then(async (response) => {
       if (response.ok) {
-        if (response.status === 204) {
-          return null;
-        }
+        if (response.status === 204) return null;
         return response.json();
       }
 

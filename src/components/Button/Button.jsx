@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 import styles from "./Button.module.scss";
 
 const variantToClass = {
@@ -52,7 +52,7 @@ export function Button({
   );
 }
 
-Button.propTypes = {
+const buttonPropTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
   fullwidth: PropTypes.bool,
@@ -62,3 +62,5 @@ Button.propTypes = {
   type: PropTypes.string,
   to: PropTypes.string,
 };
+
+Button.propTypes = buttonPropTypes;

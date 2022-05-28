@@ -9,5 +9,6 @@ export default {
 export const Playground = () => {
   const name = text("name", "name");
   const checked = boolean("checked");
-  return <Checkbox name={name} checked={checked}></Checkbox>;
+  const disabled = boolean("disabled");
+  return <Checkbox name={name} checked={checked} isDisabled={disabled} />;
 };
