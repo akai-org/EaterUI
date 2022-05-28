@@ -1,0 +1,38 @@
+@import "../../assets/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  .header {
+    width: 100%;
+    text-align: left;
+  }
+}
+
+.submit {
+  position: sticky;
+  top: 90%;
+
+  &Multiple {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .instanceButton {
+      width: 48%;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}

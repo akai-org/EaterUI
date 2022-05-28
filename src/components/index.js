@@ -7,4 +7,5 @@ export { Icon } from "./Icon/Icon";
 export { Input, Textarea } from "./Input/Input";
 export { Layout } from "./Layout/Layout";
 export { Text } from "./Text/Text";
+export { List } from "./List/List";
 export { Navbar } from "./Navbar/Navbar";
