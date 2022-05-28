@@ -34,8 +34,7 @@ function App() {
           path="/shopping-list/:shopingDetailId"
           element={<ShoppingListDetails />}
         />
-        {/* TODO: change "/" to some main view? */}
-        <Route path="*" element={<RecipeRouter />} />
+        <Route path="*" element={<MenuRouter />} />
       </Routes>
       <ToastBox />
     </>
