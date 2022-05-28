@@ -4,16 +4,17 @@ import { Button, ButtonGroup } from "@/components";
 import useRecipes from "../hooks/api/useRecipes";
 
 function RecipeListing() {
-  const state = useRecipes();
-  if (state.isLoading) {
-    return <p>Loading...</p>;
+  const { data, isLoading } = useRecipes();
+
+  if (isLoading) {
+    return <p>Ładowanie przepisów...</p>;
   }
 
   return (
     <>
-      <h1>Recipes</h1>
+      <h1>Przepisy</h1>
       <ul>
-        {state.data?.map(({ id, name }) => (
+        {data?.map(({ id, name }) => (
           <li key={id}>
             <Link to={`/recipes/${id}`}>
               {id}: {name}

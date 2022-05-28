@@ -1,9 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { v4 as uuidv4 } from "uuid";
 
-const useIngredients = () => {
-  const [ingredients, setIngredients] = useState([]);
+const useIngredients = (ingredientsList = []) => {
+  const [ingredients, setIngredients] = useState(ingredientsList);
   const [ingredientToEdit, setIngredientToEdit] = useState(null);
   const navigate = useNavigate();
 
@@ -15,6 +15,7 @@ const useIngredients = () => {
 
       return edited;
     });
+    setIngredientToEdit(null);
   };
 
   const addIngredient = (data) => {

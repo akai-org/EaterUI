@@ -1,8 +1,9 @@
 import React from "react";
 import propTypes from "prop-types";
 import classNames from "classnames";
-import styles from "./Card.module.scss";
+import { List } from "../List/List";
 import { Text } from "../Text/Text";
+import styles from "./Card.module.scss";
 
 export function Card({
   disabled = false,
@@ -27,7 +28,11 @@ export function Card({
       )}
       <div className={classNames(styles.card__text)}>
         <Text size="h4">{primaryText}</Text>
-        <Text>{secondaryText}</Text>
+        {typeof secondaryText === "string" ? (
+          <Text>{secondaryText}</Text>
+        ) : (
+          <List content={secondaryText} />
+        )}
       </div>
       {rightContent && (
         <div className={classNames(styles["card__right-content"])}>
@@ -40,7 +45,7 @@ export function Card({
 
 Card.propTypes = {
   primaryText: propTypes.string,
-  secondaryText: propTypes.string,
+  secondaryText: propTypes.oneOfType([propTypes.string, propTypes.array]),
   className: propTypes.string,
   rightContent: propTypes.node,
   imageUrl: propTypes.string,
