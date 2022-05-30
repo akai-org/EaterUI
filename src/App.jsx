@@ -9,14 +9,23 @@ import RecipeRouter from "./pages/Recipes/RecipeRouter";
 import { Navbar } from "./components/index";
 import "./assets/index.scss";
 import { ToastBox } from "@/utils/toast";
+import { useAuth } from "./utils/auth";
 
 function App() {
+  const { isLoggedIn, loading } = useAuth();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!isLoggedIn) {
+    return <Login />;
+  }
+
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/recipes/*" element={<RecipeRouter />} />
         <Route path="/menu/*" element={<MenuRouter />} />
         <Route path="/shopping-list" element={<ShoppingList />} />
@@ -25,6 +34,7 @@ function App() {
           path="/shopping-list/:shopingDetailId"
           element={<ShoppingListDetails />}
         />
+        <Route path="*" element={<MenuRouter />} />
       </Routes>
       <ToastBox />
     </>

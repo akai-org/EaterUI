@@ -1,9 +1,11 @@
 import { useMutation } from "react-query";
-import request from "@/api/request";
 import queryClient from "@/queryClient";
 import { showErrorToast } from "@/utils/toast";
+import { useRequest } from "@/utils/auth";
 
 function useCreateRecipe() {
+  const request = useRequest();
+
   return useMutation(
     (recipeData) => request("/recipes", { method: "POST", body: recipeData }),
     {

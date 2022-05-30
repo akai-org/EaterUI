@@ -1,7 +1,9 @@
 import { useQuery } from "react-query";
-import request from "@/api/request";
+import { useRequest } from "@/utils/auth";
 
 function useRecipe(recipeId) {
+  const request = useRequest();
+
   return useQuery(["recipes", recipeId], () => request(`/recipes/${recipeId}`));
 }
 

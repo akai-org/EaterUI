@@ -1,13 +1,8 @@
-import { BrowserRouter } from "react-router-dom";
 import propTypes from "prop-types";
 import React from "react";
 import { Container } from "../Container/Container";
 
-export const Layout = ({ children }) => (
-  <BrowserRouter>
-    <Container>{children}</Container>
-  </BrowserRouter>
-);
+export const Layout = ({ children }) => <Container>{children}</Container>;
 
 Layout.propTypes = {
   children: propTypes.oneOfType([

@@ -1,7 +1,9 @@
 import { useQuery } from "react-query";
-import request from "@/api/request";
+import { useRequest } from "@/utils/auth";
 
 function useMenuDetails(date) {
+  const request = useRequest();
+
   return useQuery(["menu", date], () => request(`/menu/details?date=${date}`));
 }
 

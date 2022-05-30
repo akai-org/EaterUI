@@ -1,8 +1,10 @@
 import { useQuery } from "react-query";
-import request from "@/api/request";
 import { showErrorToast } from "@/utils/toast";
+import { useRequest } from "@/utils/auth";
 
 function useRecipes() {
+  const request = useRequest();
+
   return useQuery("recipes", () => request("/recipes"), {
     onError: () => {
       showErrorToast("Nie udało się pobrać przepisów");
