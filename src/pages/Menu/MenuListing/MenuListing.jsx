@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import useMenu from "../hooks/api/useMenu";
 
 function MenuListing() {
-  const { data = [] } = useMenu();
+  const { data = [] } = useMenu({
+    startDate: "2022-04-01",
+    endDate: "2022-04-07",
+  });
 
   return (
     <>
