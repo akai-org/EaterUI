@@ -6,7 +6,7 @@ import styles from "./Input.module.scss";
 export const Input = React.forwardRef(
   ({ label, errorMessage, className, wrapperClassName, ...rest }, ref) => (
     <label className={classNames(styles.fieldWrapper, wrapperClassName)}>
-      {label && <div>{label}</div>}
+      {label && <span className={styles.label}>{label}</span>}
       <input
         ref={ref}
         {...rest}
@@ -22,7 +22,7 @@ export const Input = React.forwardRef(
 export const Textarea = React.forwardRef(
   ({ label, errorMessage, className, ...rest }, ref) => (
     <label className={classNames(styles.fieldWrapper, className)}>
-      <div>{label}</div>
+      {label && <span className={styles.label}>{label}</span>}
       <textarea
         ref={ref}
         {...rest}
