@@ -53,6 +53,10 @@ $XXL-spacing: 64px;
 // navbar
 $nav-height: 64px;
 
-//transitions
+// transitions
 $transiton-primary: 0.2s ease-in-out;
 $transiton-secondary: 0.4s ease-in-out;
+
+// z-index
+$navbar-z-index: 20;
+$overlay-z-index: 10;
