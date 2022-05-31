@@ -1,0 +1,16 @@
+@import "../../../assets/variables.scss";
+
+.counterWrapper {
+  display: flex;
+  align-items: center;
+  gap: $M-spacing;
+
+  input {
+    margin: 0;
+  }
+}
+
+.inputWrapper {
+  margin: 0;
+  flex-grow: 1;
+}

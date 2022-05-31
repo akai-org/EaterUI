@@ -1,0 +1,10 @@
+@import "../../../assets/variables.scss";
+
+.inputWrapper {
+  margin-top: 0;
+}
+
+.listWrapper {
+  overflow: scroll;
+  margin-bottom: $M-spacing;
+}

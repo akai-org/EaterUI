@@ -7,6 +7,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "dev": "nodemon dist/index.js",
+    "prisma:studio": "prisma studio",
     "prisma:generate": "prisma generate",
     "prisma:migration": "prisma migrate dev --name",
     "prisma:migrate": "prisma migrate deploy",

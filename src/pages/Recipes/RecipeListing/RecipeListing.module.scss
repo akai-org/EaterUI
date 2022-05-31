@@ -1,0 +1,15 @@
+@import "../../../assets/variables.scss";
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.inputWrapper {
+  margin-top: 0;
+}
+
+.listWrapper {
+  overflow: scroll;
+  margin-bottom: $M-spacing;
+}
