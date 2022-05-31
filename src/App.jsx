@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import dayjs from "dayjs";
+import "dayjs/locale/pl";
 import Login from "./pages/Login/Login";
 import ShoppingList from "./pages/ShoppingList/ShoppingList";
 import ShoppingListAdd from "./pages/ShoppingList/ShoppingListAdd";
@@ -10,6 +12,11 @@ import { Navbar } from "./components/index";
 import "./assets/index.scss";
 import { ToastBox } from "@/utils/toast";
 import { useAuth } from "./utils/auth";
+
+function setUpDayjs() {
+  dayjs.locale("pl");
+}
+setUpDayjs();
 
 function App() {
   const { isLoggedIn, loading } = useAuth();
