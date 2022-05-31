@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { z } from "zod";
-
-const formatDate = (date: Date) => dayjs(date).format("YYYY-MM-DD");
+import { formatDate } from "../config/date";
 
 export const ShoppingListQuerySchema = z.object({
   query: z.object({
@@ -58,17 +57,19 @@ export const ShoppingListDetailsSchema = z.object({
 export type ShoppingListDetails = z.infer<typeof ShoppingListDetailsSchema>;
 
 export const CreateShoppingListSchema = z.object({
-  body: z.object({
-    startDate: z.string(),
-    endDate: z.string(),
-  }).superRefine(({startDate, endDate}, ctx) => {
-    if (dayjs(startDate).isAfter(dayjs(endDate))) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Start date should be before end data",
-      });
-    }
-  })
+  body: z
+    .object({
+      startDate: z.string(),
+      endDate: z.string(),
+    })
+    .superRefine(({ startDate, endDate }, ctx) => {
+      if (dayjs(startDate).isAfter(dayjs(endDate))) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Start date should be before end data",
+        });
+      }
+    }),
 });
 
 export type CreateShoppingListBody = z.infer<

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { HttpError } from "../errors/HttpError";
 import db from "../db";
 import {
@@ -9,10 +10,42 @@ import {
   CreateMenuItemPayload,
   UpdateMenuItemBody,
 } from "../schema/menu.schema";
+import { dateFormat } from "../config/date";
+
+function generateMenu(
+  startDate: Date,
+  endDate: Date,
+  data: Record<string, number>,
+) {
+  const days: Record<string, number> = {};
+
+  const start = dayjs(startDate);
+  // adding 1 more day to have endDate inclusive in the range of days
+  const end = dayjs(endDate).add(1, "day");
+
+  for (
+    let currentDate = start;
+    currentDate.isBefore(end);
+    currentDate = currentDate.add(1, "day")
+  ) {
+    const strDay = currentDate.format(dateFormat);
+
+    if (data[strDay]) {
+      days[strDay] = data[strDay];
+    } else {
+      days[strDay] = 0;
+    }
+  }
+
+  return Object.entries(days).map(([date, count]) => ({
+    date,
+    count,
+  }));
+}
 
 export async function menuSummaryByDateRange(
   userId: string,
-  { startDate, endDate }: { startDate: Date; endDate: Date }
+  { startDate, endDate }: { startDate: Date; endDate: Date },
 ): Promise<MenuSummary> {
   const menuItemsOverview = await db.menuItem.groupBy({
     where: {
@@ -26,22 +59,26 @@ export async function menuSummaryByDateRange(
     _count: {
       recipeId: true,
     },
-    orderBy: {
-      date: "desc",
-    },
   });
 
-  const formattedMenuItemsOverview = menuItemsOverview.map((item) => ({
-    date: item.date,
-    count: item._count.recipeId,
-  }));
+  const mappedDailyMealCount = menuItemsOverview.reduce((acc, item) => {
+    const strDay = dayjs(item.date).format(dateFormat);
+    acc[strDay] = item._count.recipeId;
+    return acc;
+  }, {} as Record<string, number>);
 
-  return MenuSummarySchema.parse(formattedMenuItemsOverview);
+  const filledDailyMealCount = generateMenu(
+    startDate,
+    endDate,
+    mappedDailyMealCount,
+  );
+
+  return MenuSummarySchema.parse(filledDailyMealCount);
 }
 
 export async function menuItemsByDate(
   userId: string,
-  date: Date
+  date: Date,
 ): Promise<Menu> {
   const menuItems = await db.menuItem.findMany({
     where: {
@@ -63,7 +100,7 @@ export async function menuItemsByDate(
 
 export async function createMenuItem(
   userId: string,
-  data: CreateMenuItemPayload
+  data: CreateMenuItemPayload,
 ): Promise<MenuItemId> {
   const { id } = await db.menuItem.create({
     data: { userId, ...data },
@@ -75,7 +112,7 @@ export async function createMenuItem(
 export async function updateMenuItemById(
   userId: string,
   id: string,
-  data: UpdateMenuItemBody
+  data: UpdateMenuItemBody,
 ): Promise<void> {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
   if (!menuItem) {
@@ -87,7 +124,7 @@ export async function updateMenuItemById(
 
 export async function deleteMenuItemById(
   userId: string,
-  id: string
+  id: string,
 ): Promise<void> {
   const menuItem = await db.menuItem.findFirst({ where: { id, userId } });
   if (!menuItem) {

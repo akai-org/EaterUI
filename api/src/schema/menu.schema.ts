@@ -1,8 +1,5 @@
 import { z } from "zod";
-import dayjs from "dayjs";
-
-const validateDateFormat = (val: string | undefined) =>
-  dayjs(val, "YYYY-MM-DD").isValid();
+import { validateDateFormat } from "../config/date";
 
 const params = z.object({
   id: z.string(),
@@ -19,7 +16,7 @@ export type MenuSummaryQuery = z.infer<typeof MenuSummaryQuerySchema>["query"];
 
 export const MenuSummarySchema = z
   .object({
-    date: z.date().transform((date) => dayjs(date).format("YYYY-MM-DD")),
+    date: z.string().refine(validateDateFormat),
     count: z.number(),
   })
   .array();
