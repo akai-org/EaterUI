@@ -2,27 +2,25 @@
 
 [Live version](https://eater-ui.netlify.app/)
 
-## setup
+## Setup
 
-install dependencies
+Install dependencies
 
 ```
 npm install
 ```
 
-run development environment
+Run development environment
 
 ```
 npm run dev
 ```
 
-## storybook
+## Storybook
 
 ```
 npm run storybook
 ```
-
-## deployment
 
 ### UI
 
@@ -59,7 +57,7 @@ npm run lint:fix
 Run stylelint on all scss files in src folder
 
 ```
-Npm run style
+npm run style
 ```
 
 Fix all potentially fixable stylelint errors and warnings
@@ -67,10 +65,3 @@ Fix all potentially fixable stylelint errors and warnings
 ```
 npm run style:fix
 ```
-
-### VSCode Extensions
-
-It's preferred to install:
-- [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
